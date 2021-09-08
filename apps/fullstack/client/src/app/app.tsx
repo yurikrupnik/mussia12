@@ -1,15 +1,15 @@
-import styles from './app.module.css';
 import React, { useEffect } from 'react';
+import { Route, Link } from 'react-router-dom';
+import axios from 'axios';
 import { ReactComponent as Logo } from './logo.svg';
+import styles from './app.module.css';
 import star from './star.svg';
 
-import { Route, Link } from 'react-router-dom';
-// import axios from 'axios';
-
 function getUsers() {
-  return fetch('/api/users')
+  return axios
+    .get('/api/users')
     .then((res) => {
-      return res.json();
+      return res.data;
     })
     .catch((err) => {
       console.log('err', err);
