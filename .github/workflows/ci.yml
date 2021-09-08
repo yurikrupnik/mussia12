@@ -84,7 +84,7 @@ jobs:
       - run: npx nx affected --target=e2e --parallel --max-parallel=3 --base=origin/master --headless
       - run: gcloud config list
       - run: gcloud auth list
-      - run: npx nx affected --target=deploy --parallel --max-parallel=3 --base=origin/master
+#      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=deploy --parallel --max-parallel=3 --prod
 #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=version --parallel --max-parallel=3 --base=origin/master --patch
 #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=deploy --parallel --max-parallel=3 --base=origin/master
       - run: npx nx-cloud stop-all-agents
