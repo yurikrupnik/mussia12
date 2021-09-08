@@ -1,9 +1,7 @@
-name: NX
+name: Tags
 on:
   push:
-    branches:
-      - master
-  pull_request:
+    tags:
 
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
