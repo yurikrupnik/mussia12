@@ -102,12 +102,12 @@ jobs:
         with:
           node-version: '16'
       - run: npm install
-      #      - name: Set up Cloud SDK
-      #        uses: google-github-actions/setup-gcloud@master
-      #        with:
-      #          project_id: mussia8
-      #          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      #      - run: |-
-      #          gcloud --quiet auth configure-docker
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: mussia8
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - run: |-
+          gcloud --quiet auth configure-docker
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
