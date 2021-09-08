@@ -1,0 +1,74 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - uses: c-hive/gha-npm-cache@v1
+      - run: npm ci
+
+      - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
+      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+
+      - run: gcloud config list
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: mussia8
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - run: |-
+          gcloud --quiet auth configure-docker
+      - run: npx nx-cloud start-ci-run
+      - uses: mansagroup/nrwl-nx-action@v2
+        with:
+          targets: lint,build,test
+#       - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=deploy --parallel --max-parallel=3 --base=origin/master
+#      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=version --parallel --max-parallel=3 --version=patch
+#      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=deploy --parallel --max-parallel=3
+      #      - run: pulumi stack select yurikrupnik/func1-2-dev
+      #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=up-pulumi --parallel --max-parallel=3
+      - run: npx nx-cloud stop-all-agents
+
+  agents:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        agent: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - run: npm install
+      #      - name: Set up Cloud SDK
+      #        uses: google-github-actions/setup-gcloud@master
+      #        with:
+      #          project_id: mussia8
+      #          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      #      - run: |-
+      #          gcloud --quiet auth configure-docker
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent
