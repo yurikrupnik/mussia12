@@ -2,5 +2,9 @@
   "/api/users": {
     "target": "http://localhost:3333",
     "secure": false
+  },
+  "/api/projects": {
+    "target": "http://localhost:3334",
+    "secure": false
   }
 }
