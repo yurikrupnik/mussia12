@@ -1,0 +1,53 @@
+{
+  "root": "apps/marketing/website",
+  "sourceRoot": "apps/marketing/website",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "root": "apps/marketing/website",
+        "outputPath": "dist/apps/marketing/website"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "marketing-website:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "marketing-website:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "marketing-website:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/marketing/website"],
+      "options": {
+        "jestConfig": "apps/marketing/website/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/marketing/website/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

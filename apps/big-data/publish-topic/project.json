@@ -1,0 +1,52 @@
+{
+  "root": "apps/big-data/publish-topic",
+  "sourceRoot": "apps/big-data/publish-topic/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/big-data/publish-topic",
+        "main": "apps/big-data/publish-topic/src/main.ts",
+        "tsConfig": "apps/big-data/publish-topic/tsconfig.app.json",
+        "assets": ["apps/big-data/publish-topic/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/big-data/publish-topic/src/environments/environment.ts",
+              "with": "apps/big-data/publish-topic/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "big-data-publish-topic:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/big-data/publish-topic/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/big-data/publish-topic"],
+      "options": {
+        "jestConfig": "apps/big-data/publish-topic/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

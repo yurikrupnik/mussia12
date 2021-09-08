@@ -1,0 +1,79 @@
+{
+  "root": "apps/fullstack/client",
+  "sourceRoot": "apps/fullstack/client/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/fullstack/client",
+        "index": "apps/fullstack/client/src/index.html",
+        "main": "apps/fullstack/client/src/main.tsx",
+        "polyfills": "apps/fullstack/client/src/polyfills.ts",
+        "tsConfig": "apps/fullstack/client/tsconfig.app.json",
+        "assets": [
+          "apps/fullstack/client/src/favicon.ico",
+          "apps/fullstack/client/src/assets"
+        ],
+        "styles": ["apps/fullstack/client/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/fullstack/client/src/environments/environment.ts",
+              "with": "apps/fullstack/client/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "fullstack-client:build",
+        "hmr": true,
+        "proxyConfig": "apps/fullstack/client/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "fullstack-client:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fullstack/client/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/fullstack/client"],
+      "options": {
+        "jestConfig": "apps/fullstack/client/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
