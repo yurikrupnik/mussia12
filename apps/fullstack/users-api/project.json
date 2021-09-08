@@ -66,6 +66,17 @@
       "options": {
         "command": "gcloud run deploy users-api --image eu.gcr.io/mussia8/users-api --platform managed  --allow-unauthenticated  --region europe-west1 --port 3333"
       }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "npx nx run fullstack-users-api:docker",
+          "npx nx run fullstack-users-api:cloud"
+        ],
+        "parallel": false
+      }
     }
   },
   "tags": []
