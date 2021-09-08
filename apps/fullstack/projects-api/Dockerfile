@@ -4,7 +4,7 @@ ARG NODE_ENV
 ARG BUILD_FLAG
 
 WORKDIR /app/builder
-
+RUN npm i
 RUN npx nx build fullstack-projects-api --prod
 
 FROM node:16-alpine

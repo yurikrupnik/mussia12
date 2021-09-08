@@ -13,9 +13,9 @@ services:
     container_name: users-api
     environment:
       - DB_URL=mongodb://db/mussia8
-      - port=3330
+      - PORT=3330
     ports:
-      - 3333:3330
+      - 3333:3333
   projects-api:
     image: eu.gcr.io/mussia8/projects-api
     build:
@@ -24,7 +24,7 @@ services:
     container_name: projects-api
     environment:
       - DB_URL=mongodb://db/mussia8
-      - port=3331
+      - PORT=3331
     ports:
-      - 3333:3331
+      - 3334:3334
 #    command: npm run start
