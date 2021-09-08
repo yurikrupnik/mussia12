@@ -13,7 +13,7 @@ services:
     container_name: users-api
     environment:
       - DB_URL=mongodb://db/mussia8
-      - PORT=3330
+      - PORT=3333
     ports:
       - 3333:3333
   projects-api:
@@ -24,7 +24,7 @@ services:
     container_name: projects-api
     environment:
       - DB_URL=mongodb://db/mussia8
-      - PORT=3331
+      - PORT=3334
     ports:
       - 3334:3334
 #    command: npm run start
