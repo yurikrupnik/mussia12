@@ -1,7 +1,8 @@
-import { sharedDataTypes } from './shared-data-types';
+// import { User } from './shared-data-types';
 
 describe('sharedDataTypes', () => {
   it('should work', () => {
-    expect(sharedDataTypes()).toEqual('shared-data-types');
+    // expect(User).toBe();
+    expect(1).toEqual(1);
   });
 });
