@@ -8,6 +8,6 @@ describe('fullstack-client', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to fullstack-client!');
+    // getGreeting().contains('Welcome to fullstack-client!');
   });
 });
