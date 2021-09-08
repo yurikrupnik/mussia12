@@ -50,7 +50,9 @@
       "options": {
         "buildTarget": "fullstack-client:build",
         "hmr": true,
-        "proxyConfig": "apps/fullstack/client/proxy.conf.json"
+        "proxyConfig": "apps/fullstack/client/proxy.conf.json",
+        "open": true,
+        "port": 4000
       },
       "configurations": {
         "production": {

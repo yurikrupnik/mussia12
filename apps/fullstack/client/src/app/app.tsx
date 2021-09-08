@@ -1,11 +1,25 @@
 import styles from './app.module.css';
-
+import React, { useEffect } from 'react';
 import { ReactComponent as Logo } from './logo.svg';
 import star from './star.svg';
 
 import { Route, Link } from 'react-router-dom';
+// import axios from 'axios';
+
+function getUsers() {
+  return fetch('/api/users')
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log('err', err);
+    });
+}
 
 export function App() {
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
     <div className={styles.app}>
       <header className="flex">

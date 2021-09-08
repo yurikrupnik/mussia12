@@ -48,6 +48,24 @@
         "jestConfig": "apps/fullstack/users-api/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "file": "apps/fullstack/users-api/Dockerfile",
+        "push": true,
+        "tags": [
+          "eu.gcr.io/mussia8/users-api:latest",
+          "eu.gcr.io/mussia8/users-api:v1"
+        ]
+      }
+    },
+    "cloud": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "gcloud run deploy users-api --image eu.gcr.io/mussia8/users-api --platform managed  --allow-unauthenticated  --region europe-west1 --port 3333"
+      }
     }
   },
   "tags": []
