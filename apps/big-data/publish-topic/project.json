@@ -48,11 +48,18 @@
         "passWithNoTests": true
       }
     },
+    "deploy-alt": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "gcloud functions deploy publishTopic --runtime nodejs16 --trigger-http --region europe-west1 --allow-unauthenticated --entry-point=publishTopic --source=dist/apps/big-data/publish-topic"
+      }
+    },
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "gcloud functions deploy publish-topic --runtime nodejs14 --trigger-http --region europe-west1 --allow-unauthenticated --entry-point=publishTopic --source=dist/apps/big-data/publish-topic"
+        "command": "bash scripts/deploy-gcp-function.sh publishTopic dist/apps/big-data/publish-topic"
       }
     }
   },

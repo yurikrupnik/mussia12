@@ -11,6 +11,7 @@ FROM node:16-alpine
 WORKDIR /app
 COPY --from=builder /app/builder/dist/apps/fullstack/users-api ./
 RUN npm install --only=production
+RUN npm i -D tslib
 
 ENV NODE_ENV=$NODE_ENV
 

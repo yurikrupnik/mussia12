@@ -1,8 +1,8 @@
-import { PubSub } from '@google-cloud/pubsub';
 import type { Request, Response } from 'express';
-const pubsub = new PubSub();
-
+import { PubSub } from '@google-cloud/pubsub';
 import type { events } from '@mussia12/shared/data-types';
+
+const pubsub = new PubSub();
 
 function publishPubSubMessage(topic: events, message: any) {
   const buffer = Buffer.from(JSON.stringify(message));
