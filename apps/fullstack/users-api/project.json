@@ -10,7 +10,8 @@
         "outputPath": "dist/apps/fullstack/users-api",
         "main": "apps/fullstack/users-api/src/main.ts",
         "tsConfig": "apps/fullstack/users-api/tsconfig.app.json",
-        "assets": ["apps/fullstack/users-api/src/assets"]
+        "assets": ["apps/fullstack/users-api/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {

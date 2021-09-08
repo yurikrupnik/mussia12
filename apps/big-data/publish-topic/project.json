@@ -10,7 +10,8 @@
         "outputPath": "dist/apps/big-data/publish-topic",
         "main": "apps/big-data/publish-topic/src/main.ts",
         "tsConfig": "apps/big-data/publish-topic/tsconfig.app.json",
-        "assets": ["apps/big-data/publish-topic/src/assets"]
+        "assets": ["apps/big-data/publish-topic/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
@@ -45,6 +46,13 @@
       "options": {
         "jestConfig": "apps/big-data/publish-topic/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "gcloud functions deploy publish-topic --runtime nodejs14 --trigger-http --region europe-west1 --allow-unauthenticated --entry-point=publishTopic --source=dist/apps/big-data/publish-topic"
       }
     }
   },

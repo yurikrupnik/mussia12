@@ -2,17 +2,7 @@ import { PubSub } from '@google-cloud/pubsub';
 import type { Request, Response } from 'express';
 const pubsub = new PubSub();
 
-type events = 'be-1' | 'agent-1' | 'fe-s1' | 'd-s' | 'be_logs' | 'log-ing';
-
-type eve1 = {
-  'be-1': {
-    ip: string;
-    host: string;
-  };
-  'log-in': {
-    userId: string;
-  };
-};
+import type { events } from '@mussia12/shared/data-types';
 
 function publishPubSubMessage(topic: events, message: any) {
   const buffer = Buffer.from(JSON.stringify(message));
