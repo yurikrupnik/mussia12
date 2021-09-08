@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+    lerna:
+        image: eu.gcr.io/mussia8/nx
+        build:
+            context: .
+        container_name: mx
+        deploy:
+            replicas: 0

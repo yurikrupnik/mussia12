@@ -30,7 +30,8 @@
     "serve": {
       "executor": "@nrwl/node:execute",
       "options": {
-        "buildTarget": "fullstack-users-api:build"
+        "buildTarget": "fullstack-users-api:build",
+        "port": 9229
       }
     },
     "lint": {
