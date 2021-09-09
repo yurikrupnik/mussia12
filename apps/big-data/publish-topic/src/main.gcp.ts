@@ -1,10 +1,24 @@
-import express from 'express';
+import type { Request, Response } from 'express';
+import { PubSub } from '@google-cloud/pubsub';
+import type { events } from '@mussia12/shared/data-types';
 
-const app = express();
+const pubsub = new PubSub();
 
-app.get('/', (req, res) => {
-  res.send({ message: 'Welcome to your deployed app!' });
-});
+function publishPubSubMessage(topic: events, message: any) {
+  const buffer = Buffer.from(JSON.stringify(message));
+  return pubsub.topic(topic).publish(buffer);
+}
 
-// export your express application as expressApp
-export const expressApp = app;
+const publishTopic = (req: Request, res: Response) => {
+  const { topic } = req.body;
+  delete req.body.topic;
+  publishPubSubMessage(topic, req.body)
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch((err) => {
+      console.log('Failed send PubSub topic', err); // eslint-disable-line
+    });
+};
+
+export { publishTopic };

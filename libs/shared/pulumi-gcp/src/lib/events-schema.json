@@ -1,0 +1,21 @@
+{
+  "type" : "record",
+  "name" : "Avro",
+  "fields" : [
+    {
+      "name" : "stringField",
+      "type" : "string",
+      "description": "Testing string field"
+    },
+    {
+      "name" : "intField",
+      "type" : "int",
+      "description": "Testing int field"
+    },
+    {
+      "name" : "tenantId",
+      "type" : "string",
+      "description": "Tenant Id"
+    }
+  ]
+}

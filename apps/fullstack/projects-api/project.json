@@ -66,7 +66,7 @@
         "command": "gcloud run deploy projects-api --image eu.gcr.io/mussia8/projects-api --platform managed  --allow-unauthenticated  --region europe-west1 --port 3333"
       }
     },
-    "sh-deploy": {
+    "deploy-multi": {
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
@@ -75,6 +75,21 @@
           "npx nx run fullstack-projects-api:cloud"
         ],
         "parallel": false
+      }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "name=projects-api src=apps/fullstack/projects-api bash scripts/deploy-to-cloud-run.sh"
+      }
+    },
+    "up-pulumi": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "pulumi up -y",
+        "cwd": "apps/fullstack/projects-api/infrastructure"
       }
     }
   },

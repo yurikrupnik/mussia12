@@ -15,6 +15,7 @@
     "@nestjs/mongoose": "^8.0.1",
     "@nestjs/platform-express": "^7.0.0",
     "@nrwl/next": "12.9.0",
+    "@pulumi/docker": "^3.1.0",
     "@pulumi/gcp": "^5.0.0",
     "@pulumi/pulumi": "^3.0.0",
     "axios": "^0.21.4",
@@ -31,6 +32,7 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
+    "@angular-devkit/architect": "^0.1202.4",
     "@dev-thought/nx-deploy-it": "^2.0.0",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.0",
