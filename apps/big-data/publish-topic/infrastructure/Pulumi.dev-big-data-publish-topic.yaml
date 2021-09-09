@@ -1,0 +1,6 @@
+encryptionsalt: v1:HAPdo/Qfueo=:v1:H2TOeBpjwLk4rdP/:Jcfd/dqreOu2Zjv4yNERJKZslql/aQ==
+config:
+  big-data-publish-topic:distPath: /Users/yurikrupnik/WebstormProjects/mussia12/dist/apps/big-data/publish-topic
+  big-data-publish-topic:projectName: big-data-publish-topic
+  gcp:project: mussia8
+  gcp:region: europe-west1

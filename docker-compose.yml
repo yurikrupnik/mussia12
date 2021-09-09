@@ -13,7 +13,18 @@ services:
     container_name: users-api
     environment:
       - DB_URL=mongodb://db/mussia8
-      - port=3330
+      - PORT=3333
     ports:
-      - 3333:3330
+      - 3333:3333
+  projects-api:
+    image: eu.gcr.io/mussia8/projects-api
+    build:
+      context: apps/fullstack/projects-api
+      dockerfile: Dockerfile
+    container_name: projects-api
+    environment:
+      - DB_URL=mongodb://db/mussia8
+      - PORT=3334
+    ports:
+      - 3334:3334
 #    command: npm run start

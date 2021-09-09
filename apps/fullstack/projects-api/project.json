@@ -1,0 +1,97 @@
+{
+  "root": "apps/fullstack/projects-api",
+  "sourceRoot": "apps/fullstack/projects-api/src",
+  "projectsType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/fullstack/projects-api",
+        "main": "apps/fullstack/projects-api/src/main.ts",
+        "tsConfig": "apps/fullstack/projects-api/tsconfig.app.json",
+        "assets": ["apps/fullstack/projects-api/src/assets"],
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/fullstack/projects-api/src/environments/environment.ts",
+              "with": "apps/fullstack/projects-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "fullstack-projects-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fullstack/projects-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/fullstack/projects-api"],
+      "options": {
+        "jestConfig": "apps/fullstack/projects-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "file": "apps/fullstack/projects-api/Dockerfile",
+        "push": true,
+        "tags": [
+          "eu.gcr.io/mussia8/projects-api:latest",
+          "eu.gcr.io/mussia8/projects-api:v1"
+        ]
+      }
+    },
+    "cloud": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "gcloud run deploy projects-api --image eu.gcr.io/mussia8/projects-api --platform managed  --allow-unauthenticated  --region europe-west1 --port 3333"
+      }
+    },
+    "deploy-multi": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "npx nx run fullstack-projects-api:docker",
+          "npx nx run fullstack-projects-api:cloud"
+        ],
+        "parallel": false
+      }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "name=projects-api src=apps/fullstack/projects-api bash scripts/deploy-to-cloud-run.sh"
+      }
+    },
+    "up-pulumi": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "pulumi up -y",
+        "cwd": "apps/fullstack/projects-api/infrastructure"
+      }
+    }
+  },
+  "tags": []
+}

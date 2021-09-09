@@ -61,6 +61,32 @@
       "options": {
         "command": "bash scripts/deploy-gcp-function.sh publishTopic dist/apps/big-data/publish-topic"
       }
+    },
+    "up-pulumi": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "PULUMI_CONFIG_PASSPHRASE= pulumi up -y",
+        "cwd": "apps/big-data/publish-topic/infrastructure"
+      }
+    },
+    "pulumi-deploy": {
+      "executor": "@dev-thought/nx-deploy-it:deploy",
+      "options": {
+        "main": "apps/big-data/publish-topic/infrastructure/index.ts",
+        "provider": "gcp",
+        "pulumi": {
+          "gcp:project": "mussia8",
+          "gcp:region": "europe-west1"
+        }
+      }
+    },
+    "pulumi-destroy": {
+      "executor": "@dev-thought/nx-deploy-it:destroy",
+      "options": {
+        "main": "apps/fullstack/products-api/infrastructure/index.ts",
+        "provider": "gcp"
+      }
     }
   },
   "tags": []

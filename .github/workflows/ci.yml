@@ -39,6 +39,8 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
           gcloud --quiet auth configure-docker
+      - run: docker-compose -f docker-compose.nx.yml build
+      - run: docker push eu.gcr.io/mussia8/nx
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=test --parallel --max-parallel=2
       - run: npx nx affected --target=lint --parallel --max-parallel=2
@@ -50,7 +52,9 @@ jobs:
 #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=deploy --parallel --max-parallel=3
       #      - run: pulumi stack select yurikrupnik/func1-2-dev
       #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=up-pulumi --parallel --max-parallel=3
-      - run: npx nx-cloud stop-all-agents
+      - name: Stop agents
+        run: npx nx-cloud stop-all-agents
+        if: ${{ always() }}
 
   pr:
     runs-on: ubuntu-latest
@@ -78,7 +82,8 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
           gcloud --quiet auth configure-docker
-      - run: docker pull eu.gcr.io/mussia8/nx
+      - run: docker-compose -f docker-compose.nx.yml build
+      - run: docker push eu.gcr.io/mussia8/nx
       - run: gcloud config list
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=build --parallel --max-parallel=3 --base=origin/master
@@ -91,7 +96,9 @@ jobs:
 #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=deploy --parallel --max-parallel=3 --prod
 #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=version --parallel --max-parallel=3 --base=origin/master --patch
 #      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx affected --target=deploy --parallel --max-parallel=3 --base=origin/master
-      - run: npx nx-cloud stop-all-agents
+      - name: Stop agents
+        run: npx nx-cloud stop-all-agents
+        if: ${{ always() }}
   agents:
     runs-on: ubuntu-latest
     name: Agent 1

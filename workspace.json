@@ -4,10 +4,12 @@
     "big-data-publish-topic": "apps/big-data/publish-topic",
     "fullstack-client": "apps/fullstack/client",
     "fullstack-client-e2e": "apps/fullstack/client-e2e",
+    "fullstack-projects-api": "apps/fullstack/projects-api",
     "fullstack-users-api": "apps/fullstack/users-api",
     "marketing-website": "apps/marketing/website",
     "marketing-website-e2e": "apps/marketing/website-e2e",
-    "shared-data-types": "libs/shared/data-types"
+    "shared-data-types": "libs/shared/data-types",
+    "shared-pulumi-gcp": "libs/shared/pulumi-gcp"
   },
   "cli": {
     "defaultCollection": "@nrwl/next"
