@@ -14,7 +14,6 @@ docker push $gc_image
 echo 'Finished pushing!'
 
 if [[ "$BRANCH_NAME" = "master" ]];
-echo BRANCH_NAME ->> $BRANCH_NAME
 then
   gcloud run deploy $name \
     --image $gc_image \
