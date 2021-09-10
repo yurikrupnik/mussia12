@@ -31,7 +31,8 @@ else
     --allow-unauthenticated \
     --region europe-west1 \
     --port 3333 \
-    --no-traffic
+    --no-traffic \
+    --tag $BRANCH_NAME
 fi
 
 
