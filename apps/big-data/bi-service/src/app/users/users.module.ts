@@ -7,6 +7,7 @@ import { User, UserSchema } from '../schemas/user';
 
 @Module({
   imports: [
+    // todo make env var
     MongooseModule.forRoot('mongodb://localhost/mussia12'),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],

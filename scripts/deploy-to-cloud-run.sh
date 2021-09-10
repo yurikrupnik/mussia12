@@ -14,6 +14,7 @@ docker push $gc_image
 echo 'Finished pushing!'
 
 if [[ "$BRANCH_NAME" = "master" ]];
+echo BRANCH_NAME ->> $BRANCH_NAME
 then
   gcloud run deploy $name \
     --image $gc_image \
@@ -30,8 +31,7 @@ else
     --allow-unauthenticated \
     --region europe-west1 \
     --port 3333 \
-    --no-traffic \
-    --tag $BRANCH_NAME
+    --no-traffic
 fi
 
 
