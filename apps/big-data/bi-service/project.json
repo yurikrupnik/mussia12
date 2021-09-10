@@ -1,0 +1,60 @@
+{
+  "root": "apps/big-data/bi-service",
+  "sourceRoot": "apps/big-data/bi-service/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/big-data/bi-service",
+        "main": "apps/big-data/bi-service/src/main.ts",
+        "tsConfig": "apps/big-data/bi-service/tsconfig.app.json",
+        "assets": ["apps/big-data/bi-service/src/assets"],
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/big-data/bi-service/src/environments/environment.ts",
+              "with": "apps/big-data/bi-service/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "big-data-bi-service:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/big-data/bi-service/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/big-data/bi-service"],
+      "options": {
+        "jestConfig": "apps/big-data/bi-service/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "name=bi-service src=apps/big-data/bi-service bash scripts/deploy-to-cloud-run.sh"
+      }
+    }
+  },
+  "tags": []
+}
