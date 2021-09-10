@@ -22,7 +22,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "pulumi up --yes --stack=master",
+        "command": "pulumi up --yes --stack=master --verbose",
         "cwd": "apps/big-data/infra"
       }
     },
@@ -30,7 +30,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "pulumi destroy --yes --stack=master -- --verbose",
+        "command": "pulumi destroy --yes --stack=master --verbose",
         "cwd": "apps/big-data/infra"
       }
     }
