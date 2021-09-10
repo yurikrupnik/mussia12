@@ -2,6 +2,7 @@ import { Model, Connection } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 import { UserDocument, User } from '../schemas/user';
+// import { User } from '@mussia12/shared/data-types';
 // type User = {
 //   name: string;
 //   id: string;

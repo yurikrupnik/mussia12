@@ -12,6 +12,7 @@
     "marketing-website": "apps/marketing/website",
     "marketing-website-e2e": "apps/marketing/website-e2e",
     "shared-data-types": "libs/shared/data-types",
+    "shared-mongoose-schemas": "libs/shared/mongoose-schemas",
     "shared-pulumi-gcp": "libs/shared/pulumi-gcp"
   },
   "cli": {

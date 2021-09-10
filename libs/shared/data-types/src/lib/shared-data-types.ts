@@ -1,13 +1,13 @@
-import type { providers, roles } from './shared-types';
+import type { LoginProviders, UserRoles } from './shared-types';
 
 export type User = {
   email: string;
   password: string;
-  role: roles;
+  role: UserRoles;
   image: string;
   firstName: string;
   lastName?: string;
   isActive?: boolean;
   creditCardNumber?: string;
-  provider: providers;
+  provider: LoginProviders;
 };

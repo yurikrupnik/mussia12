@@ -1,2 +1,4 @@
-export type roles = "editor" | "finance" | "admin" | "crm";
-export type providers = "local" | "google" | "github";
+export type UserRoles = 'editor' | 'finance' | 'admin' | 'crm';
+export type LoginProviders = 'local' | 'google' | 'github';
+
+export const userRoles = ['editor', 'finance', 'admin'];

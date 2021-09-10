@@ -20,6 +20,9 @@
         "libs/big-data/infrastructure/src/index.ts"
       ],
       "@mussia12/shared/data-types": ["libs/shared/data-types/src/index.ts"],
+      "@mussia12/shared/mongoose-schemas": [
+        "libs/shared/mongoose-schemas/src/index.ts"
+      ],
       "@mussia12/shared/pulumi-gcp": ["libs/shared/pulumi-gcp/src/index.ts"]
     }
   },
