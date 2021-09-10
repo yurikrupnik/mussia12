@@ -251,7 +251,7 @@ let assetArchive = new pulumi.asset.AssetArchive({
   // agent1: new pulumi.asset.FileArchive('./events-schemas/agent-event1.json'),
 });
 
-// bigQuery();
+bigQuery();
 
 const tempFolder = new storage.Bucket('temp-folder', {
   location,
@@ -455,25 +455,25 @@ const list = [
   },
 ];
 
-const dataset = new gcp.bigquery.Dataset('dataset', {
-  datasetId: 'example_dataset',
-  friendlyName: 'Test logs dataset',
-  description: 'This is a test description',
-  location: 'EU',
-  defaultTableExpirationMs: 3600000,
-  labels: {
-    env: 'default',
-  },
-});
-const agentLogs = new bigquery.Table('events', {
-  datasetId: dataset.datasetId,
-  tableId: 'agent_logs',
-  deletionProtection: false,
-  // labels: {
-  //   env: 'env:agents',
-  // },
-  schema: JSON.stringify(list),
-});
+// const dataset = new gcp.bigquery.Dataset('dataset', {
+//   datasetId: 'example_dataset',
+//   friendlyName: 'Test logs dataset',
+//   description: 'This is a test description',
+//   location: 'EU',
+//   defaultTableExpirationMs: 3600000,
+//   labels: {
+//     env: 'default',
+//   },
+// });
+// const agentLogs = new bigquery.Table('events', {
+//   datasetId: dataset.datasetId,
+//   tableId: 'agent_logs',
+//   deletionProtection: false,
+//   // labels: {
+//   //   env: 'env:agents',
+//   // },
+//   schema: JSON.stringify(list),
+// });
 //
 // const beLogsTable = new gcp.bigquery.Table('beLogsTable', {
 //   datasetId: dataset.datasetId,
