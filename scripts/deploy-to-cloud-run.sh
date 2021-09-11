@@ -24,9 +24,11 @@ then
 
   gcloud run services update-traffic $name --platform=managed --to-latest --region europe-west1
 else
-  echo $name
-  echo $BRANCH_NAME
-  echo $name
+  echo 'Pre Starting Deploy!!'
+  echo name: $name
+  echo BRANCH_NAME: $BRANCH_NAME
+  echo name: $name
+  echo 'Starting Deploy!!'
   gcloud run deploy $name \
     --image $gc_image \
     --platform managed \
