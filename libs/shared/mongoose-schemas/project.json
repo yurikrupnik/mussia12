@@ -1,0 +1,23 @@
+{
+  "root": "libs/shared/mongoose-schemas",
+  "sourceRoot": "libs/shared/mongoose-schemas/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/mongoose-schemas/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/mongoose-schemas"],
+      "options": {
+        "jestConfig": "libs/shared/mongoose-schemas/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,23 @@
+{
+  "root": "libs/big-data/infrastructure",
+  "sourceRoot": "libs/big-data/infrastructure/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/big-data/infrastructure/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/big-data/infrastructure"],
+      "options": {
+        "jestConfig": "libs/big-data/infrastructure/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["scope:pulumi"]
+}

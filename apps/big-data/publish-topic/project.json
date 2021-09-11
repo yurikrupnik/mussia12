@@ -55,7 +55,7 @@
         "command": "gcloud functions deploy publishTopic --runtime nodejs16 --trigger-http --region europe-west1 --allow-unauthenticated --entry-point=publishTopic --source=dist/apps/big-data/publish-topic"
       }
     },
-    "deploy": {
+    "deploy-main": {
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {

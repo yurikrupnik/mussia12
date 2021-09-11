@@ -1,3 +1,5 @@
+// Todo not to use pulumi in nx repo - adds pulumi as dep to docker image
+
 import * as pulumi from '@pulumi/pulumi';
 import * as docker from '@pulumi/docker';
 import * as gcp from '@pulumi/gcp';

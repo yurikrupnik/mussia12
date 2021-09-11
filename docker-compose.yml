@@ -27,4 +27,15 @@ services:
       - PORT=3334
     ports:
       - 3334:3334
+  bi-service:
+    image: eu.gcr.io/mussia8/bi-service
+    build:
+      context: apps/big-data/bi-service
+      dockerfile: Dockerfile
+    container_name: projects-api
+    environment:
+      - DB_URL=mongodb://db/mussia8
+      - PORT=3335
+    ports:
+      - 3335:3335
 #    command: npm run start

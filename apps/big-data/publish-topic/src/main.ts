@@ -4,6 +4,14 @@ import type { events } from '@mussia12/shared/data-types';
 
 const pubsub = new PubSub();
 
+// type agentLogs = 'ar' | 'as';
+
+// type eventss = {
+//   be: {
+//     [s in agentLogs]: {};
+//   };
+// };
+
 function publishPubSubMessage(topic: events, message: any) {
   const buffer = Buffer.from(JSON.stringify(message));
   return pubsub.topic(topic).publish(buffer);

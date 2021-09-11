@@ -12,15 +12,27 @@ echo 'Finished building!'
 
 docker push $gc_image
 echo 'Finished pushing!'
+echo $BRANCH_NAME
+if [[ "$BRANCH_NAME" = "master" ]];
+then
+  gcloud run deploy $name \
+    --image $gc_image \
+    --platform managed \
+    --allow-unauthenticated \
+    --region europe-west1 \
+    --port 3333
 
-##  --no-traffic \
-##  --tag=tag1 \
-gcloud run deploy $name \
-  --image $gc_image \
-  --platform managed \
-  --allow-unauthenticated \
-  --region europe-west1 \
-  --port 3333
+  gcloud run services update-traffic $name --platform=managed --to-latest --region europe-west1
+else
+  echo $name
+#  gcloud run deploy $name \
+#    --image $gc_image \
+#    --platform managed \
+#    --allow-unauthenticated \
+#    --region europe-west1 \
+#    --port 3333 \
+#    --no-traffic \
+#    --tag $BRANCH_NAME
+fi
 
-#
-#gcloud run services update-traffic $npm_package_name --platform=managed --to-latest --region europe-central2
+
