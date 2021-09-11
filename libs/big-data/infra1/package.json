@@ -1,4 +1,10 @@
 {
-  "name": "@mussia12/big-data/infra1",
-  "version": "0.0.1"
+    "name": "infra1",
+    "devDependencies": {
+        "@types/node": "^10.0.0"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^3.0.0",
+        "@pulumi/gcp": "^5.0.0"
+    }
 }
