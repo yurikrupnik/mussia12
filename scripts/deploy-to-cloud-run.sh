@@ -12,7 +12,7 @@ echo 'Finished building!'
 
 docker push $gc_image
 echo 'Finished pushing!'
-
+echo $BRANCH_NAME
 if [[ "$BRANCH_NAME" = "master" ]];
 then
   gcloud run deploy $name \
