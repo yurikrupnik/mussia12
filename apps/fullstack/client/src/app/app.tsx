@@ -5,10 +5,16 @@ import { ReactComponent as Logo } from './logo.svg';
 import styles from './app.module.css';
 import star from './star.svg';
 
+import { User } from '@mussia12/shared/mongoose-schemas';
+
+// const obj: User = {
+//   email: 'ad',
+// };
+
 function getUsers() {
   return axios
     .get('/api/users')
-    .then((res) => {
+    .then((res): Array<User> => {
       return res.data;
     })
     .catch((err) => {

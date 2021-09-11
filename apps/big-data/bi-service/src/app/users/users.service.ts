@@ -1,7 +1,8 @@
 import { Model, Connection } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
-import { UserDocument, User } from '../schemas/user';
+import { QueryOptions } from 'mongoose';
+import { User, UserDocument } from '@mussia12/shared/mongoose-schemas';
 // import { User } from '@mussia12/shared/data-types';
 // type User = {
 //   name: string;
@@ -10,49 +11,37 @@ import { UserDocument, User } from '../schemas/user';
 
 @Injectable()
 export class UsersService {
-  // constructor(@InjectConnection() private connection: Connection) {}
   constructor(
     @InjectModel(User.name) private model: Model<UserDocument>,
     @InjectConnection() private connection: Connection
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.model.find().then((res) => {
-      console.log({ res });
-      return res;
-    });
+  async findAll(query, projection, config: QueryOptions): Promise<User[]> {
+    return this.model.find(query, projection, config).lean();
   }
 
-  async findOne(id, projection): Promise<User> {
-    return this.model.findById(id, projection);
+  async findOne(id: string, projection): Promise<User> {
+    return this.model.findById(id, projection).lean();
   }
 
-  async create(
-    body: User,
-    projection: [string] | string | undefined | null | any
-  ): Promise<any> {
-    // this.userModel.
-    console.log('projection', projection);
-    return this.model.create(body, null);
-    // return this.userModel.create(body, projection);
+  create(body: User): Promise<User> {
+    return new this.model(body).save();
   }
-  // getData(): User[] {
-  //   return [
-  //     {
-  //       name: 'aris',
-  //       id: 'ds',
-  //     },
-  //     {
-  //       name: 'aris1',
-  //       id: 'ds1',
-  //     },
-  //   ];
-  // }
-  //
-  // findOne(): User {
-  //   return {
-  //     name: 'aris',
-  //     id: 'ds',
-  //   };
-  // }
+
+  async update(id: string, body: User): Promise<User> {
+    return this.model.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      body,
+      {
+        new: true,
+        useFindAndModify: false,
+      }
+    );
+  }
+
+  delete(id: string): Promise<string> {
+    return this.model.findByIdAndDelete(id).then((res) => res._id);
+  }
 }
