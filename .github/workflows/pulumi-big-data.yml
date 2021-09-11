@@ -1,13 +1,13 @@
 name: Pulumi
 on:
   push:
-    branches:
-      - main
-    paths:
-      - "apps/big-data/**"
-  pull_request:
-    paths:
-      - "apps/big-data/**"
+#    branches:
+#      - main
+#    paths:
+#      - "apps/big-data/**"
+#  pull_request:
+#    paths:
+#      - "apps/big-data/**"
 jobs:
   preview:
     name: Preview
