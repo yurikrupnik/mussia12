@@ -29,9 +29,9 @@ else
     --platform managed \
     --allow-unauthenticated \
     --region europe-west1 \
-    --port 3333 \
-    --no-traffic \
-    --tag $BRANCH_NAME
+    --port 3333
+#    --no-traffic \
+#    --tag $BRANCH_NAME
 fi
 
 
