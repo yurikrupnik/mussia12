@@ -11,3 +11,9 @@ export type User = {
   creditCardNumber?: string;
   provider: LoginProviders;
 };
+
+export type Project = {
+  name: string;
+  description: string;
+  userId: string;
+};

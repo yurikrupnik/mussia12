@@ -24,12 +24,13 @@ then
 
   gcloud run services update-traffic $name --platform=managed --to-latest --region europe-west1
 else
-  gcloud run deploy $name \
-    --image $gc_image \
-    --platform managed \
-    --allow-unauthenticated \
-    --region europe-west1 \
-    --port 3333
+  echo $name
+#  gcloud run deploy $name \
+#    --image $gc_image \
+#    --platform managed \
+#    --allow-unauthenticated \
+#    --region europe-west1 \
+#    --port 3333 \
 #    --no-traffic \
 #    --tag $BRANCH_NAME
 fi
