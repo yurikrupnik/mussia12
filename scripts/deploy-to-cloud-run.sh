@@ -13,7 +13,7 @@ echo 'Finished building!'
 docker push $gc_image
 echo 'Finished pushing!'
 echo $BRANCH_NAME
-if [[ "$BRANCH_NAME" = "master" ]];
+if [[ "${GITHUB_REF##*/}" = "master" ]];
 then
   gcloud run deploy $name \
     --image $gc_image \
@@ -26,7 +26,9 @@ then
 else
   echo 'Pre Starting Deploy!!'
   echo name: $name
+  echo gc_image: $gc_image
   echo BRANCH_NAME: $BRANCH_NAME
+  echo ${GITHUB_REF##*/}: ${GITHUB_REF##*/}
   echo name: $name
   echo 'Starting Deploy!!'
   gcloud run deploy $name \
@@ -36,7 +38,7 @@ else
     --region europe-west1 \
     --port 3333 \
     --no-traffic \
-    --tag $BRANCH_NAME
+    --tag ${GITHUB_REF##*/}
 fi
 
 
