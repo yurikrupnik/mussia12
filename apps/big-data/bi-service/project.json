@@ -48,7 +48,7 @@
         "passWithNoTests": true
       }
     },
-    "deploy": {
+    "deploy-ci": {
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
