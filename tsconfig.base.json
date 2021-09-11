@@ -17,6 +17,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@mussia12/big-data/infra1": ["libs/big-data/infra1/src/index.ts"],
       "@mussia12/big-data/infrastructure": [
         "libs/big-data/infrastructure/src/index.ts"
       ],

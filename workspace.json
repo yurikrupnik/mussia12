@@ -3,6 +3,7 @@
   "projects": {
     "big-data-bi-service": "apps/big-data/bi-service",
     "big-data-infra": "apps/big-data/infra",
+    "big-data-infra1": "libs/big-data/infra1",
     "big-data-infrastructure": "libs/big-data/infrastructure",
     "big-data-publish-topic": "apps/big-data/publish-topic",
     "fullstack-client": "apps/fullstack/client",

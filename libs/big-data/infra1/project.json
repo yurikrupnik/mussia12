@@ -1,0 +1,33 @@
+{
+  "root": "libs/big-data/infra1",
+  "sourceRoot": "libs/big-data/infra1/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/big-data/infra1",
+        "main": "libs/big-data/infra1/src/index.ts",
+        "tsConfig": "libs/big-data/infra1/tsconfig.lib.json",
+        "assets": ["libs/big-data/infra1/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/big-data/infra1/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/big-data/infra1"],
+      "options": {
+        "jestConfig": "libs/big-data/infra1/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
