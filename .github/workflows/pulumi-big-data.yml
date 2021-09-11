@@ -35,6 +35,6 @@ jobs:
           comment-on-pr: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           work-dir: libs/big-data/infra1
-#          cwd: app/big-data/infra
+#          cwd: app/big-data/infra6
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
