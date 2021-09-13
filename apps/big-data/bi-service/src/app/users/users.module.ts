@@ -8,7 +8,9 @@ import { User, UserSchema } from '@mussia12/shared/mongoose-schemas';
 @Module({
   imports: [
     // todo make env var
-    MongooseModule.forRoot('mongodb://localhost/mussia12'),
+    MongooseModule.forRoot(
+      process.env.MONGO_URI || 'mongodb://localhost/mussia12'
+    ),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   controllers: [UsersController],

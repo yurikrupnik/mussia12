@@ -32,10 +32,12 @@ services:
     build:
       context: apps/big-data/bi-service
       dockerfile: Dockerfile
-    container_name: projects-api
+    container_name: bi-service
     environment:
-      - DB_URL=mongodb://db/mussia8
+      - MONGO_URI=mongodb://db/mussia8
       - PORT=3335
     ports:
       - 3335:3335
+    depends_on:
+      - db
 #    command: npm run start
