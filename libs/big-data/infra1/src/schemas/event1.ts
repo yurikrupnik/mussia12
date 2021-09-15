@@ -1,4 +1,4 @@
-import { Avro } from '../types';
+import { Avro, BigquerySchema } from '../types';
 
 const event1: Avro[] = [
   {
@@ -18,10 +18,33 @@ const event1: Avro[] = [
   },
 ];
 
+const bigquerySchema: BigquerySchema[] = [
+  {
+    name: 'stringField',
+    type: 'STRING',
+    mode: 'NULLABLE',
+    description: 'Testing string field',
+  },
+  {
+    name: 'intField',
+    type: 'INTEGER',
+    mode: 'NULLABLE',
+    description: 'Testing int field',
+  },
+  {
+    name: 'tenantId',
+    type: 'STRING',
+    mode: 'REQUIRED',
+    description: 'Tenant Id',
+  },
+];
+
+// const Event
+
 interface Event1 {
   stringField: string;
   intField: number;
   tenantId: string;
 }
 
-export { event1, Event1 };
+export { event1, Event1, bigquerySchema };

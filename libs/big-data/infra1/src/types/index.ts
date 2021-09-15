@@ -1,5 +1,5 @@
 import { BucketArgs } from '@pulumi/gcp/storage/bucket';
-import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
+// import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
 import { Bucket } from '@pulumi/gcp/storage';
 
 export type BucketArgsSelf = BucketArgs & {
@@ -25,3 +25,24 @@ export type Avro = {
     | 'bytes'
     | 'string';
 };
+
+export type BigquerySchema = {
+  name: string;
+  mode: 'REQUIRED' | 'NULLABLE' | 'REPEATED';
+  type: BigquerySchemaTypes;
+  description: string;
+};
+
+export type BigquerySchemaTypes =
+  | 'STRING'
+  | 'BYTES'
+  | 'INTEGER'
+  | 'FLOAT'
+  | 'NUMERIC'
+  | 'BIGNUMBER'
+  | 'BOOLEAN'
+  | 'TIMESTAMP'
+  | 'DATE'
+  | 'DATETIME'
+  | 'GEOGRAPHY'
+  | 'RECORD';

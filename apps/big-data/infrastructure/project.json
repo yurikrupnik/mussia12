@@ -1,0 +1,52 @@
+{
+  "root": "apps/big-data/infrastructure",
+  "sourceRoot": "apps/big-data/infrastructure/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/big-data/infrastructure",
+        "main": "apps/big-data/infrastructure/src/main.ts",
+        "tsConfig": "apps/big-data/infrastructure/tsconfig.app.json",
+        "assets": ["apps/big-data/infrastructure/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/big-data/infrastructure/src/environments/environment.ts",
+              "with": "apps/big-data/infrastructure/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "big-data-infrastructure:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/big-data/infrastructure/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/big-data/infrastructure"],
+      "options": {
+        "jestConfig": "apps/big-data/infrastructure/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

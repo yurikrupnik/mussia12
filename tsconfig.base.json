@@ -16,11 +16,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "paths": {
       "@mussia12/big-data/infra1": ["libs/big-data/infra1/src/index.ts"],
-      "@mussia12/big-data/infrastructure": [
-        "libs/big-data/infrastructure/src/index.ts"
-      ],
       "@mussia12/shared/data-types": ["libs/shared/data-types/src/index.ts"],
       "@mussia12/shared/mongoose-schemas": [
         "libs/shared/mongoose-schemas/src/index.ts"
@@ -28,5 +26,15 @@
       "@mussia12/shared/pulumi-gcp": ["libs/shared/pulumi-gcp/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "typedocOptions": {
+    "entryPoints": [
+      "apps/big-data/bi-service/src/main.ts",
+    ],
+    "out": "docs/typedoc",
+    "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+    ],
+  }
 }
