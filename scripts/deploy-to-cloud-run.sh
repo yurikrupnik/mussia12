@@ -17,6 +17,8 @@ echo HEAD_REF: $HEAD_REF
 echo sha: ${GITHUB_SHA::8}
 if [[ "${GITHUB_REF##*/}" = "master" ]];
 then
+  echo name: $name
+  echo MAin run
   gcloud run deploy $name \
     --image $gc_image \
     --platform managed \
