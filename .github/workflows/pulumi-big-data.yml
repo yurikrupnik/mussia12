@@ -28,7 +28,7 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
           gcloud --quiet auth configure-docker
-      - run: pulumi plugin install resource gcp v5.19.0
+      - run: pulumi plugin install resource gcp v5.20.0
       - run: export GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - uses: pulumi/actions@v3
         with:
