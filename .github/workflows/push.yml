@@ -35,8 +35,8 @@ jobs:
       - run: echo ${{ steps.extract_branch.outputs.branch }}
       - name: Test Vars
         env:
-          - GH: "${{ github.head_ref }}"
-          - GHA: ${{ github.head_ref }}
+          GH: "${{ github.head_ref }}"
+          GHA: ${{ github.head_ref }}
         run: |
           echo $GH
           echo $GHA
