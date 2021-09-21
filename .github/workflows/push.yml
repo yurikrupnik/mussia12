@@ -38,8 +38,8 @@ jobs:
           GH: "${{ github.head_ref }}"
           GHA: ${{ github.head_ref }}
         run: |
-          echo $GH
-          echo $GHA
+          echo ${GH}
+          echo ${GHA}
 #          if [[ ${{ github.head_ref }} == *"/"* ]]; then
 #            echo "It's there!"
 #          fi
