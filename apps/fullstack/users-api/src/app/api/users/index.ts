@@ -174,7 +174,6 @@ route.get('/:id', (req, res) => {
  */
 route.post('/', (req, res) => {
   console.log('req', req.body); // eslint-disable-line
-  // res.status(200).send('on')
   const { projection } = req.body;
   delete req.body.projection;
   Model.create(req.body, projection)
