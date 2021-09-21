@@ -10,7 +10,7 @@ echo BRA: ${BRA}
 echo BRA: $BRA
 
 
-if [[ $HEAD_REF == *"/"* ]]; then
+if [[ $BRA == *"/"* ]]; then
     HEAD_REF=${GITHUB_SHA::8}
     echo "It's there!"
   fi
