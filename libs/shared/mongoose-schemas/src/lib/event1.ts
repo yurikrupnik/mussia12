@@ -3,7 +3,12 @@ import { Document } from 'mongoose';
 
 export type Event1Document = Event1 & Document;
 
-@Schema({ timestamps: true })
+@Schema({
+  timestamps: {
+    createdAt: true,
+    updatedAt: false,
+  },
+})
 export class Event1 {
   readonly _id?: string;
 
