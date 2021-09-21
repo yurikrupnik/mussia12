@@ -40,6 +40,7 @@ jobs:
           GHH: github.head_ref
           BRA: ${{ steps.extract_branch.outputs.branch }}
         run: bash scripts/bash-test.sh
-      - run: echo $HEAD_REF
+      - run: echo ${HEAD_REF}
+      - run: echo "${{ github.head_ref }}"
 #            echo "It's there!"
 #          fi
