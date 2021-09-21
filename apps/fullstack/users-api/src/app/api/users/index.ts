@@ -2,7 +2,6 @@ import { Router } from 'express';
 // import Model, { Project } from "@creativearis/models";
 import Model from './model';
 // import { removeOne, update } from '../utils/methods';
-// import { User } from '@mussia12/shared/mongoose-schemas';
 //
 const route = Router();
 /**

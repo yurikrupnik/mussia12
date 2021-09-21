@@ -33,6 +33,10 @@ else
   echo ${GITHUB_REF##*/}: ${GITHUB_REF##*/}
   echo name: $name
   echo 'Starting Deploy!!'
+  if [[ $HEAD_REF == *"/"* ]]; then
+    HEAD_REF=${GITHUB_SHA::8}
+    echo "It's there!"
+  fi
   gcloud run deploy $name \
     --image $gc_image \
     --platform managed \
