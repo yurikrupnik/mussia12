@@ -13,4 +13,5 @@ echo BRA: $BRA
 if [[ $BRA == *"/"* ]]; then
     HEAD_REF=${GITHUB_SHA::8}
     echo "It's there!"
+    echo $HEAD_REF
   fi
