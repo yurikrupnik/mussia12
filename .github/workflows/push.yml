@@ -42,5 +42,6 @@ jobs:
         run: bash scripts/bash-test.sh
       - run: echo ${HEAD_REF}
       - run: echo "${{ github.head_ref }}"
+#        todo pass env vars from command to next
 #            echo "It's there!"
 #          fi

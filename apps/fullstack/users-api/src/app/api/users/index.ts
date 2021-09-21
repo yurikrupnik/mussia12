@@ -107,6 +107,7 @@ route.get('/', (req, res) => {
  *       500:
  *         description: No item found
  */
+
 route.get('/:id', (req, res) => {
   Model.findById(req.params.id, req.query.projection)
     .then((response) => {
