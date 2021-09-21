@@ -12,9 +12,7 @@ echo 'Finished building!'
 
 docker push $gc_image
 echo 'Finished pushing!'
-echo Branch name: ${GITHUB_REF##*/}
-echo HEAD_REF: $HEAD_REF
-echo sha: ${GITHUB_SHA::8}
+
 if [[ "${GITHUB_REF##*/}" = "master" ]];
 then
   gcloud run deploy $name \
@@ -35,6 +33,7 @@ else
   echo 'Starting Deploy!!'
   if [[ $HEAD_REF == *"/"* ]]; then
     HEAD_REF=${GITHUB_SHA::8}
+    echo $HEAD_REF
     echo "It's there!"
   fi
   echo $name
