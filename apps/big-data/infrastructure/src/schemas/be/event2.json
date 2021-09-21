@@ -1,0 +1,16 @@
+{
+  "type" : "record",
+  "name" : "Avro",
+  "fields" : [
+    {
+      "name": "userId",
+      "type": "string",
+      "description": "Current user id"
+    },
+    {
+      "name": "tenantId",
+      "type": "string",
+      "description": "Tenant Id"
+    }
+  ]
+}

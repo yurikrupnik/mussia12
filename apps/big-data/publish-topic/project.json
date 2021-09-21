@@ -10,13 +10,12 @@
         "outputPath": "dist/apps/big-data/publish-topic",
         "main": "apps/big-data/publish-topic/src/main.ts",
         "tsConfig": "apps/big-data/publish-topic/tsconfig.app.json",
-        "assets": ["apps/big-data/publish-topic/src/assets"],
         "generatePackageJson": true
       },
       "configurations": {
         "production": {
           "optimization": true,
-          "extractLicenses": true,
+          "extractLicenses": false,
           "inspect": false,
           "fileReplacements": [
             {

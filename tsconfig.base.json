@@ -17,14 +17,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mussia12/big-data/infrastructure": [
-        "libs/big-data/infrastructure/src/index.ts"
-      ],
+      "@mussia12/pulumi-gcp": ["libs/pulumi/gcp/src/index.ts"],
+      "@mussia12/pulumi/aws": ["libs/pulumi/aws/src/index.ts"],
       "@mussia12/shared/data-types": ["libs/shared/data-types/src/index.ts"],
       "@mussia12/shared/mongoose-schemas": [
         "libs/shared/mongoose-schemas/src/index.ts"
       ],
-      "@mussia12/shared/pulumi-gcp": ["libs/shared/pulumi-gcp/src/index.ts"]
+      "@mussia12/shared/validations": ["libs/shared/validations/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

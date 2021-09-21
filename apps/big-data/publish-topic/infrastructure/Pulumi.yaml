@@ -1,3 +1,0 @@
-name: big-data-publish-topic
-runtime: nodejs
-description: Infrastructure as Code based on Pulumi - managed by @dev-thought/nx-deploy-it

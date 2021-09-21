@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 import { QueryOptions } from 'mongoose';
 import { User, UserDocument } from '@mussia12/shared/mongoose-schemas';
+// import { User, UserDocument } from './schema';
 // import { User } from '@mussia12/shared/data-types';
 // type User = {
 //   name: string;

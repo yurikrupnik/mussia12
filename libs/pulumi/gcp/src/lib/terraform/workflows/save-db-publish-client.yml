@@ -1,0 +1,65 @@
+# This is a sample workflow to test or replace with your source code.
+#
+# This workflow returns a list of Wikipedia articles related to a search term.
+# The search term is retrieved from a Cloud Function that returns the current day of the week
+# (in GMT), unless a search term is given as input (e.g. {"searchTerm": "Monday"}).
+main:
+  params: [input]
+  steps:
+    - checkModel:
+        switch:
+          - condition: ${"searchTerm" in input}
+            assign:
+              - searchTerm: ${input.searchTerm}
+            next: readWikipedia
+    - getCurrentTime:
+        call: http.post
+        args:
+          url: https://us-central1-workflowsample.cloudfunctions.net/datetime
+        result: currentDateTime
+    - setFromCallResult:
+        assign:
+          - searchTerm: ${currentDateTime.body.dayOfTheWeek}
+    - readWikipedia:
+        call: http.post
+        args:
+          url: https://en.wikipedia.org/w/api.php
+          query:
+            action: opensearch
+            search: ${searchTerm}
+        result: wikiResult
+    - returnOutput:
+        return: ${wikiResult.body[1]}
+
+# This is a sample workflow to test or replace with your source code.
+#
+# This workflow returns a list of Wikipedia articles related to a search term.
+# The search term is retrieved from a Cloud Function that returns the current day of the week
+# (in GMT), unless a search term is given as input (e.g. {"searchTerm": "Monday"}).
+da:
+  params: [input]
+  steps:
+    - checkModel:
+        switch:
+          - condition: ${"searchTerm" in input}
+            assign:
+              - searchTerm: ${input.searchTerm}
+            next: readWikipedia
+    - getCurrentTime:
+        call: http.get
+        args:
+          url: https://us-central1-workflowsample.cloudfunctions.net/datetime
+        result: currentDateTime
+    - setFromCallResult:
+        assign:
+          - searchTerm: ${currentDateTime.body.dayOfTheWeek}
+    - readWikipedia:
+        call: http.get
+        args:
+          url: https://en.wikipedia.org/w/api.php
+          query:
+            action: opensearch
+            search: ${searchTerm}
+        result: wikiResult
+    - returnOutput:
+        return: ${wikiResult.body[1]}

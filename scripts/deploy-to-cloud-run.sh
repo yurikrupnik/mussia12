@@ -12,7 +12,7 @@ echo 'Finished building!'
 
 docker push $gc_image
 echo 'Finished pushing!'
-echo $BRANCH_NAME
+echo Branch name: ${GITHUB_REF##*/}
 if [[ "${GITHUB_REF##*/}" = "master" ]];
 then
   gcloud run deploy $name \
