@@ -34,6 +34,6 @@ jobs:
         id: extract_branch
       - run: echo ${{ steps.extract_branch.outputs.branch }}
       - run: |
-          if [[ ${{ github.head_ref }} == *"/"* ]]; then
+          if [[ $github.head_ref == *"/"* ]]; then
             echo "It's there!"
           fi
