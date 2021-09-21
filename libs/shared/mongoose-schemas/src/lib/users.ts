@@ -5,7 +5,7 @@ import { userRoles, loginProviders } from '@mussia12/shared/data-types';
 
 export type UserDocument = User & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class User {
   readonly _id?: string;
 
