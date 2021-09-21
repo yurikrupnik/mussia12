@@ -33,7 +33,13 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       - run: echo ${{ steps.extract_branch.outputs.branch }}
-      - run: |
-          if [[ ${{ github.head_ref }} == *"/"* ]]; then
-            echo "It's there!"
-          fi
+      - name: Test Vars
+        env:
+          - GH: "${{ github.head_ref }}"
+          - GHA: ${{ github.head_ref }}
+        run: |
+          echo $GH
+          echo $GHA
+#          if [[ ${{ github.head_ref }} == *"/"* ]]; then
+#            echo "It's there!"
+#          fi
