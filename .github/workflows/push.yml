@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: '16'
       - uses: c-hive/gha-npm-cache@v1
-      - run: npm ci
+#      - run: npm ci
 
       - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
       - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
