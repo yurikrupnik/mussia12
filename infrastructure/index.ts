@@ -238,31 +238,31 @@ async function handleSchemas() {
 //   },
 // ];
 
-const events = {
-  'be-event1': {
-    fields: event1,
-    customDa: 'my custom field',
-  },
-};
+// const events = {
+//   'be-event1': {
+//     fields: event1,
+//     customDa: 'my custom field',
+//   },
+// };
 
-let assetArchive = new pulumi.asset.AssetArchive({
-  event1: new pulumi.asset.StringAsset(generateAvro(event1)),
-  folder: new pulumi.asset.FileArchive('../scripts'),
-  // agent1: new pulumi.asset.FileArchive('./events-schemas/agent-event1.json'),
-});
-
-bigQuery();
-
-const tempFolder = new storage.Bucket('temp-folder', {
-  location,
-  forceDestroy: true,
-});
-
-const bigData = new storage.Bucket('big-data-schemas', {
-  // pubsub - bigquery
-  location,
-  forceDestroy: true,
-});
+// let assetArchive = new pulumi.asset.AssetArchive({
+//   event1: new pulumi.asset.StringAsset(generateAvro(event1)),
+//   folder: new pulumi.asset.FileArchive('../scripts'),
+//   // agent1: new pulumi.asset.FileArchive('./events-schemas/agent-event1.json'),
+// });
+//
+// bigQuery();
+//
+// const tempFolder = new storage.Bucket('temp-folder', {
+//   location,
+//   forceDestroy: true,
+// });
+//
+// const bigData = new storage.Bucket('big-data-schemas', {
+//   // pubsub - bigquery
+//   location,
+//   forceDestroy: true,
+// });
 
 // const archive0 = new storage.BucketObject('pubsub-schemas0', {
 //   name: `big-data-pubsub-schemas.json`,
@@ -434,26 +434,26 @@ const bigData = new storage.Bucket('big-data-schemas', {
 //   }
 // );
 //
-const list = [
-  {
-    name: 'stringField',
-    type: 'STRING',
-    mode: 'NULLABLE',
-    description: 'Testing string field',
-  },
-  {
-    name: 'intField',
-    type: 'INTEGER',
-    mode: 'NULLABLE',
-    description: 'Testing int field',
-  },
-  {
-    name: 'tenantId',
-    type: 'STRING',
-    mode: 'NULLABLE',
-    description: 'Tenant Id',
-  },
-];
+// const list = [
+//   {
+//     name: 'stringField',
+//     type: 'STRING',
+//     mode: 'NULLABLE',
+//     description: 'Testing string field',
+//   },
+//   {
+//     name: 'intField',
+//     type: 'INTEGER',
+//     mode: 'NULLABLE',
+//     description: 'Testing int field',
+//   },
+//   {
+//     name: 'tenantId',
+//     type: 'STRING',
+//     mode: 'NULLABLE',
+//     description: 'Tenant Id',
+//   },
+// ];
 
 // const dataset = new gcp.bigquery.Dataset('dataset', {
 //   datasetId: 'example_dataset',

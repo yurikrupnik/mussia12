@@ -1,0 +1,23 @@
+{
+  "root": "libs/pulumi/aws",
+  "sourceRoot": "libs/pulumi/aws/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/pulumi/aws/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pulumi/aws"],
+      "options": {
+        "jestConfig": "libs/pulumi/aws/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

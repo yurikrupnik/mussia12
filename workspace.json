@@ -2,8 +2,6 @@
   "version": 2,
   "projects": {
     "big-data-bi-service": "apps/big-data/bi-service",
-    "big-data-infra": "apps/big-data/infra",
-    "big-data-infra1": "libs/big-data/infra1",
     "big-data-infrastructure": "apps/big-data/infrastructure",
     "big-data-publish-topic": "apps/big-data/publish-topic",
     "fullstack-client": "apps/fullstack/client",
@@ -12,9 +10,11 @@
     "fullstack-users-api": "apps/fullstack/users-api",
     "marketing-website": "apps/marketing/website",
     "marketing-website-e2e": "apps/marketing/website-e2e",
+    "pulumi-aws": "libs/pulumi/aws",
+    "pulumi-gcp": "libs/pulumi/gcp",
     "shared-data-types": "libs/shared/data-types",
     "shared-mongoose-schemas": "libs/shared/mongoose-schemas",
-    "shared-pulumi-gcp": "libs/shared/pulumi-gcp"
+    "shared-validations": "libs/shared/validations"
   },
   "cli": {
     "defaultCollection": "@nrwl/next"
