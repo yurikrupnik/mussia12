@@ -1,8 +1,6 @@
 import { Router } from 'express';
-// import Model, { Project } from "@creativearis/models";
 import Model from './model';
-// import { removeOne, update } from '../utils/methods';
-//
+
 const route = Router();
 /**
  * @swagger
