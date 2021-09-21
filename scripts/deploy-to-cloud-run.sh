@@ -13,6 +13,7 @@ echo 'Finished building!'
 docker push $gc_image
 echo 'Finished pushing!'
 echo Branch name: ${GITHUB_REF##*/}
+echo HEAD_REF: $HEAD_REF
 if [[ "${GITHUB_REF##*/}" = "master" ]];
 then
   gcloud run deploy $name \
@@ -38,7 +39,7 @@ else
     --region europe-west1 \
     --port 3333 \
     --no-traffic \
-    --tag ${GITHUB_REF##*/}
+    --tag $HEAD_REF
 fi
 
 
