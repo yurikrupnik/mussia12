@@ -38,7 +38,7 @@ else
     echo "It's there!"
   fi
   echo $name
-  gcloud run deploy ariss \
+  gcloud run deploy users-api \
     --image $gc_image \
     --platform managed \
     --allow-unauthenticated \
