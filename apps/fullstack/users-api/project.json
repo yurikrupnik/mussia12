@@ -30,8 +30,7 @@
     "serve": {
       "executor": "@nrwl/node:execute",
       "options": {
-        "buildTarget": "fullstack-users-api:build",
-        "port": 9229
+        "buildTarget": "fullstack-users-api:build"
       }
     },
     "lint": {
@@ -71,11 +70,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "commands": [
-          "npx nx run fullstack-users-api:docker",
-          "npx nx run fullstack-users-api:cloud"
-        ],
-        "parallel": false
+        "command": "name=users-api src=apps/fullstack/users-api bash scripts/deploy-to-cloud-run.sh"
       }
     }
   },
