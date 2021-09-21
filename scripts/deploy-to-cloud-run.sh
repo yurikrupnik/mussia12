@@ -37,7 +37,8 @@ else
     HEAD_REF=${GITHUB_SHA::8}
     echo "It's there!"
   fi
-  gcloud run deploy $name \
+  echo $name
+  gcloud run deploy ariss \
     --image $gc_image \
     --platform managed \
     --allow-unauthenticated \
