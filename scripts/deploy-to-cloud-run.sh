@@ -13,6 +13,8 @@ echo 'Finished building!'
 docker push $gc_image
 echo 'Finished pushing!'
 
+echo 'Starting Deploy!!'
+
 if [[ "${GITHUB_REF##*/}" = "master" ]];
 then
   gcloud run deploy $name \
@@ -24,20 +26,13 @@ then
 
   gcloud run services update-traffic $name --platform=managed --to-latest --region europe-west1
 else
-  echo 'Pre Starting Deploy!!'
-  echo name: $name
-  echo gc_image: $gc_image
-  echo BRANCH_NAME: $BRANCH_NAME
-  echo ${GITHUB_REF##*/}: ${GITHUB_REF##*/}
-  echo name: $name
-  echo 'Starting Deploy!!'
   if [[ $HEAD_REF == *"/"* ]]; then
     HEAD_REF=${GITHUB_SHA::8}
     echo $HEAD_REF
     echo "It's there!"
   fi
   echo $name
-  gcloud run deploy users-api \
+  gcloud run deploy $name \
     --image $gc_image \
     --platform managed \
     --allow-unauthenticated \
@@ -47,4 +42,4 @@ else
     --tag $HEAD_REF
 fi
 
-
+echo 'Finished Deploy!!'
