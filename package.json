@@ -36,7 +36,7 @@
     "tslib": "2.3.1"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1202.6",
+    "@angular-devkit/architect": "0.1202.7",
     "@dev-thought/nx-deploy-it": "2.0.0",
     "@nestjs/schematics": "8.0.3",
     "@nestjs/testing": "7.6.18",
