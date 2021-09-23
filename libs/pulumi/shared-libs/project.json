@@ -1,0 +1,23 @@
+{
+  "root": "libs/pulumi/shared-libs",
+  "sourceRoot": "libs/pulumi/shared-libs/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/pulumi/shared-libs/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pulumi/shared-libs"],
+      "options": {
+        "jestConfig": "libs/pulumi/shared-libs/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

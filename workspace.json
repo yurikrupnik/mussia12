@@ -11,6 +11,8 @@
     "marketing-website-e2e": "apps/marketing/website-e2e",
     "pulumi-aws": "libs/pulumi/aws",
     "pulumi-gcp": "libs/pulumi/gcp",
+    "pulumi-shared-libs": "libs/pulumi/shared-libs",
+    "pulumi-shared-types": "libs/pulumi/shared-types",
     "shared-data-types": "libs/shared/data-types",
     "shared-mongoose-schemas": "libs/shared/mongoose-schemas",
     "shared-validations": "libs/shared/validations"

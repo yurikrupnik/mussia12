@@ -1,3 +1,5 @@
+export * from './lib/pulumi-shared-types';
+
 import { BucketArgs } from '@pulumi/gcp/storage/bucket';
 // import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
 import { Bucket } from '@pulumi/gcp/storage';
@@ -11,21 +13,6 @@ export type GcpFunction = {
   region: string;
   path: string;
   bucket: Bucket;
-  member: string;
-};
-
-export type Avro = {
-  name: string;
-  description: string;
-  type:
-    | 'null'
-    | 'boolean'
-    | 'int'
-    | 'long'
-    | 'float'
-    | 'double'
-    | 'bytes'
-    | 'string';
 };
 
 // class Event1 {
