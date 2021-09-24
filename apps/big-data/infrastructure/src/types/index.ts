@@ -1,17 +1,29 @@
 import { BucketArgs } from '@pulumi/gcp/storage/bucket';
 // import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
 import { Bucket } from '@pulumi/gcp/storage';
+import { FunctionArgs, CallbackFunction } from '@pulumi/gcp/cloudfunctions';
+import * as pulumi from '@pulumi/pulumi';
+import { FailurePolicy } from '@pulumi/gcp/cloudfunctions/zMixins';
 
 export type BucketArgsSelf = BucketArgs & {
   name: string;
 };
 
+// FunctionArgs['eventTrigger']
+// {
+//     eventType: string;
+//     failurePolicy?: {
+//       retry: boolean;
+//     };
+//     resource: string;
+//   };
 export type GcpFunction = {
   name: string;
   region: string;
   path: string;
   bucket: Bucket;
   member?: string;
+  eventTrigger?: FunctionArgs['eventTrigger'];
 };
 
 export type Avro = {

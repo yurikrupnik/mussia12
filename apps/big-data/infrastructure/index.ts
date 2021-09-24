@@ -5,7 +5,7 @@ import * as gcp from '@pulumi/gcp';
 // import {SchemaState} from '@pulumi/gcp/pubsub/schema';
 import * as docker from '@pulumi/docker';
 import { camelCase } from 'lodash';
-import { BucketArgsSelf, GcpFunction, Avro } from './src/types';
+import { BucketArgsSelf, GcpFunction, Avro, BigquerySchema } from './src/types';
 import { generateAvro } from './src/utils/createAvroSchema';
 // import { storage } from './src/modules/bucket';
 import { createGcpFunctions } from './src/modules/gcp-function';
@@ -152,19 +152,35 @@ const storage = new gcp.storage.Bucket('events-bucket', {
 //   },
 // ]);
 
-const events = [
+class EventClass {
+  constructor(
+    readonly name: string,
+    readonly avroSchema: Avro[],
+    readonly pubsubSchema: BigquerySchema[],
+    readonly funcs: GcpFunction[]
+  ) {}
+}
+
+const events: EventClass[] = [
   {
     name: 'event1',
     avroSchema: event1AvroFields,
     pubsubSchema: event1BigquerySchema,
     // subscribers: {},
-    functions: [
-      // {
-      //   name: 'event1-subscription',
-      //   region,
-      //   bucket: funcBucket,
-      //   path: functionsPath,
-      // },
+    funcs: [
+      {
+        name: 'event1-subscription',
+        region,
+        bucket: funcBucket,
+        path: functionsPath,
+        eventTrigger: {
+          eventType: undefined,
+          resource: undefined,
+          failurePolicy: {
+            retry: true,
+          },
+        },
+      },
     ],
   },
   // {
@@ -189,7 +205,7 @@ const events = [
 // export const tabl = table;
 
 events.map((event) => {
-  const { name, pubsubSchema, functions } = event;
+  const { name, pubsubSchema, funcs } = event;
   const schema = new gcp.pubsub.Schema(name, {
     name,
     type: 'AVRO',
@@ -221,7 +237,7 @@ events.map((event) => {
     region,
     name: `${name}-ps-to-avro`,
     templateGcsPath: 'gs://dataflow-templates/latest/Cloud_PubSub_to_Avro',
-    tempGcsLocation: pulumi.interpolate`${temp.url}}/temp`,
+    tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
     parameters: {
       inputTopic: topic.id,
       outputDirectory: pulumi.interpolate`${storage.url}/avro/${name}`,
@@ -231,36 +247,42 @@ events.map((event) => {
   });
 
   // bigquery start
-  const table = new gcp.bigquery.Table(name, {
-    datasetId: dataset.datasetId,
-    tableId: name,
-    deletionProtection: false,
-    timePartitioning: {
-      type: 'MONTH',
-    },
-    labels: {
-      env: 'default',
-      event: name,
-    },
-    schema: JSON.stringify(pubsubSchema),
-  });
-
-  const bigquery_streaml = new gcp.dataflow.Job(`${name}-ps-to-bq`, {
-    templateGcsPath:
-      'gs://dataflow-templates-europe-north1/latest/PubSub_to_BigQuery',
-    tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
-    parameters: {
-      inputTopic: topic.id,
-      outputTableSpec: pulumi.interpolate`${project}:${table.datasetId}.${name}`,
-    },
-    onDelete: 'cancel',
-  });
+  // const table = new gcp.bigquery.Table(name, {
+  //   datasetId: dataset.datasetId,
+  //   tableId: name,
+  //   deletionProtection: false,
+  //   timePartitioning: {
+  //     type: 'MONTH',
+  //   },
+  //   labels: {
+  //     env: 'default',
+  //     event: name,
+  //   },
+  //   schema: JSON.stringify(pubsubSchema),
+  // });
+  //
+  // const bigquery_streaml = new gcp.dataflow.Job(`${name}-ps-to-bq`, {
+  //   templateGcsPath:
+  //     'gs://dataflow-templates-europe-north1/latest/PubSub_to_BigQuery',
+  //   tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
+  //   parameters: {
+  //     inputTopic: topic.id,
+  //     outputTableSpec: pulumi.interpolate`${project}:${table.datasetId}.${name}`,
+  //   },
+  //   onDelete: 'cancel',
+  // });
   // bigquery end
 
   // functions start
   if (functions.length) {
-    // todo check at scale
-    createGcpFunctions(functions);
+    const updatedFuncs = funcs.map((v) => {
+      v.eventTrigger = Object.assign({}, v.eventTrigger, {
+        resource: topic.id,
+        eventType: 'google.pubsub.topic.publish',
+      });
+      return v;
+    });
+    createGcpFunctions(updatedFuncs);
   }
   // functions end
 

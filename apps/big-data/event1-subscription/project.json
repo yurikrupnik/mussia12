@@ -10,7 +10,8 @@
         "outputPath": "dist/apps/big-data/event1-subscription",
         "main": "apps/big-data/event1-subscription/src/main.ts",
         "tsConfig": "apps/big-data/event1-subscription/tsconfig.app.json",
-        "assets": ["apps/big-data/event1-subscription/src/assets"]
+        "assets": ["apps/big-data/event1-subscription/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
@@ -47,7 +48,13 @@
         "passWithNoTests": true
       }
     },
-
+    "deploy-alt": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "gcloud functions deploy event1-subscription --runtime nodejs16 --trigger-topic=event1 --region europe-west1 --allow-unauthenticated --entry-point=event1Subscription --source=dist/apps/big-data/event1-subscription"
+      }
+    }
   },
   "tags": []
 }
