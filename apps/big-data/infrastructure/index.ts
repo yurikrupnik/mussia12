@@ -12,6 +12,7 @@ import { createGcpFunctions } from './src/modules/gcp-function';
 // import { Bucket } from '@pulumi/gcp/storage';
 
 import { event1AvroFields, event2, event1BigquerySchema } from './src/schemas';
+import { Bucket } from '@pulumi/gcp/storage';
 
 const config = new pulumi.Config();
 
@@ -157,7 +158,14 @@ const events = [
     avroSchema: event1AvroFields,
     pubsubSchema: event1BigquerySchema,
     // subscribers: {},
-    functions: [],
+    functions: [
+      // {
+      //   name: 'event1-subscription',
+      //   region,
+      //   bucket: funcBucket,
+      //   path: functionsPath,
+      // },
+    ],
   },
   // {
   //   name: 'event2',
@@ -181,7 +189,7 @@ const events = [
 // export const tabl = table;
 
 events.map((event) => {
-  const { name, pubsubSchema } = event;
+  const { name, pubsubSchema, functions } = event;
   const schema = new gcp.pubsub.Schema(name, {
     name,
     type: 'AVRO',
@@ -250,8 +258,15 @@ events.map((event) => {
   // bigquery end
 
   // functions start
-
+  if (functions.length) {
+    // todo check at scale
+    createGcpFunctions(functions);
+  }
   // functions end
+
+  return {
+    topic,
+  };
 });
 
 // const loggingBucket = new gcp.storage.Bucket('logging-bucket', {

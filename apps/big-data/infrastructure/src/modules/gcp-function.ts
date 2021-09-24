@@ -22,13 +22,17 @@ const gcpFunction = (props: GcpFunction) => {
     name: name,
     region,
   });
-  const invoker = new gcp.cloudfunctions.FunctionIamMember(`${name}-invoker`, {
-    project: func.project,
-    region: func.region,
-    cloudFunction: func.name,
-    role: 'roles/cloudfunctions.invoker',
-    member,
-  });
+
+  let invoker;
+  if (member) {
+    invoker = new gcp.cloudfunctions.FunctionIamMember(`${name}-invoker`, {
+      project: func.project,
+      region: func.region,
+      cloudFunction: func.name,
+      role: 'roles/cloudfunctions.invoker',
+      member,
+    });
+  }
 
   return {
     url: func.httpsTriggerUrl,

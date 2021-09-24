@@ -11,7 +11,7 @@ export type GcpFunction = {
   region: string;
   path: string;
   bucket: Bucket;
-  member: string;
+  member?: string;
 };
 
 export type Avro = {

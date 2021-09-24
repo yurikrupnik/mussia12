@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "big-data-bi-service": "apps/big-data/bi-service",
+    "big-data-event1-subscription": "apps/big-data/event1-subscription",
     "big-data-infrastructure": "apps/big-data/infrastructure",
     "big-data-publish-topic": "apps/big-data/publish-topic",
     "fullstack-client": "apps/fullstack/client",

@@ -1,0 +1,53 @@
+{
+  "root": "apps/big-data/event1-subscription",
+  "sourceRoot": "apps/big-data/event1-subscription/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/big-data/event1-subscription",
+        "main": "apps/big-data/event1-subscription/src/main.ts",
+        "tsConfig": "apps/big-data/event1-subscription/tsconfig.app.json",
+        "assets": ["apps/big-data/event1-subscription/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/big-data/event1-subscription/src/environments/environment.ts",
+              "with": "apps/big-data/event1-subscription/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "big-data-event1-subscription:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/big-data/event1-subscription/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/big-data/event1-subscription"],
+      "options": {
+        "jestConfig": "apps/big-data/event1-subscription/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+
+  },
+  "tags": []
+}

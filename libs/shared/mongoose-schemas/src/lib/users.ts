@@ -24,6 +24,9 @@ export class User {
   @Prop({ index: true })
   password: string;
 
+  @Prop({ index: true })
+  tenantId: string;
+
   @Prop({ type: String, enum: loginProviders, default: loginProviders[0] })
   provider: LoginProviders;
 }
