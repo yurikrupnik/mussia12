@@ -5,16 +5,14 @@ import * as gcp from '@pulumi/gcp';
 // import {SchemaState} from '@pulumi/gcp/pubsub/schema';
 import * as docker from '@pulumi/docker';
 import { camelCase } from 'lodash';
-import { BucketArgsSelf, GcpFunction, Avro } from './src/types';
+import { BucketArgsSelf, GcpFunction, Avro, BigquerySchema } from './src/types';
 import { generateAvro } from './src/utils/createAvroSchema';
 // import { storage } from './src/modules/bucket';
 import { createGcpFunctions } from './src/modules/gcp-function';
 // import { Bucket } from '@pulumi/gcp/storage';
 
-import { event1, event2 } from './src/schemas';
-import * as fs from 'fs';
-import { pubsub } from '@pulumi/gcp';
-import { ResourceOptions } from '@pulumi/pulumi';
+import { event1AvroFields, event2, event1BigquerySchema } from './src/schemas';
+import { Bucket } from '@pulumi/gcp/storage';
 
 const config = new pulumi.Config();
 
@@ -52,9 +50,6 @@ const bucketList: BucketArgsSelf[] = [
   },
 ];
 
-// const storages = storage(bucketList);
-// //
-
 const funcBucket = new gcp.storage.Bucket(`${project}-func-bucket`, {
   name: `${project}-func-bucket`,
   location: region,
@@ -71,13 +66,13 @@ const functions: GcpFunction[] = [
     region,
     bucket: funcBucket,
     path: functionsPath,
+    member: 'allUsers',
   },
 ];
-// ../../../dist/apps/big-data/
 
 const funcs = createGcpFunctions(functions);
 //
-// type EventsEnum = 'event1' | 'event2' | 'event3';
+// type EventsEnum = 'event1AvroFields' | 'event2' | 'event3';
 //
 // type Event = {
 //   name: EventsEnum;
@@ -85,44 +80,17 @@ const funcs = createGcpFunctions(functions);
 // };
 //
 //
-const dataset = new gcp.bigquery.Dataset('big-data-dataset', {
-  datasetId: `${project}_big_data_dataset`,
+const dataset = new gcp.bigquery.Dataset('applications_events', {
+  datasetId: `${project}_applications_events`,
   description: 'This is a test description',
   friendlyName: 'Test logs',
   location: region,
-  defaultTableExpirationMs: 3600000,
+  // defaultTableExpirationMs: 3600000,
   labels: {
     env: 'default',
     name: 'aris-test',
   },
 });
-
-const bigquerySchema = [
-  {
-    name: 'stringField',
-    type: 'STRING',
-    mode: 'NULLABLE',
-    description: 'Testing string field',
-  },
-  {
-    name: 'intField',
-    type: 'INTEGER',
-    mode: 'NULLABLE',
-    description: 'Testing int field',
-  },
-  {
-    name: 'tenantId',
-    type: 'STRING',
-    mode: 'NULLABLE',
-    description: 'Tenant Id',
-  },
-  {
-    name: 'tenantId1',
-    type: 'STRING',
-    mode: 'NULLABLE',
-    description: 'Tenant Id1',
-  },
-];
 
 // const table = new gcp.bigquery.Table('my-table', {
 //   datasetId: dataset.datasetId,
@@ -144,52 +112,9 @@ const bigquerySchema = [
 //   labels: {
 //     env: 'default',
 //   },
-//   schema: JSON.stringify(bigquerySchema),
+//   schema: JSON.stringify(event1BigquerySchema),
 // });
 
-// gcp.storage.getBucketObject()
-const directoryPath = path.join(__dirname, 'src/schemas/be');
-
-// file way
-// Generate all schemas for PubSub
-// async function handleSchemas() {
-//   return fs.promises
-//     .readdir(directoryPath)
-//     .then((schemas) => {
-//       console.log('schemasss', schemas);
-//       return schemas.map((schema) => {
-//         return new pubsub.Schema(schema, {
-//           name: schema.split('.')[0],
-//           type: 'AVRO',
-//           definition: `events-schemas/${schema}`, // todo read content and pass as string, see what generateAvro does
-//         });
-//       });
-//     })
-//     .catch((err) => {
-//       console.log('Failed to read events-schemas folder');
-//     });
-// }
-//
-// handleSchemas();
-import { Subscription, TopicArgs } from '@pulumi/gcp/pubsub';
-import { JobArgs } from '@pulumi/gcp/dataflow';
-import { BucketArgs } from '@pulumi/gcp/storage';
-// class Dataflow implements JobArgs {}
-
-class EventLocal {
-  constructor(
-    private name: string,
-    private schema: Avro[],
-    private subscribers: Partial<Array<JobArgs>> // private topic: TopicArgs, // private storage: BucketArgs // private topic: TopicArgs // private topic: TopicArgs, // private storage: BucketArgs
-  ) {}
-}
-
-// const newTopic = new gcp.pubsub.Topic('my-topic', {
-//   name: 'my-topic',
-//   schemaSettings: {
-//     schema: generateAvro(event1),
-//   },
-// });
 const temp = new gcp.storage.Bucket('temp-bucket', {
   name: `${project}-temp-bucket`,
   location: region,
@@ -200,8 +125,8 @@ const temp = new gcp.storage.Bucket('temp-bucket', {
   },
 });
 
-const storage = new gcp.storage.Bucket('clients-events-bucket', {
-  name: 'clients-events-bucket',
+const storage = new gcp.storage.Bucket('events-bucket', {
+  name: `${project}-events-bucket`,
   location: region,
   forceDestroy: true,
   labels: {
@@ -209,6 +134,7 @@ const storage = new gcp.storage.Bucket('clients-events-bucket', {
     team: 'big-data',
   },
 });
+
 // storage.onObjectFinalized(
 //   'finalized-clients-events-bucket',
 //   {
@@ -217,7 +143,7 @@ const storage = new gcp.storage.Bucket('clients-events-bucket', {
 //   },
 //   {}
 // );
-// const eve1 = new EventLocal('event1', event1, [
+// const eve1 = new EventLocal('event1AvroFields', event1AvroFields, [
 //   {
 //     // name: 'asd',
 //     templateGcsPath: '',
@@ -226,20 +152,44 @@ const storage = new gcp.storage.Bucket('clients-events-bucket', {
 //   },
 // ]);
 
-const events = [
+class EventClass {
+  constructor(
+    readonly name: string,
+    readonly avroSchema: Avro[],
+    readonly pubsubSchema: BigquerySchema[],
+    readonly funcs: GcpFunction[]
+  ) {}
+}
+
+const events: EventClass[] = [
   {
     name: 'event1',
-    schema: event1,
-    pubsubSchema: JSON.stringify(bigquerySchema),
-    subscribers: {},
+    avroSchema: event1AvroFields,
+    pubsubSchema: event1BigquerySchema,
+    // subscribers: {},
+    funcs: [
+      {
+        name: 'event1-subscription',
+        region,
+        bucket: funcBucket,
+        path: functionsPath,
+        eventTrigger: {
+          eventType: undefined,
+          resource: undefined,
+          failurePolicy: {
+            retry: true,
+          },
+        },
+      },
+    ],
   },
-  {
-    name: 'event2',
-    schema: event2,
-    subscribers: {
-      Cloud_PubSub_to_GCS_Text: {},
-    },
-  },
+  // {
+  //   name: 'event2',
+  //   schema: event2,
+  //   subscribers: {
+  //     Cloud_PubSub_to_GCS_Text: {},
+  //   },
+  // },
 ];
 
 // const table = new gcp.bigquery.Table('test-for-env', {
@@ -249,17 +199,17 @@ const events = [
 //   timePartitioning: {
 //     type: 'MONTH',
 //   },
-//   schema: JSON.stringify(bigquerySchema),
+//   schema: JSON.stringify(event1BigquerySchema),
 // });
 
 // export const tabl = table;
 
 events.map((event) => {
-  const { name } = event;
+  const { name, pubsubSchema, funcs } = event;
   const schema = new gcp.pubsub.Schema(name, {
     name,
     type: 'AVRO',
-    definition: generateAvro(event.schema),
+    definition: generateAvro(event.avroSchema),
   });
 
   const topic = new gcp.pubsub.Topic(name, {
@@ -287,7 +237,7 @@ events.map((event) => {
     region,
     name: `${name}-ps-to-avro`,
     templateGcsPath: 'gs://dataflow-templates/latest/Cloud_PubSub_to_Avro',
-    tempGcsLocation: pulumi.interpolate`${temp.url}}/temp`,
+    tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
     parameters: {
       inputTopic: topic.id,
       outputDirectory: pulumi.interpolate`${storage.url}/avro/${name}`,
@@ -296,142 +246,50 @@ events.map((event) => {
     onDelete: 'cancel',
   });
 
-  const table = new gcp.bigquery.Table(name, {
-    datasetId: dataset.datasetId,
-    tableId: name,
-    deletionProtection: false,
-    timePartitioning: {
-      type: 'MONTH',
-    },
-    labels: {
-      env: 'default',
-      event: name,
-    },
-    schema: JSON.stringify(bigquerySchema),
-  });
+  // bigquery start
+  // const table = new gcp.bigquery.Table(name, {
+  //   datasetId: dataset.datasetId,
+  //   tableId: name,
+  //   deletionProtection: false,
+  //   timePartitioning: {
+  //     type: 'MONTH',
+  //   },
+  //   labels: {
+  //     env: 'default',
+  //     event: name,
+  //   },
+  //   schema: JSON.stringify(pubsubSchema),
+  // });
+  //
+  // const bigquery_streaml = new gcp.dataflow.Job(`${name}-ps-to-bq`, {
+  //   templateGcsPath:
+  //     'gs://dataflow-templates-europe-north1/latest/PubSub_to_BigQuery',
+  //   tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
+  //   parameters: {
+  //     inputTopic: topic.id,
+  //     outputTableSpec: pulumi.interpolate`${project}:${table.datasetId}.${name}`,
+  //   },
+  //   onDelete: 'cancel',
+  // });
+  // bigquery end
 
-  const bigquery_streaml = new gcp.dataflow.Job(`${name}-ps-to-bq`, {
-    templateGcsPath:
-      'gs://dataflow-templates-europe-north1/latest/PubSub_to_BigQuery',
-    tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
-    parameters: {
-      inputTopic: topic.id,
-      outputTableSpec: pulumi.interpolate`${project}:${table.datasetId}.${name}`,
-    },
-    onDelete: 'cancel',
-  });
+  // functions start
+  if (functions.length) {
+    const updatedFuncs = funcs.map((v) => {
+      v.eventTrigger = Object.assign({}, v.eventTrigger, {
+        resource: topic.id,
+        eventType: 'google.pubsub.topic.publish',
+      });
+      return v;
+    });
+    createGcpFunctions(updatedFuncs);
+  }
+  // functions end
+
+  return {
+    topic,
+  };
 });
-
-// });
-// Export the DNS name of the bucket
-// export const bucketName = tempFolder.url;
-// export const schemas = schema;
-
-// todo service
-// const services = ['bi-service'];
-// const project1 = gcp.organizations.getProject({});
-//
-// const secret = new gcp.secretmanager.Secret(
-//   'secret',
-//   {
-//     secretId: 'secret11',
-//     replication: {
-//       automatic: true,
-//     },
-//   },
-//   {
-//     // provider: google_beta,
-//   }
-// );
-//
-// const secret_version_data = new gcp.secretmanager.SecretVersion(
-//   'secret-version-data',
-//   {
-//     secret: secret.name,
-//     secretData:
-//       'mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/',
-//   },
-//   {
-//     // provider: google_beta,
-//   }
-// );
-// const secret_access = new gcp.secretmanager.SecretIamMember(
-//   'secret-access',
-//   {
-//     secretId: secret.id,
-//     role: 'roles/secretmanager.secretAccessor',
-//     member: project1.then(
-//       (project) =>
-//         `serviceAccount:${project.number}-compute@developer.gserviceaccount.com`
-//     ),
-//   },
-//   {
-//     // provider: google_beta,
-//     dependsOn: [secret],
-//   }
-// );
-
-// services.map((service) => {
-//   const myImage = new docker.Image(service, {
-//     imageName: pulumi.interpolate`eu.gcr.io/${project}/${service}:1.2.8`,
-//     build: {
-//       context: `../../../apps/big-data/${service}`,
-//       env: {},
-//     },
-//   });
-//
-//   const serv = new gcp.cloudrun.Service(
-//     service,
-//     {
-//       location,
-//       name: service,
-//       // traffics: [
-//       //   {
-//       //     percent: 25,
-//       //     revisionName: `${service}-green`,
-//       //   },
-//       //   {
-//       //     latestRevision: true,
-//       //     percent: 75,
-//       //   },
-//       // ],
-//       // autogenerateRevisionName: true,
-//       template: {
-//         metadata: {
-//           name: `${service}-green`,
-//         },
-//         spec: {
-//           containers: [
-//             {
-//               image: myImage.imageName,
-//               envs: [
-//                 {
-//                   name: 'MONGO_URI',
-//                   value:
-//                     'mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/',
-//                   // valueFrom: {
-//                   //   secretKeyRef: {
-//                   //     name: secret.secretId,
-//                   //     key: 'latest',
-//                   //   },
-//                   // },
-//                 },
-//               ],
-//             },
-//           ],
-//         },
-//       },
-//     },
-//     { dependsOn: [myImage] }
-//   );
-//   return new gcp.cloudrun.IamMember('hello-everyone', {
-//     service: serv.name,
-//     location,
-//     role: 'roles/run.invoker',
-//     member: 'allUsers',
-//   });
-// });
-//
 
 // const loggingBucket = new gcp.storage.Bucket('logging-bucket', {
 //   name: 'loggin-bucket-for-buckets',
