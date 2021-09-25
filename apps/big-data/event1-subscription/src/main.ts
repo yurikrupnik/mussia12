@@ -8,7 +8,7 @@ const Model = mongoose.model(Event1.name, Event1Schema);
 
 async function dbConnect() {
   return mongoose.connect(
-    'mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/',
+    process.env.MONGO_URI || 'mongodb://localhost/mussia12',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

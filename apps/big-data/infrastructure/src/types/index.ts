@@ -1,9 +1,9 @@
 import { BucketArgs } from '@pulumi/gcp/storage/bucket';
 // import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
 import { Bucket } from '@pulumi/gcp/storage';
-import { FunctionArgs, CallbackFunction } from '@pulumi/gcp/cloudfunctions';
-import * as pulumi from '@pulumi/pulumi';
-import { FailurePolicy } from '@pulumi/gcp/cloudfunctions/zMixins';
+import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
+// import * as pulumi from '@pulumi/pulumi';
+// import { FailurePolicy } from '@pulumi/gcp/cloudfunctions/zMixins';
 
 export type BucketArgsSelf = BucketArgs & {
   name: string;
@@ -24,6 +24,7 @@ export type GcpFunction = {
   bucket: Bucket;
   member?: string;
   eventTrigger?: FunctionArgs['eventTrigger'];
+  environmentVariables?: FunctionArgs['environmentVariables'];
 };
 
 export type Avro = {

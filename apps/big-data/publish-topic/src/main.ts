@@ -19,6 +19,7 @@ const publishTopic = (req: Request, res: Response) => {
       res.status(204).send();
     })
     .catch((err) => {
+      res.status(500).send(err);
       console.log('Failed send PubSub topic', err); // eslint-disable-line
     });
 };

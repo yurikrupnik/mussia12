@@ -50,6 +50,26 @@ const bucketList: BucketArgsSelf[] = [
   },
 ];
 
+const temp = new gcp.storage.Bucket('temp-bucket', {
+  name: `${project}-temp-bucket`,
+  location: region,
+  forceDestroy: true,
+  labels: {
+    type: 'temp',
+    team: 'util',
+  },
+});
+
+const eventsBucket = new gcp.storage.Bucket('events-bucket', {
+  name: `${project}-events-bucket`,
+  location: region,
+  forceDestroy: true,
+  labels: {
+    type: 'events',
+    team: 'big-data',
+  },
+});
+
 const funcBucket = new gcp.storage.Bucket(`${project}-func-bucket`, {
   name: `${project}-func-bucket`,
   location: region,
@@ -68,18 +88,21 @@ const functions: GcpFunction[] = [
     path: functionsPath,
     member: 'allUsers',
   },
+  {
+    name: 'storage-func',
+    region,
+    bucket: funcBucket,
+    path: functionsPath,
+    eventTrigger: {
+      resource: eventsBucket.name,
+      eventType: 'google.storage.object.finalize',
+    },
+    // member: 'allUsers',
+  },
 ];
 
 const funcs = createGcpFunctions(functions);
-//
-// type EventsEnum = 'event1AvroFields' | 'event2' | 'event3';
-//
-// type Event = {
-//   name: EventsEnum;
-//   schema: Avro[];
-// };
-//
-//
+
 const dataset = new gcp.bigquery.Dataset('applications_events', {
   datasetId: `${project}_applications_events`,
   description: 'This is a test description',
@@ -114,26 +137,6 @@ const dataset = new gcp.bigquery.Dataset('applications_events', {
 //   },
 //   schema: JSON.stringify(event1BigquerySchema),
 // });
-
-const temp = new gcp.storage.Bucket('temp-bucket', {
-  name: `${project}-temp-bucket`,
-  location: region,
-  forceDestroy: true,
-  labels: {
-    type: 'temp',
-    team: 'util',
-  },
-});
-
-const storage = new gcp.storage.Bucket('events-bucket', {
-  name: `${project}-events-bucket`,
-  location: region,
-  forceDestroy: true,
-  labels: {
-    type: 'events',
-    team: 'big-data',
-  },
-});
 
 // storage.onObjectFinalized(
 //   'finalized-clients-events-bucket',
@@ -179,6 +182,11 @@ const events: EventClass[] = [
           failurePolicy: {
             retry: true,
           },
+        },
+        environmentVariables: {
+          // todo fetch vars from gcp secrets and/or using terraform
+          MONGO_URI:
+            'mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/',
         },
       },
     ],
@@ -227,7 +235,7 @@ events.map((event) => {
     tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
     parameters: {
       inputTopic: topic.id,
-      outputDirectory: pulumi.interpolate`${storage.url}/text/${name}`,
+      outputDirectory: pulumi.interpolate`${eventsBucket.url}/text/${name}`,
       outputFilenamePrefix: `${name}-ps-to-text`,
     },
     onDelete: 'cancel',
@@ -240,37 +248,37 @@ events.map((event) => {
     tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
     parameters: {
       inputTopic: topic.id,
-      outputDirectory: pulumi.interpolate`${storage.url}/avro/${name}`,
+      outputDirectory: pulumi.interpolate`${eventsBucket.url}/avro/${name}`,
       avroTempDirectory: pulumi.interpolate`${temp.url}/temp/${name}`,
     },
     onDelete: 'cancel',
   });
 
   // bigquery start
-  // const table = new gcp.bigquery.Table(name, {
-  //   datasetId: dataset.datasetId,
-  //   tableId: name,
-  //   deletionProtection: false,
-  //   timePartitioning: {
-  //     type: 'MONTH',
-  //   },
-  //   labels: {
-  //     env: 'default',
-  //     event: name,
-  //   },
-  //   schema: JSON.stringify(pubsubSchema),
-  // });
-  //
-  // const bigquery_streaml = new gcp.dataflow.Job(`${name}-ps-to-bq`, {
-  //   templateGcsPath:
-  //     'gs://dataflow-templates-europe-north1/latest/PubSub_to_BigQuery',
-  //   tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
-  //   parameters: {
-  //     inputTopic: topic.id,
-  //     outputTableSpec: pulumi.interpolate`${project}:${table.datasetId}.${name}`,
-  //   },
-  //   onDelete: 'cancel',
-  // });
+  const table = new gcp.bigquery.Table(name, {
+    datasetId: dataset.datasetId,
+    tableId: name,
+    deletionProtection: false,
+    timePartitioning: {
+      type: 'MONTH',
+    },
+    labels: {
+      env: 'default',
+      event: name,
+    },
+    schema: JSON.stringify(pubsubSchema),
+  });
+
+  const bigquery_streaml = new gcp.dataflow.Job(`${name}-ps-to-bq`, {
+    templateGcsPath:
+      'gs://dataflow-templates-europe-north1/latest/PubSub_to_BigQuery',
+    tempGcsLocation: pulumi.interpolate`${temp.url}/temp`,
+    parameters: {
+      inputTopic: topic.id,
+      outputTableSpec: pulumi.interpolate`${project}:${table.datasetId}.${name}`,
+    },
+    onDelete: 'cancel',
+  });
   // bigquery end
 
   // functions start

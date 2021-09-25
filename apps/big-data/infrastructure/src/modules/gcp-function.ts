@@ -4,7 +4,15 @@ import camelCase from 'lodash/camelCase';
 import { GcpFunction } from '../types';
 
 const gcpFunction = (props: GcpFunction) => {
-  const { name, region, bucket, path, member, eventTrigger } = props;
+  const {
+    name,
+    region,
+    bucket,
+    path,
+    member,
+    eventTrigger,
+    environmentVariables,
+  } = props;
   const archive = new gcp.storage.BucketObject(name, {
     name: `${name}.zip`,
     bucket: bucket.name,
@@ -21,6 +29,8 @@ const gcpFunction = (props: GcpFunction) => {
     entryPoint: camelCase(name),
     name: name,
     region,
+    environmentVariables,
+    // serviceAccountEmail: '',
   });
 
   let invoker;
