@@ -17,15 +17,22 @@ export type BucketArgsSelf = BucketArgs & {
 //     };
 //     resource: string;
 //   };
-export type GcpFunction = {
+export interface GcpFunction {
   name: string;
   region: string;
   path: string;
   bucket: Bucket;
   member?: string;
-  eventTrigger?: FunctionArgs['eventTrigger'];
+  eventTrigger?: {
+    // todo check using FunctionArgs['eventTrigger'] for loop
+    failurePolicy?: {
+      retry: boolean;
+    };
+    eventType: string;
+    resource: string;
+  };
   environmentVariables?: FunctionArgs['environmentVariables'];
-};
+}
 
 export type Avro = {
   name: string;
