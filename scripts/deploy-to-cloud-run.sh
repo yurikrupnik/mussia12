@@ -38,7 +38,7 @@ else
     --region europe-west1 \
     --port 3333 \
     --no-traffic \
-    --tag $HEAD_REF
+    --tag abc
 fi
 
 echo 'Finished Deploy!!'
