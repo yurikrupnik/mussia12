@@ -27,11 +27,10 @@ then
   gcloud run services update-traffic $name --platform=managed --to-latest --region europe-west1
 else
   if [[ $HEAD_REF == *"/"* ]]; then
-    HEAD_REF=${GITHUB_SHA::8}
-    echo $HEAD_REF
-    echo "It's there!"
+    HEAD_REF=sha-${GITHUB_SHA::8}
   fi
   echo $name
+  echo $HEAD_REF
   gcloud run deploy $name \
     --image $gc_image \
     --platform managed \
