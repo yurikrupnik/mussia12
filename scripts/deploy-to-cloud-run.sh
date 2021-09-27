@@ -28,10 +28,9 @@ then
 else
   if [[ $HEAD_REF == *"/"* ]]; then
     HEAD_REF=${GITHUB_SHA::8}
-    echo $HEAD_REF
-    echo "It's there!"
   fi
   echo $name
+  echo $HEAD_REF
   gcloud run deploy $name \
     --image $gc_image \
     --platform managed \
