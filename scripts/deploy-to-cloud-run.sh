@@ -38,7 +38,7 @@ else
     --region europe-west1 \
     --port 3333 \
     --no-traffic \
-    --tag abc
+    --tag 1abc
 fi
 
 echo 'Finished Deploy!!'
