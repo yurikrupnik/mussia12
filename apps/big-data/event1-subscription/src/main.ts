@@ -10,8 +10,8 @@ async function dbConnect() {
   return mongoose.connect(
     process.env.MONGO_URI || 'mongodb://localhost/mussia12',
     {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
     }
   );
 }

@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 export default (url: string) => {
   mongoose.connect(url, {
-    useNewUrlParser: true,
+    // useNewUrlParser: true,
   });
   const db = mongoose.connection;
   mongoose.Promise = global.Promise;
