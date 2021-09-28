@@ -17,9 +17,14 @@ async function bootstrap() {
     .setDescription('General use cloud run api')
     .setVersion('1.0')
     .setBasePath('/')
+    .addBearerAuth()
+    .addBasicAuth()
+    .addOAuth2()
+    .addCookieAuth('optional-session-id')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(globalPrefix, app, document);
+
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);

@@ -1,18 +1,6 @@
-// import { UserRoles } from '@mussia12/shared/data-types';
+import { PartialType } from '@nestjs/swagger';
 import { User } from '@mussia12/shared/mongoose-schemas';
 
-// todo check and add to logic coz it is needed
-export class CreateDto extends User {
-  // readonly name: string;
-  // readonly image?: string;
-  // readonly lastName?: string;
-  // readonly firstName?: string;
-  // readonly email: string;
-  // readonly password?: string;
-  // readonly role?: UserRoles;
-  // readonly isActive?: boolean;
-}
+export class CreateUserDto extends User {}
 
-export class UpdateDto {
-  readonly name?: string;
-}
+export class UpdateUserDto extends PartialType(CreateUserDto) {}

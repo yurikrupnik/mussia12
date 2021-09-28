@@ -29,7 +29,7 @@ export class UsersService {
     return new this.model(body).save();
   }
 
-  async update(id: string, body: User): Promise<User> {
+  async update(id: string, body: Partial<User>): Promise<User> {
     return this.model.findOneAndUpdate(
       {
         _id: id,
