@@ -23,6 +23,9 @@ async function bootstrap() {
   );
   const globalPrefix = 'api';
   app.use(helmet());
+  app.use(helmet.noSniff());
+  app.use(helmet.hidePoweredBy());
+  app.use(helmet.contentSecurityPolicy());
   app.setGlobalPrefix(globalPrefix);
   app.enableShutdownHooks();
   const config = new DocumentBuilder()
