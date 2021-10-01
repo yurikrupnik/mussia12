@@ -1,11 +1,11 @@
-import { Logger, ConsoleLogger } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import helmet from 'helmet';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+// import {
+//   FastifyAdapter,
+//   NestFastifyApplication,
+// } from '@nestjs/platform-fastify';
 // import {
 //   FastifyAdapter,
 //   NestFastifyApplication,

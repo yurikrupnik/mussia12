@@ -5,41 +5,38 @@ import { QueryOptions } from 'mongoose';
 import { User, UserDocument } from '@mussia12/shared/mongoose-schemas';
 
 @Injectable()
-class Shit<T, U> {
+export class UsersService {
   constructor(
-    @InjectModel('User') private model: Model<U>,
+    @InjectModel(User.name) private model: Model<UserDocument>,
     @InjectConnection() private connection: Connection
   ) {}
 
-  async findAll(query, projection, config: QueryOptions): Promise<T[]> {
+  async findAll(query, projection, config: QueryOptions): Promise<User[]> {
     return this.model.find(query, projection, config).lean();
   }
 
-  async findOne(id: string, projection): Promise<T> {
+  async findOne(id: string, projection): Promise<User> {
     return this.model.findById(id, projection).lean();
   }
-  //
-  // create(body: T): Promise<T> {
-  //   return new this.model(body).save();
-  // }
-  //
-  // async update(id: string, body: Partial<T>): Promise<T> {
-  //   return this.model.findOneAndUpdate(
-  //     {
-  //       _id: id,
-  //     },
-  //     body,
-  //     {
-  //       new: true,
-  //       useFindAndModify: false,
-  //     }
-  //   );
-  // }
-  //
-  // delete(id: string): Promise<string> {
-  //   return this.model.findByIdAndDelete(id).then((res) => res._id);
-  // }
-}
 
-@Injectable()
-export class UsersService extends Shit<User, UserDocument> {}
+  create(body: User): Promise<User> {
+    return new this.model(body).save();
+  }
+
+  async update(id: string, body: Partial<User>): Promise<User> {
+    return this.model.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      body,
+      {
+        new: true,
+        useFindAndModify: false,
+      }
+    );
+  }
+
+  delete(id: string): Promise<string> {
+    return this.model.findByIdAndDelete(id).then((res) => res._id);
+  }
+}

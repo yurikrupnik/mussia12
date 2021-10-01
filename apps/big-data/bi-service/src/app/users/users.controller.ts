@@ -103,49 +103,44 @@ export class UsersController {
     });
   }
 
-  // @Get(':id')
-  // @ApiOkResponse({
-  //   description: 'The resources has been successfully returned',
-  //   type: User,
-  // })
-  // findOne(@Query('projection') projection, @Param('id') id: string) {
-  //   return this.usersService.findOne(id, projection);
-  // }
-  //
-  // @Put(':id')
-  // @ApiOkResponse({
-  //   description: 'The resources has been successfully updated',
-  //   type: User,
-  // })
-  // update(
-  //   @Body(new ValidationPipe()) body: UpdateUserDto,
-  //   @Param('id') id: string
-  // ): Promise<User> {
-  //   return this.usersService.update(id, body);
-  // }
-  //
-  // @Post()
-  // // @ApiResponse({
-  // //   description: 'The resources has been successfully created',
-  // //   type: User,
-  // //   status: 201,
-  // // })
-  // @ApiCreatedResponse({
-  //   description: 'The record has been successfully created.',
-  //   type: User,
-  // })
-  // post(
-  //   @Body(new ValidationPipe()) createItemDto: CreateUserDto
-  // ): Promise<User> {
-  //   return this.usersService.create(createItemDto);
-  // }
-  //
-  // @Delete(':id')
-  // @ApiOkResponse({
-  //   description: 'The resources has been successfully deleted',
-  //   type: String,
-  // })
-  // delete(@Param('id') id: string): Promise<string> {
-  //   return this.usersService.delete(id);
-  // }
+  @Get(':id')
+  @ApiOkResponse({
+    description: 'The resources has been successfully returned',
+    type: User,
+  })
+  findOne(@Query('projection') projection, @Param('id') id: string) {
+    return this.usersService.findOne(id, projection);
+  }
+
+  @Put(':id')
+  @ApiOkResponse({
+    description: 'The resources has been successfully updated',
+    type: User,
+  })
+  update(
+    @Body(new ValidationPipe()) body: UpdateUserDto,
+    @Param('id') id: string
+  ): Promise<User> {
+    return this.usersService.update(id, body);
+  }
+
+  @Post()
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+    type: User,
+  })
+  post(
+    @Body(new ValidationPipe()) createItemDto: CreateUserDto
+  ): Promise<User> {
+    return this.usersService.create(createItemDto);
+  }
+
+  @Delete(':id')
+  @ApiOkResponse({
+    description: 'The resources has been successfully deleted',
+    type: String,
+  })
+  delete(@Param('id') id: string): Promise<string> {
+    return this.usersService.delete(id);
+  }
 }

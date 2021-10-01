@@ -1,0 +1,9 @@
+FROM eu.gcr.io/mussia8/nx AS builder
+
+ARG NODE_ENV
+ARG PORT
+ARG BUILD_FLAG
+
+WORKDIR /app/builder
+RUN npm i
+RUN npx nx serve big-data-bi-service
