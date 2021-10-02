@@ -1,1 +1,1 @@
-export * from './lib/fullstack-users-api-nest-module';
+export * from './lib/users.module';

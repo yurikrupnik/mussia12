@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 // import { LoggerModule } from 'nestjs-rollbar';
-import { UsersModule } from '@mussia12/fullstack/api-modules';
+import { UsersModule } from '@mussia12/fullstack/users-api-nest-module';
 import { Event1Module } from './event1/event1.module';
 import { Event2Module } from './event2/event2.module';
 import { BiModule } from './bi/bi.module';

@@ -3,7 +3,27 @@ paths:
   /api/users:
     get:
       operationId: UsersController_getData
-      parameters: []
+      parameters:
+        - name: projection
+          required: false
+          in: query
+          description: A list of projections for mongodb queries
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - name
+                - role
+                - email
+                - tenantId
+                - provider
+        - name: limit
+          required: false
+          in: query
+          description: Limit of items to fetch
+          example: 50
+          schema: {}
       responses:
         "200":
           description: The resources has been successfully returned
@@ -42,6 +62,20 @@ paths:
           in: path
           schema:
             type: string
+        - name: projection
+          required: false
+          in: query
+          description: A list of projections for mongodb queries
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - name
+                - role
+                - email
+                - tenantId
+                - provider
       responses:
         "200":
           description: The resources has been successfully returned

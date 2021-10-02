@@ -29,6 +29,9 @@
       "@mussia12/fullstack/event3-api-nest-module": [
         "libs/fullstack/event3-api-nest-module/src/index.ts"
       ],
+      "@mussia12/fullstack/health-api-nest-module": [
+        "libs/fullstack/health-api-nest-module/src/index.ts"
+      ],
       "@mussia12/fullstack/projects-api-nest-module": [
         "libs/fullstack/projects-api-nest-module/src/index.ts"
       ],
