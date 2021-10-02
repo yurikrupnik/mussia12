@@ -1,0 +1,616 @@
+openapi: 3.0.0
+paths:
+  /api/users:
+    get:
+      operationId: UsersController_getData
+      parameters:
+        - name: projection
+          required: false
+          in: query
+          description: A list of projections for mongodb queries
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - name
+                - role
+                - email
+                - tenantId
+                - provider
+        - name: limit
+          required: false
+          in: query
+          description: Limit of items to fetch
+          example: 50
+          schema: {}
+      responses:
+        "200":
+          description: The resources has been successfully returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+      tags:
+        &a1
+        - Users
+    post:
+      operationId: UsersController_post
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserDto"
+      responses:
+        "201":
+          description: The record has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      tags: *a1
+  "/api/users/{id}":
+    get:
+      operationId: UsersController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: projection
+          required: false
+          in: query
+          description: A list of projections for mongodb queries
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - name
+                - role
+                - email
+                - tenantId
+                - provider
+      responses:
+        "200":
+          description: The resources has been successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      tags: *a1
+    put:
+      operationId: UsersController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserDto"
+      responses:
+        "200":
+          description: The resources has been successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      tags: *a1
+    delete:
+      operationId: UsersController_delete
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The resources has been successfully deleted
+          content:
+            application/json:
+              schema:
+                type: string
+      tags: *a1
+  /api/health:
+    get:
+      operationId: HealthController_check
+      parameters: []
+      responses:
+        "200":
+          description: The Health Check is successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  info:
+                    type: object
+                    example:
+                      &a2
+                      database:
+                        &a3
+                        status: up
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  error:
+                    type: object
+                    example: {}
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  details:
+                    type: object
+                    example: *a2
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+        "503":
+          description: The Health Check is not successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  info:
+                    type: object
+                    example: *a2
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  error:
+                    type: object
+                    example:
+                      redis:
+                        &a4
+                        status: down
+                        message: Could not connect
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  details:
+                    type: object
+                    example:
+                      database: *a3
+                      redis: *a4
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+      tags:
+        - Health
+  /api/event1:
+    post:
+      operationId: Event1Controller_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEvent2Dto"
+      responses:
+        "201":
+          description: ""
+      tags:
+        &a5
+        - Event1
+    get:
+      operationId: Event1Controller_findAll
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      tags: *a5
+  "/api/event1/{id}":
+    get:
+      operationId: Event1Controller_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a5
+    patch:
+      operationId: Event1Controller_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateEvent2Dto"
+      responses:
+        "200":
+          description: ""
+      tags: *a5
+    delete:
+      operationId: Event1Controller_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a5
+  /api/event2:
+    post:
+      operationId: Event2Controller_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEvent2Dto"
+      responses:
+        "201":
+          description: ""
+      tags:
+        &a6
+        - Event2
+    get:
+      operationId: Event2Controller_findAll
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      tags: *a6
+  "/api/event2/{id}":
+    get:
+      operationId: Event2Controller_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a6
+    patch:
+      operationId: Event2Controller_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateEvent2Dto"
+      responses:
+        "200":
+          description: ""
+      tags: *a6
+    delete:
+      operationId: Event2Controller_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a6
+  /api/bi/publish-topic:
+    post:
+      operationId: BiController_publishTopic
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "#/components/schemas/Event1Dto"
+                - $ref: "#/components/schemas/Event2Dto"
+                - type: "#/components/schemas/Event3Dto"
+      responses:
+        "201":
+          description: The topic has been successfully sent message
+          content:
+            application/json:
+              schema:
+                type: string
+        "406":
+          description: Topic name is not defined in the cloud
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - BI
+info:
+  title: General API
+  description: General use cloud run api
+  version: "1.0"
+  contact: {}
+tags: []
+servers: []
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+    basic:
+      type: http
+      scheme: basic
+    oauth2:
+      type: oauth2
+      flows: {}
+    cookie:
+      type: apiKey
+      in: cookie
+      name: optional-session-id
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: User id
+          example: some id
+          readOnly: true
+        name:
+          type: string
+          description: User's name
+          example: your name
+        role:
+          type: object
+          description: User's role
+          example: admin
+        email:
+          type: string
+          description: User email
+          example: a@a.com
+        password:
+          type: string
+          description: User's password
+          example: "12345"
+        tenantId:
+          type: string
+          description: User's tenantId
+          example: tenantid-1234-1244
+        provider:
+          type: string
+          description: User's provider
+          example: local
+          enum:
+            &a7
+            - local
+            - google
+            - github
+          default: local
+      required:
+        - name
+        - role
+        - email
+        - password
+        - tenantId
+        - provider
+    UpdateUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: User's name
+          example: your name
+        role:
+          type: object
+          description: User's role
+          example: admin
+        email:
+          type: string
+          description: User email
+          example: a@a.com
+        password:
+          type: string
+          description: User's password
+          example: "12345"
+        tenantId:
+          type: string
+          description: User's tenantId
+          example: tenantid-1234-1244
+        provider:
+          type: string
+          description: User's provider
+          example: local
+          enum: *a7
+          default: local
+    CreateUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: User's name
+          example: your name
+        role:
+          type: object
+          description: User's role
+          example: admin
+        email:
+          type: string
+          description: User email
+          example: a@a.com
+        password:
+          type: string
+          description: User's password
+          example: "12345"
+        tenantId:
+          type: string
+          description: User's tenantId
+          example: tenantid-1234-1244
+        provider:
+          type: string
+          description: User's provider
+          example: local
+          enum: *a7
+          default: local
+      required:
+        - name
+        - role
+        - email
+        - password
+        - tenantId
+        - provider
+    CreateEvent2Dto:
+      type: object
+      properties:
+        userId:
+          description: User Id
+          example: dsdsds12345
+          allOf:
+            - $ref: "#/components/schemas/User"
+        tenantId:
+          type: string
+          description: Tenant Id
+          example: some-id
+      required:
+        - userId
+        - tenantId
+    UpdateEvent2Dto:
+      type: object
+      properties: {}
+    Event3:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Tenant Id
+          example: some-id
+      required:
+        - tenantId
+    Event3Dto:
+      type: object
+      properties:
+        topic:
+          type: object
+          default: event3
+        message:
+          $ref: "#/components/schemas/Event3"
+      required:
+        - topic
+        - message
+    Event2:
+      type: object
+      properties:
+        userId:
+          description: User Id
+          example: dsdsds12345
+          allOf:
+            - $ref: "#/components/schemas/User"
+        tenantId:
+          type: string
+          description: Tenant Id
+          example: some-id
+      required:
+        - userId
+        - tenantId
+    Event2Dto:
+      type: object
+      properties:
+        topic:
+          type: object
+          default: event2
+        message:
+          $ref: "#/components/schemas/Event2"
+      required:
+        - topic
+        - message
+    Event1:
+      type: object
+      properties:
+        stringField:
+          type: string
+          description: Not Acceptable status
+          example: some string
+        tenantId:
+          type: string
+          description: Tenant id
+          example: some tenant id
+        intField:
+          type: number
+          description: Some Number
+          example: 123
+      required:
+        - stringField
+        - tenantId
+        - intField
+    Event1Dto:
+      type: object
+      properties:
+        topic:
+          type: object
+          default: event1
+        message:
+          $ref: "#/components/schemas/Event1"
+      required:
+        - topic
+        - message
+    Error:
+      type: object
+      properties: {}

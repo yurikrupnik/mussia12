@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+#  users-api:
+#    image: eu.gcr.io/mussia8/users-api
+#    build:
+#      context: apps/fullstack/users-api
+#      dockerfile: Dockerfile
+#    container_name: users-api
+#    environment:
+#      - DB_URL=mongodb://db/mussia8
+#      - PORT=3333
+#    ports:
+#      - 3333:3333
+#  projects-api:
+#    image: eu.gcr.io/mussia8/projects-api
+#    build:
+#      context: apps/fullstack/projects-api
+#      dockerfile: Dockerfile
+#    container_name: projects-api
+#    environment:
+#      - DB_URL=mongodb://db/mussia8
+#      - PORT=3334
+#    ports:
+#      - 3334:3334
+  bi-service:
+    image: eu.gcr.io/mussia8/bi-service-dev
+    build:
+      context: apps/big-data/bi-service
+      dockerfile: Dockerfile
+    container_name: bi-service-dev
+    environment:
+      - MONGO_URI=mongodb://db/mussia8
+      - PORT=3335
+    ports:
+      - 3335:3335
+    depends_on:
+      - db
+#    command: npm run start
+  event1:
+    image: eu.gcr.io/mussia8/event1-dev
+    build:
+      context: apps/fullstack/event1
+      dockerfile: Dockerfile.dev
+    container_name: event1-dev
+    volumes:
+      - ./packages/webclients/alfred/pages:/usr/src/pages
+    environment:
+      - MONGO_URI=mongodb://db/mussia8
+      - PORT=3336
+    ports:
+      - 3336:3336
+    depends_on:
+      - db

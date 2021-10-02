@@ -1,4 +1,6 @@
 export type events =
+  | 'event1'
+  | 'event'
   | 'be-12'
   | 'agent-1'
   | 'fe-ss1'

@@ -20,14 +20,18 @@ import {
   ApiQueryOptions,
   ApiQuery,
   ApiBasicAuth,
+  ApiOAuth2,
+  ApiCookieAuth,
   ApiForbiddenResponse,
   ApiBearerAuth,
 } from '@nestjs/swagger';
 
 import { UsersService } from './users.service';
-// import { CreateItemDto } from './dto/create-item.dto';
+import { CreateUserDto, UpdateUserDto } from './dto/create-item.dto';
 // import { User } from '../schemas/user';
 import { User } from '@mussia12/shared/mongoose-schemas';
+import { ValidationPipe } from '../utils/validation.pipe';
+import { ConfigService } from '@nestjs/config';
 // import { User } from '@mussia12/shared/data-types';
 
 // const obj: User = {
@@ -44,6 +48,10 @@ enum prjects {
 // prjects['arus'];
 
 @ApiTags('Users')
+// @ApiCookieAuth()
+// @ApiOAuth2(['users:write'])
+// @ApiBearerAuth()
+// @ApiBasicAuth()
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -105,23 +113,34 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(@Body() body: User, @Param('id') id): Promise<User> {
-    console.log('createItemDto', body);
-    // return createItemDto;
-    console.log(body);
-    console.log(id);
-    // return 'as';
+  @ApiOkResponse({
+    description: 'The resources has been successfully updated',
+    type: User,
+  })
+  update(
+    @Body(new ValidationPipe()) body: UpdateUserDto,
+    @Param('id') id: string
+  ): Promise<User> {
     return this.usersService.update(id, body);
   }
 
   @Post()
-  post(@Body() createItemDto: User): Promise<User> {
-    console.log('createItemDto', createItemDto);
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+    type: User,
+  })
+  post(
+    @Body(new ValidationPipe()) createItemDto: CreateUserDto
+  ): Promise<User> {
     return this.usersService.create(createItemDto);
   }
 
   @Delete(':id')
-  delete(@Param('id') id): Promise<string> {
+  @ApiOkResponse({
+    description: 'The resources has been successfully deleted',
+    type: String,
+  })
+  delete(@Param('id') id: string): Promise<string> {
     return this.usersService.delete(id);
   }
 }

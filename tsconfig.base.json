@@ -17,12 +17,34 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@mussia12/fullstack/api-modules": [
+        "libs/fullstack/api-modules/src/index.ts"
+      ],
+      "@mussia12/fullstack/event1-api-nest-module": [
+        "libs/fullstack/event1-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/event2-api-nest-module": [
+        "libs/fullstack/event2-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/event3-api-nest-module": [
+        "libs/fullstack/event3-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/health-api-nest-module": [
+        "libs/fullstack/health-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/projects-api-nest-module": [
+        "libs/fullstack/projects-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/users-api-nest-module": [
+        "libs/fullstack/users-api-nest-module/src/index.ts"
+      ],
       "@mussia12/pulumi-gcp": ["libs/pulumi/gcp/src/index.ts"],
       "@mussia12/pulumi/aws": ["libs/pulumi/aws/src/index.ts"],
       "@mussia12/pulumi/shared-libs": ["libs/pulumi/shared-libs/src/index.ts"],
       "@mussia12/pulumi/shared-types": [
         "libs/pulumi/shared-types/src/index.ts"
       ],
+      "@mussia12/shared/configs": ["libs/shared/configs/src/index.ts"],
       "@mussia12/shared/data-types": ["libs/shared/data-types/src/index.ts"],
       "@mussia12/shared/mongoose-schemas": [
         "libs/shared/mongoose-schemas/src/index.ts"
