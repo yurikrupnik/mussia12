@@ -90,7 +90,7 @@ jobs:
       - run: docker push eu.gcr.io/mussia8/nx
       - run: gcloud config list
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=4 --base=$(git rev-parse origin/main~1)
+      - run: npx nx affected --target=build --parallel --max-parallel=4 --base=origin/master
       - run: npx nx affected --target=test --parallel --max-parallel=4 --base=origin/master
       - run: npx nx affected --target=lint --parallel --max-parallel=4 --base=origin/master
       - run: npx nx affected --target=e2e --parallel --max-parallel=4 --base=origin/master --headless
