@@ -1,5 +1,7 @@
 import { Logger } from '@nestjs/common';
 import helmet from 'helmet';
+import fs from 'fs';
+import yaml from 'yaml';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
@@ -25,9 +27,16 @@ async function bootstrap() {
     .addBasicAuth()
     .addOAuth2()
     .addCookieAuth('optional-session-id')
+    // .setBasePath('/api/users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup(globalPrefix, app, document);
+  SwaggerModule.setup(globalPrefix, app, document, {
+    swaggerOptions: {},
+  });
+  const yamlString: string = yaml.stringify(document, {});
+  fs.writeFileSync('./swaggers/bi-service.yaml', yamlString);
+
+  // fs.writeFileSync('./swagger-spec.yaml', JSON.stringify(document));
 
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {

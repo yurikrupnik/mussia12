@@ -20,6 +20,21 @@
       "@mussia12/fullstack/api-modules": [
         "libs/fullstack/api-modules/src/index.ts"
       ],
+      "@mussia12/fullstack/event1-api-nest-module": [
+        "libs/fullstack/event1-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/event2-api-nest-module": [
+        "libs/fullstack/event2-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/event3-api-nest-module": [
+        "libs/fullstack/event3-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/projects-api-nest-module": [
+        "libs/fullstack/projects-api-nest-module/src/index.ts"
+      ],
+      "@mussia12/fullstack/users-api-nest-module": [
+        "libs/fullstack/users-api-nest-module/src/index.ts"
+      ],
       "@mussia12/pulumi-gcp": ["libs/pulumi/gcp/src/index.ts"],
       "@mussia12/pulumi/aws": ["libs/pulumi/aws/src/index.ts"],
       "@mussia12/pulumi/shared-libs": ["libs/pulumi/shared-libs/src/index.ts"],

@@ -1,0 +1,23 @@
+{
+  "root": "libs/fullstack/projects-api-nest-module",
+  "sourceRoot": "libs/fullstack/projects-api-nest-module/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/fullstack/projects-api-nest-module/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/fullstack/projects-api-nest-module"],
+      "options": {
+        "jestConfig": "libs/fullstack/projects-api-nest-module/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
