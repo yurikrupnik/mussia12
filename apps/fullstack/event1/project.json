@@ -1,0 +1,60 @@
+{
+  "root": "apps/fullstack/event1",
+  "sourceRoot": "apps/fullstack/event1/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/fullstack/event1",
+        "main": "apps/fullstack/event1/src/main.ts",
+        "tsConfig": "apps/fullstack/event1/tsconfig.app.json",
+        "assets": ["apps/fullstack/event1/src/assets"],
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/fullstack/event1/src/environments/environment.ts",
+              "with": "apps/fullstack/event1/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "fullstack-event1:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fullstack/event1/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/fullstack/event1"],
+      "options": {
+        "jestConfig": "apps/fullstack/event1/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "name=event1 src=apps/fullstack/event1 bash scripts/deploy-to-cloud-run.sh"
+      }
+    }
+  },
+  "tags": []
+}

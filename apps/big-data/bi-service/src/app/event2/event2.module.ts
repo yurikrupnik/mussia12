@@ -2,14 +2,14 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { Event2Service } from './event2.service';
 import { Event2Controller } from './event2.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import config from '../common/config/configuration';
 import { Event2, Event2Schema } from '@mussia12/shared/mongoose-schemas';
 import { HealthModule } from '../health/health.module';
 import { AuthMiddleware } from '../common/auth/auth.middleware';
+import { mongoConfig } from '@mussia12/shared/configs';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(config().MONGO_URI),
+    MongooseModule.forRoot(mongoConfig().MONGO_URI),
     MongooseModule.forFeature([{ name: Event2.name, schema: Event2Schema }]),
     HealthModule,
   ],

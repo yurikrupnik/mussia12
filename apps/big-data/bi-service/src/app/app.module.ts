@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 // import { LoggerModule } from 'nestjs-rollbar';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from '@mussia12/fullstack/api-modules';
 import { Event1Module } from './event1/event1.module';
 import { Event2Module } from './event2/event2.module';
 import { BiModule } from './bi/bi.module';
-import configuration from './common/config/configuration';
+import { mongoConfig } from '@mussia12/shared/configs';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [configuration],
+      load: [mongoConfig],
     }),
     // LoggerModule.forRoot({
     //   // accessToken: configService.get('ROLLBAR_TOKEN'),

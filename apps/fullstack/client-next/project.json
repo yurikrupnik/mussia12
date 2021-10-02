@@ -1,0 +1,54 @@
+{
+  "root": "apps/fullstack/client-next",
+  "sourceRoot": "apps/fullstack/client-next",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "root": "apps/fullstack/client-next",
+        "outputPath": "dist/apps/fullstack/client-next"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "fullstack-client-next:build",
+        "dev": true,
+        "proxyConfig": "apps/fullstack/client-next/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "fullstack-client-next:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "fullstack-client-next:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/fullstack/client-next"],
+      "options": {
+        "jestConfig": "apps/fullstack/client-next/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fullstack/client-next/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

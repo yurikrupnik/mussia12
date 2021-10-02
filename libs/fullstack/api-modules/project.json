@@ -1,0 +1,23 @@
+{
+  "root": "libs/fullstack/api-modules",
+  "sourceRoot": "libs/fullstack/api-modules/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/fullstack/api-modules/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/fullstack/api-modules"],
+      "options": {
+        "jestConfig": "libs/fullstack/api-modules/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -12,11 +12,11 @@ import { User, UserSchema } from '@mussia12/shared/mongoose-schemas';
 import { HealthModule } from '../health/health.module';
 
 import { AuthMiddleware } from '../common/auth/auth.middleware';
-import config from '../common/config/configuration';
+import { mongoConfig } from '@mussia12/shared/configs';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(config().MONGO_URI),
+    MongooseModule.forRoot(mongoConfig().MONGO_URI),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     HealthModule,
   ],

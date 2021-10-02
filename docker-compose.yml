@@ -5,6 +5,14 @@ services:
     image: mongo
     ports:
       - 27017:27017
+  db1:
+    image: mongo
+    ports:
+      - 27018:27017
+  users-db:
+    image: mongo
+    ports:
+      - 27019:27017
   users-api:
     image: eu.gcr.io/mussia8/users-api
     build:
@@ -40,4 +48,56 @@ services:
       - 3335:3335
     depends_on:
       - db
+  event1:
+    image: eu.gcr.io/mussia8/event1
+    build:
+      context: apps/fullstack/event1
+      dockerfile: Dockerfile
+    container_name: event1
+    environment:
+      - MONGO_URI=mongodb://db1/event1
+      - PORT=3336
+    ports:
+      - 3336:3336
+    depends_on:
+      - db1
+  event2:
+    image: eu.gcr.io/mussia8/event2
+    build:
+      context: apps/fullstack/event2
+      dockerfile: Dockerfile
+    container_name: event2
+    environment:
+      - MONGO_URI=mongodb://db/event2
+      - PORT=3337
+    ports:
+      - 3337:3337
+    depends_on:
+      - db
+  event3:
+    image: eu.gcr.io/mussia8/event3
+    build:
+      context: apps/fullstack/event3
+      dockerfile: Dockerfile
+    container_name: event2
+    environment:
+      - MONGO_URI=mongodb://db/event3
+      - PORT=3338
+    ports:
+      - 3338:3338
+    depends_on:
+      - db
 #    command: npm run start
+  users:
+    image: eu.gcr.io/mussia8/users
+    build:
+      context: apps/fullstack/users
+      dockerfile: Dockerfile
+    container_name: users
+    environment:
+      - MONGO_URI=mongodb://users-db/users
+      - PORT=3339
+    ports:
+      - 3339:3339
+    depends_on:
+      - db

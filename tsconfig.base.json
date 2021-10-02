@@ -17,12 +17,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@mussia12/fullstack/api-modules": [
+        "libs/fullstack/api-modules/src/index.ts"
+      ],
       "@mussia12/pulumi-gcp": ["libs/pulumi/gcp/src/index.ts"],
       "@mussia12/pulumi/aws": ["libs/pulumi/aws/src/index.ts"],
       "@mussia12/pulumi/shared-libs": ["libs/pulumi/shared-libs/src/index.ts"],
       "@mussia12/pulumi/shared-types": [
         "libs/pulumi/shared-types/src/index.ts"
       ],
+      "@mussia12/shared/configs": ["libs/shared/configs/src/index.ts"],
       "@mussia12/shared/data-types": ["libs/shared/data-types/src/index.ts"],
       "@mussia12/shared/mongoose-schemas": [
         "libs/shared/mongoose-schemas/src/index.ts"
