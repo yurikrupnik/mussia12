@@ -1,5 +1,14 @@
 ra:
-	npx nx run-many --target=serve --all --parallel --maxParallel=6
+	npx nx run-many --target=${target} --parallel --all --maxParallel=10
+  # example to run: make ra target=lint
+
+run-many:
+	npx nx run-many --target=${target} --projects=${projects} --parallel=true --maxParallel=10
+
+graph:
+	npx nx dep-graph
+affected-graph:
+	npx nx affected:dep-graph
 
 
 build-nx:
