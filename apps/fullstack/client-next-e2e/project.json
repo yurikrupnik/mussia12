@@ -1,0 +1,28 @@
+{
+  "root": "apps/fullstack/client-next-e2e",
+  "sourceRoot": "apps/fullstack/client-next-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/fullstack/client-next-e2e/cypress.json",
+        "devServerTarget": "fullstack-client-next:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "fullstack-client-next:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fullstack/client-next-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["fullstack-client-next"]
+}
