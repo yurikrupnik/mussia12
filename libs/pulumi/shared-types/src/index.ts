@@ -15,25 +15,6 @@ export type GcpFunction = {
   bucket: Bucket;
 };
 
-// class Event1 {
-//   constructor(
-//     private tenantId: string,
-//     private userId: string,
-//     private inField: number
-//   ) {}
-// }
-
-interface Event1 {
-  stringField: string;
-  intField: number;
-  tenantId: string;
-}
-interface Event2 {
-  userField: string;
-  intField: number;
-  tenantId: string;
-}
-
 export type BigquerySchema = {
   name: string;
   mode: 'REQUIRED' | 'NULLABLE' | 'REPEATED';
@@ -54,8 +35,3 @@ export type BigquerySchemaTypes =
   | 'DATETIME'
   | 'GEOGRAPHY'
   | 'RECORD';
-
-type UY = {
-  message: Event1 | Event2;
-  topic: 'event1' | 'event2';
-};

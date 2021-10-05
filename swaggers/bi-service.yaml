@@ -232,7 +232,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateEvent2Dto"
+              $ref: "#/components/schemas/CreateEvent1Dto"
       responses:
         "201":
           description: ""
@@ -272,7 +272,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdateEvent2Dto"
+              $ref: "#/components/schemas/UpdateEvent1Dto"
       responses:
         "200":
           description: ""
@@ -517,6 +517,28 @@ components:
         - password
         - tenantId
         - provider
+    CreateEvent1Dto:
+      type: object
+      properties:
+        stringField:
+          type: string
+          description: Not Acceptable status
+          example: some string
+        tenantId:
+          type: string
+          description: Tenant id
+          example: some tenant id
+        intField:
+          type: number
+          description: Some Number
+          example: 123
+      required:
+        - stringField
+        - tenantId
+        - intField
+    UpdateEvent1Dto:
+      type: object
+      properties: {}
     CreateEvent2Dto:
       type: object
       properties:

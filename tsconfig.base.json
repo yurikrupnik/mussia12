@@ -49,6 +49,9 @@
       "@mussia12/shared/mongoose-schemas": [
         "libs/shared/mongoose-schemas/src/index.ts"
       ],
+      "@mussia12/shared/object-utils": [
+        "libs/shared/object-utils/src/index.ts"
+      ],
       "@mussia12/shared/validations": ["libs/shared/validations/src/index.ts"]
     }
   },

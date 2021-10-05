@@ -1,22 +1,11 @@
 import { BucketArgs } from '@pulumi/gcp/storage/bucket';
-// import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
 import { Bucket } from '@pulumi/gcp/storage';
 import { FunctionArgs } from '@pulumi/gcp/cloudfunctions';
-// import * as pulumi from '@pulumi/pulumi';
-// import { FailurePolicy } from '@pulumi/gcp/cloudfunctions/zMixins';
 
 export type BucketArgsSelf = BucketArgs & {
   name: string;
 };
 
-// FunctionArgs['eventTrigger']
-// {
-//     eventType: string;
-//     failurePolicy?: {
-//       retry: boolean;
-//     };
-//     resource: string;
-//   };
 export interface GcpFunction {
   name: string;
   region: string;
@@ -48,25 +37,6 @@ export type Avro = {
     | 'string';
 };
 
-// class Event1 {
-//   constructor(
-//     private tenantId: string,
-//     private userId: string,
-//     private inField: number
-//   ) {}
-// }
-
-interface Event1 {
-  stringField: string;
-  intField: number;
-  tenantId: string;
-}
-interface Event2 {
-  userField: string;
-  intField: number;
-  tenantId: string;
-}
-
 export type BigquerySchema = {
   name: string;
   mode: 'REQUIRED' | 'NULLABLE' | 'REPEATED';
@@ -87,8 +57,3 @@ export type BigquerySchemaTypes =
   | 'DATETIME'
   | 'GEOGRAPHY'
   | 'RECORD';
-
-type UY = {
-  message: Event1 | Event2;
-  topic: 'event1' | 'event2';
-};
