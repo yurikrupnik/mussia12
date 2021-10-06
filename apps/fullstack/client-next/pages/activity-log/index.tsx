@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Pusher from 'pusher-js';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import type { Event } from '../../../../../../mussia8/packages/models';
-import { User, Event1, Event2 } from '@mussia12/shared/mongoose-schemas';
+import { Event1 } from '@mussia12/shared/mongoose-schemas';
 
 Pusher.logToConsole = false;
 
