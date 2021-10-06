@@ -22,7 +22,7 @@ async function bootstrap() {
     .setTitle('General API')
     .setDescription('General use cloud run api')
     .setVersion('1.0')
-    .setBasePath('/')
+    // .setBasePath('/')
     .addBearerAuth()
     .addBasicAuth()
     .addOAuth2()
@@ -33,8 +33,8 @@ async function bootstrap() {
   SwaggerModule.setup(globalPrefix, app, document, {
     swaggerOptions: {},
   });
-  const yamlString: string = yaml.stringify(document, {});
-  fs.writeFileSync('./swaggers/bi-service.yaml', yamlString);
+  // const yamlString: string = yaml.stringify(document, {});
+  // fs.writeFileSync('./swaggers/bi-service.yaml', yamlString);
 
   // fs.writeFileSync('./swagger-spec.yaml', JSON.stringify(document));
 

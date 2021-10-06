@@ -95,7 +95,7 @@ services:
       dockerfile: Dockerfile
     container_name: users
     environment:
-      - MONGO_URI=mongodb://users-db/users
+      - MONGO_URI=mongodb://db/mussia8
       - PORT=3339
     ports:
       - 3339:3339
