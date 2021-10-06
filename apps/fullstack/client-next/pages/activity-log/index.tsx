@@ -28,27 +28,27 @@ function create(body: string) {
 }
 
 const ActivityLog = () => {
-  const [events, setEvents] = useState<Array<Event1>>([]);
+  const [events, setEvents] = useState<Event1[]>([]);
   useEffect(() => {
     getEvents().then((r) => {
       setEvents(r);
     });
   }, []);
-  useEffect(() => {
-    const channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', (data: any) => {
-      console.log('data', data);
-      const { logId } = data;
-      getById(logId).then((item) => {
-        setEvents(events.concat(item));
-      });
-      // alert(JSON.stringify(data));
-    });
-
-    return () => {
-      pusher.unsubscribe('my-channel');
-    };
-  }, [events]);
+  // useEffect(() => {
+  //   const channel = pusher.subscribe('my-channel');
+  //   channel.bind('my-event', (data: any) => {
+  //     console.log('data', data);
+  //     const { logId } = data;
+  //     getById(logId).then((item) => {
+  //       setEvents(events.concat(item));
+  //     });
+  //     // alert(JSON.stringify(data));
+  //   });
+  //
+  //   return () => {
+  //     pusher.unsubscribe('my-channel');
+  //   };
+  // }, [events]);
   return (
     <div>
       <h2>Activity Log</h2>

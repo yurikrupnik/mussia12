@@ -97,6 +97,13 @@ enum EnumEeventList {
   'event2' = 'event2',
   'event3' = 'event3',
 }
+const qa = pulumi.output(
+  gcp.secretmanager.getSecret({
+    secretId: 'projects/41381952215/secrets/MONGO_URI',
+  })
+);
+
+export const qaa = qa;
 
 const events: EventClass[] = [
   {
@@ -134,7 +141,12 @@ const events: EventClass[] = [
           },
         },
         environmentVariables: {
-          // todo fetch vars from gcp secrets and/or using terraform
+          // ds: pulumi.output(
+          //   gcp.secretmanager.getSecret({
+          //     secretId: 'projects/41381952215/secrets/MONGO_URI',
+          //   })
+          // ),
+          // todo fetch vars from gcp secrets/pulumi secrets
           MONGO_URI:
             'mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/',
         },
