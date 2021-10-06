@@ -17,10 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: npm install
+      - run: npm ci
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:

@@ -4,8 +4,6 @@ import { UpdateEvent1Dto } from './dto/update-event1.dto';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Event1, Event1Document } from '@mussia12/shared/mongoose-schemas';
 import { Connection, Model, QueryOptions } from 'mongoose';
-import { CreateEvent2Dto } from '../event2/dto/create-event2.dto';
-import { UpdateEvent2Dto } from '../event2/dto/update-event2.dto';
 
 @Injectable()
 export class Event1Service {
@@ -22,11 +20,11 @@ export class Event1Service {
     return this.model.findById(id, projection).lean();
   }
 
-  create(body: CreateEvent2Dto): Promise<Event1> {
+  create(body: CreateEvent1Dto): Promise<Event1> {
     return new this.model(body).save();
   }
 
-  async update(id: string, body: Partial<UpdateEvent2Dto>): Promise<Event1> {
+  async update(id: string, body: Partial<UpdateEvent1Dto>): Promise<Event1> {
     return this.model.findOneAndUpdate(
       {
         _id: id,

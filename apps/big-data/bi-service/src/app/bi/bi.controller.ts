@@ -100,9 +100,7 @@ export class BiController {
   publishTopic(
     @Body(new ValidationPipe()) body: EventsBodies
   ): Promise<string> {
-    const { topic } = body;
-    delete body.topic;
-    console.log('topic', topic);
-    return this.biService.publishTopic(topic, body);
+    const { topic, message } = body;
+    return this.biService.publishTopic(topic, message);
   }
 }

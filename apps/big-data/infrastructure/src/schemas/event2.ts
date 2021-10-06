@@ -1,6 +1,6 @@
 import { Avro } from '../types';
 
-const event2: Avro[] = [
+export const event2AvroFields: Avro[] = [
   {
     name: 'userId',
     type: 'string',
@@ -12,10 +12,3 @@ const event2: Avro[] = [
     description: 'Tenant Id',
   },
 ];
-
-export interface Event2 {
-  userId: string;
-  tenantId: string;
-}
-
-export { event2 };
