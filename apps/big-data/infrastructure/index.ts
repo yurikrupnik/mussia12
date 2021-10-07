@@ -1,7 +1,10 @@
 import * as pulumi from '@pulumi/pulumi';
 import * as gcp from '@pulumi/gcp';
 import { GcpFunction } from './src/types';
-import { GcpFunctionResource } from './src/modules/gcp-function';
+import {
+  createGcpFunctions,
+  GcpFunctionResource,
+} from './src/modules/gcp-function';
 import { EventPipe, EventClass } from './src/resources/event';
 import {
   event1AvroFields,
@@ -56,6 +59,7 @@ const functions: GcpFunction[] = [
   },
 ];
 
+// const funcs = createGcpFunctions(functions);
 const funcs = functions.map((f) => {
   return new GcpFunctionResource(f.name, f);
 });
