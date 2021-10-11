@@ -54,6 +54,12 @@
       "options": {
         "command": "name=bi-service src=apps/big-data/bi-service bash scripts/deploy-to-cloud-run.sh"
       }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx run big-data-bi-service-infrastructure:up"]
+      }
     }
   },
   "tags": []

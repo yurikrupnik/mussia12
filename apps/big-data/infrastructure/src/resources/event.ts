@@ -4,7 +4,6 @@ import { generateAvro } from '../utils/createAvroSchema';
 import last from 'lodash/last';
 import {
   GcpFunctionResource,
-  createGcpFunctions,
 } from '../modules/gcp-function';
 import { Avro, BigquerySchema, GcpFunction } from '../types';
 import { JobArgs } from '@pulumi/gcp/dataflow';
@@ -96,7 +95,7 @@ export class EventPipe extends pulumi.ComponentResource {
               textOrAvro === 'avro' ? tempBucket.url : undefined,
           }),
         },
-        { parent: this }
+        { parent: topic }
       );
     });
     // if (Array.isArray(eventStorageJob)) {

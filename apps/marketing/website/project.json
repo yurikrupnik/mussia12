@@ -47,6 +47,12 @@
       "options": {
         "lintFilePatterns": ["apps/marketing/website/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx run marketing-website-infrastructure:up"]
+      }
     }
   },
   "tags": []

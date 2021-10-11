@@ -1,0 +1,23 @@
+{
+  "root": "libs/pulumi/gcp-bucket",
+  "sourceRoot": "libs/pulumi/gcp-bucket/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/pulumi/gcp-bucket/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pulumi/gcp-bucket"],
+      "options": {
+        "jestConfig": "libs/pulumi/gcp-bucket/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

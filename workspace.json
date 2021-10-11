@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "big-data-bi-service": "apps/big-data/bi-service",
+    "big-data-bi-service-infrastructure": "apps/big-data/bi-service-infrastructure",
     "big-data-event1-subscription": "apps/big-data/event1-subscription",
     "big-data-infrastructure": "apps/big-data/infrastructure",
     "big-data-publish-topic": "apps/big-data/publish-topic",
@@ -24,8 +25,10 @@
     "fullstack-users-api-nest-module": "libs/fullstack/users-api-nest-module",
     "marketing-website": "apps/marketing/website",
     "marketing-website-e2e": "apps/marketing/website-e2e",
+    "marketing-website-infrastructure": "apps/marketing/website-infrastructure",
     "pulumi-aws": "libs/pulumi/aws",
     "pulumi-gcp": "libs/pulumi/gcp",
+    "pulumi-gcp-bucket": "libs/pulumi/gcp-bucket",
     "pulumi-shared-libs": "libs/pulumi/shared-libs",
     "pulumi-shared-types": "libs/pulumi/shared-types",
     "shared-configs": "libs/shared/configs",

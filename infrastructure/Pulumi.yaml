@@ -1,3 +1,0 @@
-name: big-data
-runtime: nodejs
-description: my big data infrascruture with pulumi

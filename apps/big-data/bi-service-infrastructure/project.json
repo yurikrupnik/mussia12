@@ -1,0 +1,34 @@
+{
+  "root": "apps/big-data/bi-service-infrastructure",
+  "projectType": "application",
+  "sourceRoot": "apps/big-data/bi-service-infrastructure/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/big-data/bi-service-infrastructure/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/big-data/bi-service-infrastructure/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/apps/big-data/bi-service-infrastructure"]
+    },
+    "up": {
+      "executor": "@wanews/nx-pulumi:up",
+      "options": {
+        "buildTargets": [
+          {
+            "project": "big-data-bi-service",
+            "target": "build"
+          }
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["big-data-bi-service"]
+}
