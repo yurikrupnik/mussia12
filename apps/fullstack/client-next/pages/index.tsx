@@ -6,8 +6,8 @@ import { User } from '@mussia12/shared/mongoose-schemas';
 
 const getUsers = () => {
   return axios
-    .get('/api/users')
-    .then((res): AxiosPromise<User[]> => {
+    .get<User[]>('/api/users')
+    .then((res) => {
       return res.data;
     })
     .catch((err) => {
