@@ -3,6 +3,9 @@ import Head from 'next/head';
 import './styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
+  const handleClick = function () {
+    console.log('hello from button callback');
+  };
   return (
     <>
       <Head>
@@ -12,7 +15,8 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <header className="flex">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/nx-logo-white.svg" alt="Nx logo" width="75" height="50" />
-          <h1>Welcome to client-next!</h1>
+          <h1>Welcome to client-next! V2</h1>
+          <button onClick={handleClick}>Click me | see logs</button>
         </header>
         <main>
           <Component {...pageProps} />

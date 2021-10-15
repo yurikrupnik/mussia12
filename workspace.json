@@ -9,6 +9,7 @@
     "fullstack-api-modules": "libs/fullstack/api-modules",
     "fullstack-client": "apps/fullstack/client",
     "fullstack-client-e2e": "apps/fullstack/client-e2e",
+    "fullstack-client-infrastructure": "apps/fullstack/client-infrastructure",
     "fullstack-client-next": "apps/fullstack/client-next",
     "fullstack-client-next-e2e": "apps/fullstack/client-next-e2e",
     "fullstack-event1": "apps/fullstack/event1",

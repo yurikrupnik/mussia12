@@ -48,6 +48,13 @@
       "options": {
         "lintFilePatterns": ["apps/fullstack/client-next/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "name=client-next src=apps/fullstack/client-next bash scripts/deploy-to-cloud-run.sh"
+      }
     }
   },
   "tags": []

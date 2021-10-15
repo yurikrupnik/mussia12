@@ -101,3 +101,16 @@ services:
       - 3339:3339
     depends_on:
       - db
+  client-next:
+    image: eu.gcr.io/mussia8/client-next
+    build:
+      context: apps/fullstack/client-next
+      dockerfile: Dockerfile
+    container_name: client-next
+    environment:
+      - MONGO_URI=mongodb://db/mussia8
+      - PORT=3340
+    ports:
+      - 3340:3340
+    depends_on:
+      - db
