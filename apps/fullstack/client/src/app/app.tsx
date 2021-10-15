@@ -13,8 +13,8 @@ import { User } from '@mussia12/shared/mongoose-schemas';
 
 function getUsers() {
   return axios
-    .get('/api/users')
-    .then((res): Array<User> => {
+    .get<Array<User>>('/api/users')
+    .then((res) => {
       return res.data;
     })
     .catch((err) => {

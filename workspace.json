@@ -21,7 +21,6 @@
     "fullstack-health-api-nest-module": "libs/fullstack/health-api-nest-module",
     "fullstack-projects-api-nest-module": "libs/fullstack/projects-api-nest-module",
     "fullstack-users": "apps/fullstack/users",
-    "fullstack-users-api": "apps/fullstack/users-api",
     "fullstack-users-api-nest-module": "libs/fullstack/users-api-nest-module",
     "marketing-website": "apps/marketing/website",
     "marketing-website-e2e": "apps/marketing/website-e2e",
