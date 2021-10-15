@@ -1,0 +1,34 @@
+{
+  "root": "apps/fullstack/client-infrastructure",
+  "projectType": "application",
+  "sourceRoot": "apps/fullstack/client-infrastructure/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/fullstack/client-infrastructure/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/fullstack/client-infrastructure/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/apps/fullstack/client-infrastructure"]
+    },
+    "up": {
+      "executor": "@wanews/nx-pulumi:up",
+      "options": {
+        "buildTargets": [
+          {
+            "project": "fullstack-client",
+            "target": "build"
+          }
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["fullstack-client"]
+}

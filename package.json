@@ -28,6 +28,7 @@
     "@pulumi/gcp": "5.21.0",
     "@pulumi/mongodbatlas": "3.0.0",
     "@pulumi/pulumi": "3.13.2",
+    "@wanews/nx-pulumi": "^0.18.0",
     "axios": "0.22.0",
     "class-transformer": "0.4.0",
     "class-validator": "0.13.1",
@@ -55,7 +56,7 @@
     "yaml": "1.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1202.8",
+    "@angular-devkit/architect": "0.1202.10",
     "@dev-thought/nx-deploy-it": "2.0.0",
     "@nestjs/schematics": "8.0.3",
     "@nestjs/testing": "8.1.1",
