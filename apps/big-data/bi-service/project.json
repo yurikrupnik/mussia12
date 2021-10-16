@@ -7,7 +7,7 @@
       "executor": "@nrwl/node:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/big-data/bi-service",
+        "outputPath": "apps/big-data/bi-service/dist",
         "main": "apps/big-data/bi-service/src/main.ts",
         "tsConfig": "apps/big-data/bi-service/tsconfig.app.json",
         "assets": ["apps/big-data/bi-service/src/assets"],
@@ -52,6 +52,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
+        "buildTarget": "big-data-bi-service:build:prod",
         "command": "name=bi-service src=apps/big-data/bi-service bash scripts/deploy-to-cloud-run.sh"
       }
     }

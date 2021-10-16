@@ -39,8 +39,8 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
           gcloud --quiet auth configure-docker
-      - run: docker-compose -f docker-compose.nx.yml build
-      - run: docker push eu.gcr.io/mussia8/nx
+#      - run: docker-compose -f docker-compose.nx.yml build
+#      - run: docker push eu.gcr.io/mussia8/nx
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=test --parallel --max-parallel=4
       - run: npx nx affected --target=lint --parallel --max-parallel=4
@@ -86,11 +86,11 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
           gcloud --quiet auth configure-docker
-      - run: docker-compose -f docker-compose.nx.yml build
-      - run: docker push eu.gcr.io/mussia8/nx
+#      - run: docker-compose -f docker-compose.nx.yml build
+#      - run: docker push eu.gcr.io/mussia8/nx
       - run: gcloud config list
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=4 --base=origin/master
+      - run: npx nx affected --target=build --parallel --max-parallel=4 --base=origin/master --prod
       - run: npx nx affected --target=test --parallel --max-parallel=4 --base=origin/master
       - run: npx nx affected --target=lint --parallel --max-parallel=4 --base=origin/master
       - run: npx nx affected --target=e2e --parallel --max-parallel=4 --base=origin/master --headless

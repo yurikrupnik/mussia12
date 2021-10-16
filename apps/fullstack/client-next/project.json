@@ -8,7 +8,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "root": "apps/fullstack/client-next",
-        "outputPath": "dist/apps/fullstack/client-next"
+        "outputPath": "apps/fullstack/client-next/dist"
       },
       "configurations": {
         "production": {}
@@ -19,7 +19,9 @@
       "options": {
         "buildTarget": "fullstack-client-next:build",
         "dev": true,
-        "proxyConfig": "apps/fullstack/client-next/proxy.conf.json"
+        "proxyConfig": "apps/fullstack/client-next/proxy.conf.json",
+        "open": true,
+        "port": 8080
       },
       "configurations": {
         "production": {

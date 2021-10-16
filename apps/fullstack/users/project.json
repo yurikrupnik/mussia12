@@ -7,7 +7,7 @@
       "executor": "@nrwl/node:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/fullstack/users",
+        "outputPath": "apps/fullstack/users/dist",
         "main": "apps/fullstack/users/src/main.ts",
         "tsConfig": "apps/fullstack/users/tsconfig.app.json",
         "assets": ["apps/fullstack/users/src/assets"],

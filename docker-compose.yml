@@ -101,19 +101,6 @@ services:
       - 3339:3339
     depends_on:
       - db
-  users-api:
-    image: eu.gcr.io/mussia8/users-api
-    build:
-      context: apps/fullstack/users-api
-      dockerfile: Dockerfile
-    container_name: users-api
-    environment:
-      - MONGO_URI=mongodb://db/mussia8
-      - PORT=3341
-    ports:
-      - 3341:3341
-    depends_on:
-      - db
   client-next:
     image: eu.gcr.io/mussia8/client-next
     build:

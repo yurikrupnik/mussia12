@@ -7,7 +7,7 @@
       "executor": "@nrwl/node:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/fullstack/event1",
+        "outputPath": "apps/fullstack/event1/dist",
         "main": "apps/fullstack/event1/src/main.ts",
         "tsConfig": "apps/fullstack/event1/tsconfig.app.json",
         "assets": ["apps/fullstack/event1/src/assets"],
