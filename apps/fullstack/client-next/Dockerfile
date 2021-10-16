@@ -7,17 +7,21 @@
 #RUN npm i --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM eu.gcr.io/mussia8/nx AS builder
-WORKDIR /app/builder
-RUN npm i
-RUN npx nx run fullstack-client-next:build --prod
+#FROM eu.gcr.io/mussia8/nx AS builder
+#WORKDIR /app/builder
+#RUN npm i
+#RUN npx nx run fullstack-client-next:build --prod
 #RUN npm run build && npm i --production --ignore-scripts --prefer-offline
 #
 ## Production image, copy all the files and run next
 FROM node:16-alpine AS runner
 WORKDIR /app
 
-COPY --from=builder /app/builder/dist/apps/fullstack/client-next .
+#COPY --from=builder /app/builder/dist/apps/fullstack/client-next .
+COPY ./dist .
+ENV PORT=3000
+EXPOSE ${PORT}
+RUN npm install --production
 
 RUN ls -a
 RUN cat package.json

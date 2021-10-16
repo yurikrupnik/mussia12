@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Pusher from 'pusher-js';
+// import Pusher from 'pusher-js';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import { Event1 } from '@mussia12/shared/mongoose-schemas';
 
-Pusher.logToConsole = false;
+// Pusher.logToConsole = false;
 
-const pusher = new Pusher('d7880526d3965e004014', {
-  cluster: 'eu',
-});
+// const pusher = new Pusher('d7880526d3965e004014', {
+//   cluster: 'eu',
+// });
 
 function getData(res) {
   return res.data;
@@ -20,6 +20,9 @@ function getEvents(): Promise<Event1[]> {
 
 function getById(id: string) {
   return axios.get<Event1>(`/api/event1/${id}`).then(getData);
+  // .then((r) => {
+  //   r;
+  // });
 }
 
 function create(body: string) {
