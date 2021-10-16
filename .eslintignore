@@ -60,7 +60,3 @@ typings/
 
 # next.js build output
 .next
-
-apps/**/**/dist
-apps/**/**/.env.local
-packages/webclients/batman/.env.local
