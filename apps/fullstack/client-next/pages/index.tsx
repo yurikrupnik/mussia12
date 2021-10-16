@@ -11,6 +11,7 @@ const getUsers = () => {
       return res.data;
     })
     .catch((err) => {
+      // adding return type of void
       console.log(err);
     });
 };
@@ -25,7 +26,9 @@ export function Index() {
   const [users, setUsers] = useState<User[]>([]);
   useEffect(() => {
     getUsers().then((res) => {
-      console.log('res', res);
+      if (Array.isArray(res)) {
+        setUsers(res);
+      }
     });
   }, []);
   return (
@@ -41,21 +44,6 @@ export function Index() {
         );
       })}
       <p>Thank you for using and showing some ♥ for Nx.</p>
-      <div className="flex github-star-container">
-        <a
-          href="https://github.com/nrwl/nx"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {' '}
-          If you like Nx, please give it a star:
-          <div className="github-star-badge">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/star.svg" className="material-icons" alt="" />
-            Star
-          </div>
-        </a>
-      </div>
     </div>
   );
 }
