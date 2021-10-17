@@ -39,6 +39,7 @@
     "core-js": "3.18.3",
     "express": "4.17.1",
     "express-session": "1.17.2",
+    "faker": "5.5.3",
     "fastify-swagger": "4.12.4",
     "firebase-admin": "10.0.0",
     "helmet": "4.6.0",

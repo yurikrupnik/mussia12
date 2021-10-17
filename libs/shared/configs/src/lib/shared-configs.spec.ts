@@ -1,7 +1,7 @@
-import { sharedConfigs } from './shared-configs';
+import { mongoConfig } from './shared-configs';
 
 describe('sharedConfigs', () => {
   it('should work', () => {
-    expect(sharedConfigs()).toEqual('shared-configs');
+    expect(mongoConfig().MONGO_URI).toEqual('mongodb://localhost/mussia12');
   });
 });
