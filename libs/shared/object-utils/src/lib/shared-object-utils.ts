@@ -1,3 +1,2 @@
-export function sharedObjectUtils(): string {
-  return 'shared-object-utils';
-}
+
+export const getData = (res) => res.data;

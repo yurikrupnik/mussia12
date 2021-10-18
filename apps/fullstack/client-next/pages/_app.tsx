@@ -1,32 +1,10 @@
 import { AppProps } from 'next/app';
 import React from 'react';
-// import { Provider } from "next-auth/client";
 import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import { UserProvider } from "@auth0/nextjs-auth0";
-// import * as Sentry from "@sentry/react";
-// import { Integrations } from "@sentry/tracing";
-import type {} from '@mussia12/shared/mongoose-schemas';
 import ThemeProvider from '@mussia12/fullstack/mui-theme-provider';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-// import axios from "axios";
-// import '../styles/globals.css';
-// import Sidebar from '../components/Sidebar';
-// import Header from '../components/Header';
-// import { drawerWidthClose, drawerWidthOpen } from "../utils/consts";
-// import ThemeProvider from '../providers/ThemeProvider';
-
-// Sentry.init({
-//     dsn:
-//         "https://1e5c714cd2a445b7a6fb0c25f2e8daf2@o599478.ingest.sentry.io/5743575",
-//     integrations: [new Integrations.BrowserTracing()],
-//
-//     // Set tracesSampleRate to 1.0 to capture 100%
-//     // of transactions for performance monitoring.
-//     // We recommend adjusting this value in production
-//     tracesSampleRate: 1.0
-// });
 
 const createClasses = makeStyles((theme) => ({
   container: {

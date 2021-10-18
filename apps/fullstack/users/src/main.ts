@@ -5,11 +5,11 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 import { AppModule } from './app/app.module';
 
-async function bootstrap() {
+async function bootstrap(globalPrefix = 'api') {
   const app = await NestFactory.create(AppModule, {
     // logger: new ConsoleLogger('App'),
   });
-  const globalPrefix = 'api';
+  // const globalPrefix = 'api';
   app.use(helmet());
   app.use(helmet.noSniff());
   app.use(helmet.hidePoweredBy());
