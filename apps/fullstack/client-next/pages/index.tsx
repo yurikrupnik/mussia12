@@ -17,12 +17,6 @@ const getUsers = () => {
 };
 
 export function Index() {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.css file.
-   */
-
   const [users, setUsers] = useState<User[]>([]);
   useEffect(() => {
     getUsers().then((res) => {
