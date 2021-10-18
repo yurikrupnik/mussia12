@@ -62,7 +62,7 @@
   "devDependencies": {
     "@angular-devkit/architect": "0.1202.10",
     "@dev-thought/nx-deploy-it": "2.0.0",
-    "@nestjs/schematics": "8.0.3",
+    "@nestjs/schematics": "8.0.4",
     "@nestjs/testing": "8.1.1",
     "@nrwl/cli": "12.9.0",
     "@nrwl/cypress": "12.9.0",
