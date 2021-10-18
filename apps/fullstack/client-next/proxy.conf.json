@@ -1,6 +1,10 @@
 {
-  "/api": {
+  "/ads": {
     "target": "http://localhost:3333",
+    "secure": false
+  },
+  "/dsss": {
+    "target": "http://bi-service-5g7d5fmura-ew.a.run.app/api",
     "secure": false
   }
 }
