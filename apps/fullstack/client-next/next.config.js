@@ -59,7 +59,7 @@ module.exports = (phase) => {
       source: '/api/:path*',
       // basePath: false,
       // description: "http://0.0.0.0:5000/:path*"
-      destination: !isDev
+      destination: isDev
         ? 'http://localhost:3333'
         : 'https://bi-service-5g7d5fmura-ew.a.run.app/api/:path*',
     },
