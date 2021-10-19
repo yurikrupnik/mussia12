@@ -8,6 +8,11 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export type UserDocument = User & Document;
 
+// class Timestamp {
+//   @Prop() readonly createdAt?: Date;
+//   @Prop() readonly updatedAt?: Date;
+// }
+
 @Schema({ timestamps: true })
 export class User {
   @Prop() readonly createdAt?: Date;

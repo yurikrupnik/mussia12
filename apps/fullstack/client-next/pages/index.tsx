@@ -3,10 +3,23 @@ import styles from './index.module.css';
 import axios, { AxiosPromise } from 'axios';
 // import { User } from '@mussia12/fullstack/users-api-nest-module';
 import { User } from '@mussia12/shared/mongoose-schemas';
+// import { UsersModule } from '@mussia12/fullstack/users-api-nest-module';
 
 const getUsers = () => {
   return axios
     .get<User[]>('/api/users')
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      // adding return type of void
+      console.log(err);
+    });
+};
+
+const getProjects = () => {
+  return axios
+    .get('/api/projects')
     .then((res) => {
       return res.data;
     })
@@ -23,6 +36,10 @@ export function Index() {
       if (Array.isArray(res)) {
         setUsers(res);
       }
+    });
+
+    getProjects().then((projects) => {
+      console.log('projects', projects);
     });
   }, []);
   return (

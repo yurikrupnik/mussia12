@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-
+import { HealthModule } from '@mussia12/fullstack/health-api-nest-module';
+import { User, UserSchema } from '@mussia12/shared/mongoose-schemas';
+import { mongoConfig } from '@mussia12/shared/configs';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
-import { User, UserSchema } from '@mussia12/shared/mongoose-schemas';
-import { HealthModule } from '@mussia12/fullstack/health-api-nest-module';
-
-import { mongoConfig } from '@mussia12/shared/configs';
 
 @Module({
   imports: [
