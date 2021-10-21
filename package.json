@@ -44,7 +44,7 @@
     "firebase-admin": "10.0.0",
     "helmet": "4.6.0",
     "lodash": "4.17.21",
-    "mongoose": "6.0.11",
+    "mongoose": "6.0.12",
     "nestjs-rollbar": "1.7.0",
     "next": "11.1.2",
     "next-connect": "0.11.0",
