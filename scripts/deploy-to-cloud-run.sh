@@ -38,7 +38,8 @@ else
     --region europe-west1 \
     --port 3333 \
     --no-traffic \
-    --tag $HEAD_REF
+    --tag $HEAD_REF \
+    --set-env-vars=HEAD_REF=$HEAD_REF
 fi
 
 echo 'Finished Deploy!!'

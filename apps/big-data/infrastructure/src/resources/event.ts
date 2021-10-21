@@ -2,11 +2,8 @@ import * as pulumi from '@pulumi/pulumi';
 import * as gcp from '@pulumi/gcp';
 import { generateAvro } from '../utils/createAvroSchema';
 import last from 'lodash/last';
-import {
-  GcpFunctionResource,
-  createGcpFunctions,
-} from '../modules/gcp-function';
-import { Avro, BigquerySchema, GcpFunction } from '../types';
+import { GcpFunctionResource, GcpFunction } from '../modules/gcp-function';
+import { Avro, BigquerySchema } from '../types';
 import { JobArgs } from '@pulumi/gcp/dataflow';
 import { Dataset } from '@pulumi/gcp/bigquery';
 import { Bucket } from '@pulumi/gcp/storage';
