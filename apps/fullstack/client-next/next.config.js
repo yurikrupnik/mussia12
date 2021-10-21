@@ -17,8 +17,14 @@ const nextConfig = {
   },
 };
 
+const newUrl = `https://${process.env.HEAD_REF}${
+  process.env.HEAD_REF ? '--' : ''
+}bi-service-5g7d5fmura-ew.a.run.app/api/:path*`;
+
 // module.exports = withNx(nextConfig);
 module.exports = (phase) => {
+  console.log('HEAD_REF', process.env.HEAD_REF);
+  console.log('newUrl', process.env.newUrl);
   // when started in development mode `next dev` or `npm run dev` regardless of the value of STAGING environmental variable
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   // when `next build` or `npm run build` is used
@@ -60,8 +66,10 @@ module.exports = (phase) => {
       // basePath: false,
       // description: "http://0.0.0.0:5000/:path*"
       destination: isDev
-        ? 'http://localhost:3333'
-        : 'https://bi-service-5g7d5fmura-ew.a.run.app/api/:path*',
+        ? 'http://localhost:3333/api/:path*'
+        : `https://${process.env.HEAD_REF}${
+            process.env.HEAD_REF ? '--' : ''
+          }bi-service-5g7d5fmura-ew.a.run.app/api/:path*`,
     },
   ];
 

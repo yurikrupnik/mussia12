@@ -2,7 +2,7 @@ import * as pulumi from '@pulumi/pulumi';
 import * as gcp from '@pulumi/gcp';
 import { GcpFunctionResource, GcpFunction } from './src/modules/gcp-function';
 import { EventPipe, EventClass } from './src/resources/event';
-import { GcpCloudRunResource } from './src/resources/cloud-run';
+// import { GcpCloudRunResource } from './src/resources/cloud-run';
 import {
   event1AvroFields,
   event1BigquerySchema,
@@ -56,9 +56,8 @@ const functions: GcpFunction[] = [
   },
 ];
 
-// const funcs = createGcpFunctions(functions);
 const funcs = functions.map((f) => {
-  // return new GcpFunctionResource(f.name, f);
+  return new GcpFunctionResource(f.name, f);
 });
 
 const dataset = new gcp.bigquery.Dataset('applications_events', {
@@ -165,12 +164,12 @@ const events: EventClass[] = [
 ];
 
 events.map((event) => {
-  // return new EventPipe(event.name, event, {});
+  return new EventPipe(event.name, event, {});
 });
 
-const service = new GcpCloudRunResource('bi-service', {
-  serviceFolder: `../../../apps/big-data`,
-  serviceArgs: {
-    location: region,
-  },
-});
+// const service = new GcpCloudRunResource('bi-service', {
+//   serviceFolder: `../../../apps/big-data`,
+//   serviceArgs: {
+//     location: region,
+//   },
+// });

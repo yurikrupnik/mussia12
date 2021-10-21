@@ -22,7 +22,8 @@ then
     --platform managed \
     --allow-unauthenticated \
     --region europe-west1 \
-    --port 3333
+    --port 3333 \
+    --remove-env-vars=HEAD_REF
 
   gcloud run services update-traffic $name --platform=managed --to-latest --region europe-west1
 else
@@ -38,7 +39,8 @@ else
     --region europe-west1 \
     --port 3333 \
     --no-traffic \
-    --tag $HEAD_REF
+    --tag $HEAD_REF \
+    --set-env-vars=HEAD_REF=$HEAD_REF
 fi
 
 echo 'Finished Deploy!!'
