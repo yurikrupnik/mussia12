@@ -37,37 +37,37 @@ module.exports = (phase) => {
   console.log(`isDev:${isDev}  isProd:${isProd}   isStaging:${isStaging}`); // eslint-disable-line
 
   const microServiceRoutesMapping = [
-    {
-      source: '/gateway/service1',
-      // basePath: false,
-      // description: "http://0.0.0.0:5000/:path*"
-      destination: isDev
-        ? 'http://localhost:5000'
-        : 'https://aris-ars-j0dquon.uk.gateway.dev/service1',
-    },
-    {
-      source: '/gateway/service2',
-      // basePath: false,
-      // description: "http://0.0.0.0:5000/:path*"
-      destination: isDev
-        ? 'http://localhost:5001'
-        : 'https://aris-ars-j0dquon.uk.gateway.dev/service2',
-    },
-    {
-      source: '/gateway/service1',
-      // basePath: false,
-      // description: "http://0.0.0.0:5000/:path*"
-      destination: isDev
-        ? 'http://localhost:5000'
-        : 'https://aris-ars-j0dquon.uk.gateway.dev/service1',
-    },
+    // {
+    //   source: '/gateway/service1',
+    //   // basePath: false,
+    //   // description: "http://0.0.0.0:5000/:path*"
+    //   destination: isDev
+    //     ? 'http://localhost:5000'
+    //     : 'https://aris-ars-j0dquon.uk.gateway.dev/service1',
+    // },
+    // {
+    //   source: '/gateway/service2',
+    //   // basePath: false,
+    //   // description: "http://0.0.0.0:5000/:path*"
+    //   destination: isDev
+    //     ? 'http://localhost:5001'
+    //     : 'https://aris-ars-j0dquon.uk.gateway.dev/service2',
+    // },
+    // {
+    //   source: '/gateway/service1',
+    //   // basePath: false,
+    //   // description: "http://0.0.0.0:5000/:path*"
+    //   destination: isDev
+    //     ? 'http://localhost:5000'
+    //     : 'https://aris-ars-j0dquon.uk.gateway.dev/service1',
+    // },
     {
       source: '/api/:path*',
       // basePath: false,
       // description: "http://0.0.0.0:5000/:path*"
       destination: isDev
         ? 'http://localhost:3333/api/:path*'
-        : `https://${process.env.HEAD_REF}${
+        : `https://${process.env.HEAD_REF ? process.env.HEAD_REF : ''}${
             process.env.HEAD_REF ? '--' : ''
           }bi-service-5g7d5fmura-ew.a.run.app/api/:path*`,
     },
