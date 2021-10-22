@@ -17,7 +17,7 @@ const nextConfig = {
   },
 };
 
-const newUrl = `https://${process.env.HEAD_REF}${
+const newUrl = `https://${process.env.HEAD_REF ? process.env.HEAD_REF : ''}${
   process.env.HEAD_REF ? '--' : ''
 }bi-service-5g7d5fmura-ew.a.run.app/api/:path*`;
 
@@ -67,9 +67,7 @@ module.exports = (phase) => {
       // description: "http://0.0.0.0:5000/:path*"
       destination: isDev
         ? 'http://localhost:3333/api/:path*'
-        : `https://${process.env.HEAD_REF}${
-            process.env.HEAD_REF ? '--' : ''
-          }bi-service-5g7d5fmura-ew.a.run.app/api/:path*`,
+        : `https://bi-service-5g7d5fmura-ew.a.run.app/api/:path*`,
     },
   ];
 
