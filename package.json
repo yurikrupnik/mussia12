@@ -28,7 +28,7 @@
     "@nestjs/websockets": "8.1.1",
     "@nrwl/next": "12.10.0",
     "@pulumi/docker": "3.1.0",
-    "@pulumi/gcp": "5.24.0",
+    "@pulumi/gcp": "5.25.0",
     "@pulumi/mongodbatlas": "3.0.0",
     "@pulumi/pulumi": "3.15.0",
     "@wanews/nx-pulumi": "0.18.4",
