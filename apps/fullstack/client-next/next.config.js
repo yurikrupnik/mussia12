@@ -21,7 +21,7 @@ const nextConfig = {
 module.exports = (phase) => {
   console.log('HEAD_REF', process.env.HEAD_REF);
   const newUrl = `https://${process.env.HEAD_REF ? process.env.HEAD_REF : ''}${
-    process.env.HEAD_REF ? '--' : ''
+    process.env.HEAD_REF ? '---' : ''
   }bi-service-5g7d5fmura-ew.a.run.app/api/:path*`;
   console.log('newUrl', newUrl);
   // when started in development mode `next dev` or `npm run dev` regardless of the value of STAGING environmental variable
