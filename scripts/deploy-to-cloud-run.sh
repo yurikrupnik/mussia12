@@ -14,7 +14,20 @@ docker push $gc_image
 echo 'Finished pushing!'
 
 echo 'Starting Deploy!!'
+if [[ "${GITHUB_REF##*/}" = "testing" ]];
+then
+  MONGO_URI=$(gcloud secrets versions access latest --secret="MONGO_URI_TESTING")
+elif [[ "${GITHUB_REF##*/}" = "production" ]];
+then
+  MONGO_URI=$(gcloud secrets versions access latest --secret="MONGO_URI_PRODUCTION")
+elif [[ "${GITHUB_REF##*/}" = "master" ]];
+then
+  MONGO_URI=$(gcloud secrets versions access latest --secret="MONGO_URI")
+else
+  MONGO_URI=$(gcloud secrets versions access latest --secret="MONGO_URI")
+fi
 
+# master is like dev env
 if [[ "${GITHUB_REF##*/}" = "master" ]];
 then
   gcloud run deploy $name \
@@ -23,7 +36,8 @@ then
     --allow-unauthenticated \
     --region europe-west1 \
     --port 3333 \
-    --remove-env-vars=HEAD_REF
+    --remove-env-vars=HEAD_REF \
+    --set-secrets=MONGO_URI=$MONGO_URI
 
   gcloud run services update-traffic $name --platform=managed --to-latest --region europe-west1
 else
@@ -40,7 +54,8 @@ else
     --port 3333 \
     --no-traffic \
     --tag $HEAD_REF \
-    --set-env-vars=HEAD_REF=$HEAD_REF
+    --set-env-vars=HEAD_REF=$HEAD_REF \
+    --set-secrets=MONGO_URI=$MONGO_URI
 fi
 
 echo 'Finished Deploy!!'
