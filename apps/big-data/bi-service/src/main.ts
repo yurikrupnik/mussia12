@@ -39,7 +39,6 @@ async function bootstrap() {
   // fs.writeFileSync('./swagger-spec.yaml', JSON.stringify(document));
 
   console.log('process.env.PORT,', process.env.PORT);
-  console.log('process.env.port,', process.env.port);
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
