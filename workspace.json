@@ -32,6 +32,7 @@
     "shared-configs": "libs/shared/configs",
     "shared-data-types": "libs/shared/data-types",
     "shared-mongoose-schemas": "libs/shared/mongoose-schemas",
+    "shared-mui": "libs/shared/mui",
     "shared-object-utils": "libs/shared/object-utils",
     "shared-validations": "libs/shared/validations"
   },
