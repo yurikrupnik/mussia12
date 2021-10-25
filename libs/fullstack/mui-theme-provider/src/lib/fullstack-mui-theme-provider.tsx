@@ -3,7 +3,7 @@ import {
   ThemeProvider as MuiThemeProvider,
   Theme,
   createTheme,
-} from '@material-ui/core/styles';
+} from '@mui/material';
 // import theme from '../../src/theme';
 
 interface Props {

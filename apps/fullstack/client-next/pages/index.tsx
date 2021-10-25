@@ -3,6 +3,7 @@ import styles from './index.module.css';
 import axios, { AxiosPromise } from 'axios';
 // import { User } from '@mussia12/fullstack/users-api-nest-module';
 import { User } from '@mussia12/shared/mongoose-schemas';
+import { Button, Grid } from '@mui/material';
 
 const getUsers = () => {
   return axios
@@ -17,11 +18,6 @@ const getUsers = () => {
 };
 
 export function Index() {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.css file.
-   */
 
   const [users, setUsers] = useState<User[]>([]);
   useEffect(() => {
@@ -32,19 +28,20 @@ export function Index() {
     });
   }, []);
   return (
-    <div className={styles.page}>
+    <Grid className={styles.page}>
       <h2>Users</h2>
+      <Button>Button</Button>
+      <Button color="secondary">Button</Button>
       {users.map((user) => {
         return (
-          <div key={user._id}>
-            <div>role: {user.role}</div>
-            <div>name: {user.name}</div>
-            <div>email: {user.email}</div>
-          </div>
+          <Grid key={user._id}>
+            <Grid>role: {user.role}</Grid>
+            <Grid>name: {user.name}</Grid>
+            <Grid>email: {user.email}</Grid>
+          </Grid>
         );
       })}
-      <p>Thank you for using and showing some ♥ for Nx.</p>
-    </div>
+    </Grid>
   );
 }
 

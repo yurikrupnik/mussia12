@@ -49,6 +49,9 @@
       ],
       "@mussia12/shared/configs": ["libs/shared/configs/src/index.ts"],
       "@mussia12/shared/data-types": ["libs/shared/data-types/src/index.ts"],
+      "@mussia12/shared/fe-mui-theme1": [
+        "libs/shared/fe-mui-theme1/src/index.ts"
+      ],
       "@mussia12/shared/mongoose-schemas": [
         "libs/shared/mongoose-schemas/src/index.ts"
       ],

@@ -31,6 +31,7 @@
     "pulumi-shared-types": "libs/pulumi/shared-types",
     "shared-configs": "libs/shared/configs",
     "shared-data-types": "libs/shared/data-types",
+    "shared-fe-mui-theme1": "libs/shared/fe-mui-theme1",
     "shared-mongoose-schemas": "libs/shared/mongoose-schemas",
     "shared-object-utils": "libs/shared/object-utils",
     "shared-validations": "libs/shared/validations"

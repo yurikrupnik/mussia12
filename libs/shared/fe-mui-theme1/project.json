@@ -1,0 +1,23 @@
+{
+  "root": "libs/shared/fe-mui-theme1",
+  "sourceRoot": "libs/shared/fe-mui-theme1/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/fe-mui-theme1/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/fe-mui-theme1"],
+      "options": {
+        "jestConfig": "libs/shared/fe-mui-theme1/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
