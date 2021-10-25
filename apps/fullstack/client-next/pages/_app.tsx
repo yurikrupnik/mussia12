@@ -1,30 +1,23 @@
 import { AppProps } from 'next/app';
 import React from 'react';
 import Head from 'next/head';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import ThemeProvider from '@mussia12/fullstack/mui-theme-provider';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import { theme, createEmotionCache } from '@mussia12/shared/mui';
+
+const clientSideEmotionCache = createEmotionCache();
 
 const queryClient = new QueryClient();
 
-const createClasses = makeStyles((theme) => ({
-  container: {
-    minHeight: '100vh',
-  },
-  contentContainer: {
-    paddingTop: theme.spacing(3),
-    // paddingLeft: `calc(${drawerWidthOpen} + ${theme.spacing(4)}px)`,
-    [theme.breakpoints.down(1440)]: {
-      // paddingLeft: `calc(${drawerWidthClose} + ${theme.spacing(4)}px)`
-    },
-  },
-}));
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
-  const classes = createClasses();
+const MyApp: React.FC<AppProps> = (props: MyAppProps) => {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
     <>
@@ -36,20 +29,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <>
+        <ThemeProvider theme={theme}>
+          <CacheProvider value={emotionCache}>
             <CssBaseline />
-            <Grid container className={classes.container}>
-              {/*<Sidebar />*/}
-              <Grid container direction="column" item xs>
-                <Grid item>{/*<Header />*/}</Grid>
-                <Grid item xs className={classes.contentContainer}>
-                  {/* eslint-disable-next-line */}
-                  <Component {...pageProps} />
-                </Grid>
-              </Grid>
-            </Grid>
-          </>
+            <Component {...pageProps} />
+          </CacheProvider>
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
