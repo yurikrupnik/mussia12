@@ -32,33 +32,8 @@
     "shared-configs": "libs/shared/configs",
     "shared-data-types": "libs/shared/data-types",
     "shared-mongoose-schemas": "libs/shared/mongoose-schemas",
+    "shared-mui": "libs/shared/mui",
     "shared-object-utils": "libs/shared/object-utils",
     "shared-validations": "libs/shared/validations"
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "marketing-website"
+  }
 }
