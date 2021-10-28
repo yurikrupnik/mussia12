@@ -37,16 +37,16 @@ export function Index() {
   // console.log('projectsQuery', projectsQuery);
 
   // const [users, setUsers] = useState<User[]>([]);
-  useEffect(() => {
-    // getUsers().then((res) => {
-    //   if (Array.isArray(res)) {
-    //     setUsers(res);
-    //   }
-    // });
-    // getProjects().then((projects) => {
-    //   console.log('projects', projects);
-    // });
-  }, []);
+  // useEffect(() => {
+  //   // getUsers().then((res) => {
+  //   //   if (Array.isArray(res)) {
+  //   //     setUsers(res);
+  //   //   }
+  //   // });
+  //   // getProjects().then((projects) => {
+  //   //   console.log('projects', projects);
+  //   // });
+  // }, []);
   return (
     <div className={styles.page}>
       <h2>Users</h2>

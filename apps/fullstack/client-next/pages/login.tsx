@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
+import Hidden from '@material-ui/core/Hidden';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 // import { useCollection } from 'react-firebase-hooks/firestore';
 // import TextField from "@material-ui/core/TextField";
@@ -18,7 +19,6 @@ import Divider from '@mui/material/Divider';
 // import CircleUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 // import CircleCheckedFilled from "@material-ui/icons/CheckCircle";
 // import Checkbox from "@material-ui/core/Checkbox";
-import Hidden from '@material-ui/core/Hidden';
 
 // import { useHistory } from "react-router";
 // import RenderInput from "../../components/uiComponents/RenderInput";
@@ -134,34 +134,34 @@ const Login = () => {
       //         //     console.log("ds", ds.data());
       //         // });
       //     });
-      axios
-        .get('/gateway/service1', {
-          headers: {
-            // eslint-disable-next-line
-            // @ts-ignore
-            Authorization: `Bearer ${token.i}`,
-          },
-        })
-        .then((service1) => {
-          console.log({ service1 });
-        })
-        .catch((err) => {
-          console.log({ err });
-        });
-      axios
-        .get('/gateway/service2', {
-          headers: {
-            // eslint-disable-next-line
-            // @ts-ignore
-            Authorization: `Bearer ${token.i}`,
-          },
-        })
-        .then((service2) => {
-          console.log({ service2 });
-        })
-        .catch((err) => {
-          console.log({ err });
-        });
+      // axios
+      //   .get('/gateway/service1', {
+      //     headers: {
+      //       // eslint-disable-next-line
+      //       // @ts-ignore
+      //       Authorization: `Bearer ${token.i}`,
+      //     },
+      //   })
+      //   .then((service1) => {
+      //     console.log({ service1 });
+      //   })
+      //   .catch((err) => {
+      //     console.log({ err });
+      //   });
+      // axios
+      //   .get('/gateway/service2', {
+      //     headers: {
+      //       // eslint-disable-next-line
+      //       // @ts-ignore
+      //       Authorization: `Bearer ${token.i}`,
+      //     },
+      //   })
+      //   .then((service2) => {
+      //     console.log({ service2 });
+      //   })
+      //   .catch((err) => {
+      //     console.log({ err });
+      //   });
     }
   }, [isSignedIn, token]);
 
