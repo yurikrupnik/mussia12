@@ -78,7 +78,7 @@
     "@nrwl/nest": "13.0.2",
     "@nrwl/next": "13.0.2",
     "@nrwl/node": "13.0.2",
-    "@nrwl/nx-cloud": "12.5.1",
+    "@nrwl/nx-cloud": "12.5.2",
     "@nrwl/react": "13.0.2",
     "@nrwl/tao": "13.0.2",
     "@nrwl/web": "13.0.2",
