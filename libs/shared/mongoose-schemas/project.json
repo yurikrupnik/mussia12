@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/shared/mongoose-schemas/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/shared/mongoose-schemas/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/mongoose-schemas"],
+      "outputs": [
+        "coverage/libs/shared/mongoose-schemas"
+      ],
       "options": {
         "jestConfig": "libs/shared/mongoose-schemas/jest.config.js",
         "passWithNoTests": true

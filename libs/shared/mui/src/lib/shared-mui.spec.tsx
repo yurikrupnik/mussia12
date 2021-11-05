@@ -1,4 +1,4 @@
-import SharedMui from './shared-mui';
+// import SharedMui from './shared-mui';
 
 describe('SharedMui', () => {
   it('should render successfully', () => {

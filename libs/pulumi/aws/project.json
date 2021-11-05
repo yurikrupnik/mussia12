@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/pulumi/aws/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/pulumi/aws/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pulumi/aws"],
+      "outputs": [
+        "coverage/libs/pulumi/aws"
+      ],
       "options": {
         "jestConfig": "libs/pulumi/aws/jest.config.js",
         "passWithNoTests": true

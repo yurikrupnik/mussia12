@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: event3
+  name: event3
+spec:
+  ports:
+    - name: "3338"
+      port: 3338
+      targetPort: 3338
+  selector:
+    io.kompose.service: event3
+status:
+  loadBalancer: {}

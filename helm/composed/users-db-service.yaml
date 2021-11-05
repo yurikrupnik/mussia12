@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: users-db
+  name: users-db
+spec:
+  ports:
+    - name: "27019"
+      port: 27019
+      targetPort: 27017
+  selector:
+    io.kompose.service: users-db
+status:
+  loadBalancer: {}

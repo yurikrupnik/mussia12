@@ -35,6 +35,19 @@ services:
 #      - PORT=3334
 #    ports:
 #      - 3334:3334
+  go-api:
+    image: eu.gcr.io/mussia8/go-api
+    build:
+      context: apps/core/go-api
+      dockerfile: Dockerfile
+    container_name: go-api
+    environment:
+      - MONGO_URI=mongodb://db/mussia8
+      - PORT=3000
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
   bi-service:
     image: eu.gcr.io/mussia8/bi-service
     build:
@@ -42,7 +55,9 @@ services:
       dockerfile: Dockerfile
     container_name: bi-service
     environment:
-      - MONGO_URI=mongodb://db/mussia8
+#      - MONGO_URI=mongodb://db/mussia8
+#      - MONGO_URI="$$(shell gcloud secrets versions access latest --secret=MONGO_URI --project=mussia8)"
+      - MONGO_URI=$MONGO_URI
       - PORT=3335
     ports:
       - 3335:3335

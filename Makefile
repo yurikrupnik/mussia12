@@ -17,3 +17,7 @@ build-nx:
 rebuild-nx-docker:
 	docker rmi eu.gcr.io/mussia8/nx
 	make build-nx
+
+to-kube:
+	kompose convert
+

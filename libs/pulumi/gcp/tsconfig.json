@@ -9,5 +9,10 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": ["src"],
+    "out": "docs/typedoc",
+    "exclude": "**/**/__tests__/*"
+  }
 }

@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/shared/validations/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/shared/validations/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/validations"],
+      "outputs": [
+        "coverage/libs/shared/validations"
+      ],
       "options": {
         "jestConfig": "libs/shared/validations/jest.config.js",
         "passWithNoTests": true

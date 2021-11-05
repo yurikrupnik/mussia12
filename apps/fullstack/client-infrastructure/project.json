@@ -6,7 +6,9 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/fullstack/client-infrastructure/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/fullstack/client-infrastructure/**/*.ts"
+        ]
       }
     },
     "test": {
@@ -15,7 +17,9 @@
         "jestConfig": "apps/fullstack/client-infrastructure/jest.config.js",
         "passWithNoTests": true
       },
-      "outputs": ["coverage/apps/fullstack/client-infrastructure"]
+      "outputs": [
+        "coverage/apps/fullstack/client-infrastructure"
+      ]
     },
     "up": {
       "executor": "@wanews/nx-pulumi:up",
@@ -30,5 +34,7 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["fullstack-client"]
+  "implicitDependencies": [
+    "fullstack-client"
+  ]
 }

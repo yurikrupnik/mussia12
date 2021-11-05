@@ -5,12 +5,16 @@
   "targets": {
     "build": {
       "executor": "@nrwl/node:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/big-data/event1-subscription",
         "main": "apps/big-data/event1-subscription/src/main.ts",
         "tsConfig": "apps/big-data/event1-subscription/tsconfig.app.json",
-        "assets": ["apps/big-data/event1-subscription/src/assets"],
+        "assets": [
+          "apps/big-data/event1-subscription/src/assets"
+        ],
         "generatePackageJson": true
       },
       "configurations": {
@@ -35,14 +39,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/big-data/event1-subscription/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/big-data/event1-subscription/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/big-data/event1-subscription"],
+      "outputs": [
+        "coverage/apps/big-data/event1-subscription"
+      ],
       "options": {
         "jestConfig": "apps/big-data/event1-subscription/jest.config.js",
         "passWithNoTests": true
