@@ -1,0 +1,169 @@
+#---
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: my-registry-key
+#data:
+#  .dockerconfigjson: ewoJImNvbXBvc2VWMiI6ICJjYW5hcnktZW5hYmxlZCIKfQ==
+#type: kubernetes.io/dockerconfigjson
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+#        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-serivce
+  labels:
+    app: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - name: aris
+    port: 80
+#    protocol: TCP
+    targetPort: 80
+    nodePort: 31000
+
+
+
+#---
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: traffic-router
+#spec:
+#  rules:
+#    - http:
+#        paths:
+#          - path: /
+#            backend:
+#              serviceName: nginx-serivce
+#              servicePort: 8080
+
+
+
+#
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next-client-deployment
+  labels:
+    app: next-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: next-client
+  template:
+    metadata:
+      labels:
+        app: next-client
+    spec:
+      imagePullSecrets:
+#        - name: gcr
+        - name: my-registry-key
+      containers:
+        - name: next-client
+#          image: eu.gcr.io/mussia8/client-next:latest
+          image: yurikrupnik/next1
+#          docker.io/eu.gcr.io prefix for docker hub
+#          image: nginx
+#          image: docker.io/yurikrupnik/next1
+          imagePullPolicy: Always
+          env:
+             - name: MONGO_URI
+               value: mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/
+#             - name: PORT
+#               value: "3333"
+          ports:
+            - containerPort: 3333
+
+#---
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: next-client
+#data:
+##  MONGO_URI: mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/
+#  MONGO_URI: "sdaddsdsdsd"
+#  MONGO_URI: dasdasd
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: next-client-serivce
+  labels:
+    app: next-client
+spec:
+  type: LoadBalancer
+  selector:
+    app: next-client
+  ports:
+    - name: next-client
+      port: 3000
+      #    protocol: TCP
+      targetPort: 3333
+#      nodePort: 31000
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: minimal-ingress
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+#spec:
+#  rules:
+#    - http:
+#        paths:
+#          - path: /testpath
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: nginx-serivce
+#                port:
+#                  number: 80
+
+
+#---
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: traffic-router
+#spec:
+#  rules:
+#    - http:
+#        paths:
+#          - path: /
+#            backend:
+#              serviceName: nginx-serivce
+#              servicePort: 8080
+
