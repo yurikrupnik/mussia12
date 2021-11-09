@@ -34,7 +34,7 @@
     "@pulumi/gcp": "5.26.0",
     "@pulumi/mongodbatlas": "3.0.0",
     "@pulumi/pulumi": "3.16.0",
-    "@wanews/nx-pulumi": "0.18.4",
+    "@wanews/nx-pulumi": "0.18.5",
     "axios": "0.24.0",
     "class-transformer": "0.4.0",
     "class-validator": "0.13.1",
