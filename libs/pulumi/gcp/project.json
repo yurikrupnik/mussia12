@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/pulumi/gcp/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/pulumi/gcp/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pulumi/gcp"],
+      "outputs": [
+        "coverage/libs/pulumi/gcp"
+      ],
       "options": {
         "jestConfig": "libs/pulumi/gcp/jest.config.js",
         "passWithNoTests": true

@@ -9,5 +9,12 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": ["src"],
+    //    "entryPoints": ["packages/ui/button/src", "packages/webclients/alfred/src", "packages/webclients/alfred/middlewares", "packages/webclients/alfred/hooks", "packages/webclients/batman/src"],
+    "out": "docs/typedoc",
+    "exclude": "**/**/__tests__/*",
+    //    "exclude": "**/*+(index|.spec|.e2e).tsx"
+  }
 }

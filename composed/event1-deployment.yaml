@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: event1
+  name: event1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: event1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.24.0 (4a2a0458)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: event1
+    spec:
+      containers:
+        - env:
+            - name: MONGO_URI
+              value: mongodb://db1/event1
+            - name: PORT
+              value: "3336"
+          image: eu.gcr.io/mussia8/event1
+          name: event1
+          ports:
+            - containerPort: 3336
+          resources: {}
+      restartPolicy: Always
+status: {}

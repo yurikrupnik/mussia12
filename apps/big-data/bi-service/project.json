@@ -5,12 +5,16 @@
   "targets": {
     "build": {
       "executor": "@nrwl/node:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "apps/big-data/bi-service/dist",
         "main": "apps/big-data/bi-service/src/main.ts",
         "tsConfig": "apps/big-data/bi-service/tsconfig.app.json",
-        "assets": ["apps/big-data/bi-service/src/assets"],
+        "assets": [
+          "apps/big-data/bi-service/src/assets"
+        ],
         "generatePackageJson": true
       },
       "configurations": {
@@ -35,14 +39,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/big-data/bi-service/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/big-data/bi-service/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/big-data/bi-service"],
+      "outputs": [
+        "coverage/apps/big-data/bi-service"
+      ],
       "options": {
         "jestConfig": "apps/big-data/bi-service/jest.config.js",
         "passWithNoTests": true

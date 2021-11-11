@@ -10,8 +10,12 @@ APP_REGION=europe-west1
 
 
 
-#create-file:
-#	export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
+create-file:
+#	export MONGO_URI=$(gcloud secrets versions access latest --secret=MONGO_URI)
+#	echo $(MONGO_URI)
+	export MONGO_URI=gcp:///MONGO_URI
+	echo $(MONGO_URI)
+#  gcp-get-secret bash -c "echo $MYSQL_PASSWORD"
 #	echo $GOOGLE_CLIENT_SECRET > .env.dev
 #	echo $(GOOGLE_CLIENT_SECRET) > .env.dev
 #	echo "Ars=sd" > .env.dev
@@ -45,3 +49,11 @@ tv:
 
 db-ip:
 	nslookup cluster0-shard-00-00.rdmew.mongodb.net
+
+ds:
+	MONGO_URI=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
+	echo $MONGO_URI
+#	MONGO_URI=gcloud secrets versions access latest --secret=MONGO_URI --project=mussia8
+	#echo here $MONGO_URI
+	#MONGO_URI=$MONGO_URI docker-compose up bi-service
+	#docker-compose up bi-service

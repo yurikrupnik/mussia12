@@ -5,12 +5,16 @@
   "targets": {
     "build": {
       "executor": "@nrwl/node:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "apps/fullstack/event3/dist",
         "main": "apps/fullstack/event3/src/main.ts",
         "tsConfig": "apps/fullstack/event3/tsconfig.app.json",
-        "assets": ["apps/fullstack/event3/src/assets"],
+        "assets": [
+          "apps/fullstack/event3/src/assets"
+        ],
         "generatePackageJson": true
       },
       "configurations": {
@@ -35,14 +39,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/fullstack/event3/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/fullstack/event3/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/fullstack/event3"],
+      "outputs": [
+        "coverage/apps/fullstack/event3"
+      ],
       "options": {
         "jestConfig": "apps/fullstack/event3/jest.config.js",
         "passWithNoTests": true

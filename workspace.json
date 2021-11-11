@@ -34,6 +34,37 @@
     "shared-mongoose-schemas": "libs/shared/mongoose-schemas",
     "shared-mui": "libs/shared/mui",
     "shared-object-utils": "libs/shared/object-utils",
-    "shared-validations": "libs/shared/validations"
+    "shared-validations": "libs/shared/validations",
+    "core-go-api": {
+      "projectType": "application",
+      "root": "apps/core/go-api",
+      "sourceRoot": "apps/core/go-api",
+      "targets": {
+        "build": {
+          "executor": "@nx-go/nx-go:build",
+          "options": {
+            "outputPath": "apps/core/go-api",
+            "main": "apps/core/go-api/main.go"
+          }
+        },
+        "serve1": {
+          "executor": "@nx-go/nx-go:serve",
+          "options": {
+            "main": "apps/core/go-api/main.go"
+          }
+        },
+        "lint": {
+          "executor": "@nx-go/nx-go:lint"
+        },
+        "serve": {
+          "executor": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "npx nodemon --exec go run apps/core/go-api/main.go --signal SIGTERM"
+          }
+        }
+      },
+      "tags": []
+    }
   }
 }

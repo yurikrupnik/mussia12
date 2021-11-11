@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/fullstack/users-api-nest-module/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/fullstack/users-api-nest-module/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/fullstack/users-api-nest-module"],
+      "outputs": [
+        "coverage/libs/fullstack/users-api-nest-module"
+      ],
       "options": {
         "jestConfig": "libs/fullstack/users-api-nest-module/jest.config.js",
         "passWithNoTests": true

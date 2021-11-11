@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: go-api
+  name: go-api
+spec:
+  ports:
+    - name: "3001"
+      port: 3001
+      targetPort: 3000
+  selector:
+    io.kompose.service: go-api
+status:
+  loadBalancer: {}

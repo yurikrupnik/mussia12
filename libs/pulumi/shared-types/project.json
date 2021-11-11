@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/pulumi/shared-types/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/pulumi/shared-types/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pulumi/shared-types"],
+      "outputs": [
+        "coverage/libs/pulumi/shared-types"
+      ],
       "options": {
         "jestConfig": "libs/pulumi/shared-types/jest.config.js",
         "passWithNoTests": true

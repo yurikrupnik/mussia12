@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: bi-service
+  name: bi-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: bi-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.24.0 (4a2a0458)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: bi-service
+    spec:
+      containers:
+        - env:
+            - name: MONGO_URI
+            - name: PORT
+              value: "3335"
+          image: eu.gcr.io/mussia8/bi-service
+          name: bi-service
+          ports:
+            - containerPort: 3335
+          resources: {}
+      restartPolicy: Always
+status: {}
