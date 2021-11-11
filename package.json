@@ -84,7 +84,7 @@
     "@nrwl/tao": "13.0.2",
     "@nrwl/web": "13.0.2",
     "@nrwl/workspace": "13.0.2",
-    "@nx-clean/plugin-core": "^1.6.1",
+    "@nx-clean/plugin-core": "1.6.1",
     "@nx-go/nx-go": "1.7.1",
     "@nx-tools/nx-docker": "1.0.5",
     "@testing-library/react": "12.1.2",
