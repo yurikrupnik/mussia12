@@ -10,8 +10,8 @@ services:
       - backend
 
   client-next:
-#    image: eu.gcr.io/mussia8/client-next
-    image: yurikrupnik/client-next
+    image: eu.gcr.io/mussia8/client-next
+#    image: yurikrupnik/client-next
     build:
       context: apps/fullstack/client-next
       dockerfile: Dockerfile
@@ -44,7 +44,7 @@ services:
       - 3000:3333
 
     healthcheck:
-      test: [ 'CMD', 'curl', '-f', 'http://localhost:3335/apis/health' ]
+      test: [ 'CMD', 'curl', '-f', 'http://bi-service/apis/health' ]
       interval: 30s
       timeout: 30s
       retries: 5

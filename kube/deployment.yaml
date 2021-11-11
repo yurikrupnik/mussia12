@@ -92,8 +92,8 @@ spec:
         - name: my-registry-key
       containers:
         - name: next-client
-#          image: eu.gcr.io/mussia8/client-next:latest
-          image: yurikrupnik/next1
+          image: eu.gcr.io/mussia8/client-next:latest
+#          image: yurikrupnik/next1
 #          docker.io/eu.gcr.io prefix for docker hub
 #          image: nginx
 #          image: docker.io/yurikrupnik/next1

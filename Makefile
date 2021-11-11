@@ -1,6 +1,18 @@
+GCP_PROJECT:=gcloud config get-value project
+
+
+define get-secret
+$(shell gcloud secrets versions access latest --secret=MONGO_URI --project=mussia8)
+endef
+
+
 # NX start
 ra:
-	npx nx run-many --target=${target} --parallel --all --maxParallel=10
+	#call geg-secret
+	DB=$(call get-secret,$(MONGO_URI))
+	echo $GCP_PROJECT
+	echo $DB
+	#npx nx run-many --target=${target} --parallel --all --maxParallel=10
   # example to run: make ra target=lint
 
 run-many:
