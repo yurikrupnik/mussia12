@@ -53,9 +53,6 @@
             "main": "apps/core/go-api/main.go"
           }
         },
-        "test": {
-          "executor": "@nx-go/nx-go:test"
-        },
         "lint": {
           "executor": "@nx-go/nx-go:lint"
         },
