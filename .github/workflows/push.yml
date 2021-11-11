@@ -33,15 +33,15 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       - run: echo ${{ steps.extract_branch.outputs.branch }}
-      - name: Test Vars
-        env:
-          GH: "${{ github.head_ref }}"
-          GHA: ${{ github.head_ref }}
-          GHH: github.head_ref
-          BRA: ${{ steps.extract_branch.outputs.branch }}
-        run: bash scripts/bash-test.sh
-      - run: echo ${HEAD_REF}
-      - run: echo "${{ github.head_ref }}"
+#      - name: Test Vars
+#        env:
+#          GH: "${{ github.head_ref }}"
+#          GHA: ${{ github.head_ref }}
+#          GHH: github.head_ref
+#          BRA: ${{ steps.extract_branch.outputs.branch }}
+#        run: bash scripts/bash-test.sh
+#      - run: echo ${HEAD_REF}
+#      - run: echo "${{ github.head_ref }}"
 #        todo pass env vars from command to next
 #            echo "It's there!"
 #          fi
