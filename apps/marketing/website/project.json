@@ -55,6 +55,14 @@
           "apps/marketing/website/**/*.{ts,tsx,js,jsx}"
         ]
       }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "cwd": "apps/marketing/website",
+        "command": "npx typedoc"
+      }
     }
   },
   "tags": []

@@ -1,5 +1,5 @@
 {
-  "extends": "../../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "files": [],
   "include": [],
   "references": [
@@ -12,7 +12,8 @@
   ],
   "typedocOptions": {
     "entryPoints": ["src"],
-    "out": "docs",
-    "exclude": "**/**/__tests__/*"
+    //    "out": "docs",
+    "exclude": "**/**/__tests__/*",
+    "json": "docs/json.json"
   }
 }

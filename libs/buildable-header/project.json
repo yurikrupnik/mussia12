@@ -1,0 +1,42 @@
+{
+  "root": "libs/buildable-header",
+  "sourceRoot": "libs/buildable-header/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/buildable-header",
+        "tsConfig": "libs/buildable-header/tsconfig.lib.json",
+        "packageJson": "libs/buildable-header/package.json",
+        "main": "libs/buildable-header/src/index.ts",
+        "assets": ["libs/buildable-header/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/buildable-header/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/buildable-header"],
+      "options": {
+        "jestConfig": "libs/buildable-header/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "cwd": "libs/buildable-header",
+        "command": "npx typedoc"
+      }
+    }
+  },
+  "tags": []
+}

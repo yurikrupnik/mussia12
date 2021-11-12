@@ -1,0 +1,34 @@
+{
+  "root": "libs/publishible-header",
+  "sourceRoot": "libs/publishible-header/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/publishible-header/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/publishible-header"],
+      "options": {
+        "jestConfig": "libs/publishible-header/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/publishible-header",
+        "tsConfig": "libs/publishible-header/tsconfig.lib.json",
+        "packageJson": "libs/publishible-header/package.json",
+        "main": "libs/publishible-header/src/index.ts",
+        "assets": ["libs/publishible-header/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

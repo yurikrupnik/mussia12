@@ -6,7 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "typedoc": "typedoc --tsconfig libs/pulumi/gcp/tsconfig.json"
+    "typedoc": "typedoc --tsconfig tsconfig.base.json --entryPointStrategy expand"
   },
   "private": true,
   "dependencies": {

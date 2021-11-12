@@ -25,5 +25,11 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": ["pages"],
+    "out": "docs",
+    "exclude": "**/**/__tests__/*",
+//    "json": "docs/json.json"
+  }
 }

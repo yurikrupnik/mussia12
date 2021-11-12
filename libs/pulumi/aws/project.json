@@ -23,6 +23,13 @@
         "jestConfig": "libs/pulumi/aws/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "typedoc"
+      }
     }
   },
   "tags": []

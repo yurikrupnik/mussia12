@@ -12,7 +12,7 @@
   ],
   "typedocOptions": {
     "entryPoints": ["src"],
-    "out": "docs/typedoc",
+    "out": "docs",
     "exclude": "**/**/__tests__/*"
   }
 }
