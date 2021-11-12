@@ -2,6 +2,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
+    "jsx": "react-jsx",
+    "types": [
+      "jest",
+      "cypress"
+    ],
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "sourceMap": true,
@@ -59,5 +64,11 @@
       "@mussia12/shared/validations": ["libs/shared/validations/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "typedocOptions": {
+    "out": "docs",
+    "exclude": ["**/**/__tests__/*"],
+    "entryPointStrategy": "expand"
+  }
+
 }
