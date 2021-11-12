@@ -66,11 +66,9 @@
   },
   "exclude": ["node_modules", "tmp"],
   "typedocOptions": {
-    "entryPoints": [
-      "libs", "apps",
-    ],
     "out": "docs",
-    "exclude": ["**/**/__tests__/*"]
+    "exclude": ["**/**/__tests__/*"],
+    "entryPointStrategy": "expand"
   }
 
 }

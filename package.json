@@ -6,7 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "typedoc": "typedoc --tsconfig tsconfig.base.json --entryPointStrategy expand"
+    "typedoc": "typedoc --tsconfig tsconfig.base.json --entryPoints libs --entryPoints apps"
   },
   "private": true,
   "dependencies": {
