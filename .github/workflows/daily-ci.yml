@@ -1,0 +1,65 @@
+name: Daily Ci
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  schedule:
+    - cron: 0 8 * * *
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - uses: c-hive/gha-npm-cache@v1
+      - run: npm ci
+      - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
+      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      - run: npx nx-cloud start-ci-run
+      - run: npx nx --target=test --parallel --max-parallel=4
+      - run: npx nx --target=lint --parallel --max-parallel=4
+      - run: npx nx --target=e2e --parallel --max-parallel=4 --headless
+      - run: npx nx --target=build --parallel --max-parallel=4 --prod
+      - name: Stop agents
+        run: npx nx-cloud stop-all-agents
+        if: ${{ always() }}
+
+  agents:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        agent: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm install
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: mussia8
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - run: |-
+          gcloud --quiet auth configure-docker
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent
