@@ -2,11 +2,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
-    "jsx": "react-jsx",
-    "types": [
-      "jest",
-      "cypress"
-    ],
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "sourceMap": true,
