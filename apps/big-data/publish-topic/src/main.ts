@@ -11,6 +11,19 @@ function publishPubSubMessage(topic: events, message: any) {
   return pubsub.topic(topic).publish(buffer);
 }
 
+function publishTopic1(req: Request, res: Response) {
+  const { topic } = req.body;
+  delete req.body.topic;
+  publishPubSubMessage(topic, req.body)
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+      console.log('Failed send PubSub topic', err); // eslint-disable-line
+    });
+}
+
 const publishTopic = (req: Request, res: Response) => {
   const { topic } = req.body;
   delete req.body.topic;
@@ -24,4 +37,4 @@ const publishTopic = (req: Request, res: Response) => {
     });
 };
 
-export { publishTopic };
+export { publishTopic, publishTopic1 };

@@ -61,9 +61,13 @@ docker-config:
 # k3s start
 
 # k3s end
-
 # Docker helpers
-
+gcp-interactive:
+	gcloud beta interactive
+check-billing:
+	gcloud beta billing projects describe mussia8 --format="value(billingEnabled)"
+project-number:
+	gcloud projects list --filter="project_id:mussia8" --format="value(project_number)"
 # clean running images
 docker-clean:
 	docker rm $(docker ps -aq)
