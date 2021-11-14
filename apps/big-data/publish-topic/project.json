@@ -94,6 +94,22 @@
         "main": "apps/fullstack/products-api/infrastructure/index.ts",
         "provider": "gcp"
       }
+    },
+    "compodoc": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx compodoc -p tsconfig.json",
+        "cwd": "apps/big-data/publish-topic"
+      }
+    },
+    "typedoc": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx typedoc --tsconfig tsconfig.json",
+        "cwd": "apps/big-data/publish-topic"
+      }
     }
   },
   "tags": []

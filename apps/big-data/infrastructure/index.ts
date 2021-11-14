@@ -1,6 +1,7 @@
 import * as pulumi from '@pulumi/pulumi';
 import * as gcp from '@pulumi/gcp';
 import { GcpFunctionResource, GcpFunction } from './src/modules/gcp-function';
+// import { GcpFunctionResource, GcpFunction } from '@mussia12/pulumi-gcp';
 import { EventPipe, EventClass } from './src/resources/event';
 // import { GcpCloudRunResource } from './src/resources/cloud-run';
 import {

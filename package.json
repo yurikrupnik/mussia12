@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "typedoc": "typedoc --tsconfig tsconfig.base.json --entryPoints libs --entryPoints apps"
+    "compodoc": "npx compodoc -p tsconfig.base.json -sw",
+    "typedoc": "typedoc --tsconfig tsconfig.typedoc.json --entryPoints libs --entryPoints apps"
   },
   "private": true,
   "dependencies": {
@@ -66,6 +67,7 @@
   },
   "devDependencies": {
     "@angular-devkit/architect": "0.1300.2",
+    "@compodoc/compodoc": "1.1.15",
     "@dev-thought/nx-deploy-it": "2.0.0",
     "@nestjs/schematics": "8.0.4",
     "@nestjs/testing": "8.2.0",
