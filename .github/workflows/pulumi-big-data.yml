@@ -32,18 +32,18 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
       - run: pulumi plugin install resource gcp v5.26.0
-      - run: echo this is  ${GOOGLE_APPLICATION_CREDENTIALS}
-      - run: export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      - run: echo this is  ${GOOGLE_APPLICATION_CREDENTIAL
-#      - uses: pulumi/actions@v3
-#        with:
-#          command: preview
-#          stack-name: dev
-#          comment-on-pr: true
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#          work-dir: apps/big-data/infrastructure
-##          credentials: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-##          cwd: app/big-data/infra6
-#        env:
-#          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-#          PULUMI_CONFIG_PASSPHRASE: "''"
+#      - run: echo this is  ${GOOGLE_APPLICATION_CREDENTIALS}
+#      - run: export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+#      - run: echo this is  ${GOOGLE_APPLICATION_CREDENTIAL
+      - uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: dev
+          comment-on-pr: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          work-dir: apps/big-data/infrastructure
+#          credentials: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+#          cwd: app/big-data/infra6
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          PULUMI_CONFIG_PASSPHRASE: "''"
