@@ -28,6 +28,7 @@ jobs:
         with:
           project_id: mussia8
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          export_default_credentials: true
       - run: |-
           gcloud --quiet auth configure-docker
       - run: pulumi plugin install resource gcp v5.26.0
