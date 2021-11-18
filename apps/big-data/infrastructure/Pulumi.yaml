@@ -1,3 +1,6 @@
 name: big-data-infra
 runtime: nodejs
 description: A minimal Google Cloud TypeScript Pulumi program
+
+backend:
+  url: gs://mussia8-pulumi-bucket

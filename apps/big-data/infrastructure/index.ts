@@ -57,7 +57,7 @@ const functions: GcpFunction[] = [
 ];
 
 const funcs = functions.map((f) => {
-  return new GcpFunctionResource(f.name, f);
+  // return new GcpFunctionResource(f.name, f);
 });
 
 const dataset = new gcp.bigquery.Dataset('applications_events', {
@@ -164,7 +164,7 @@ const events: EventClass[] = [
 ];
 
 events.map((event) => {
-  return new EventPipe(event.name, event, {});
+  // return new EventPipe(event.name, event, {});
 });
 
 // const service = new GcpCloudRunResource('bi-service', {
