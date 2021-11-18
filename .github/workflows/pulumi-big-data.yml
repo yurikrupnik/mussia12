@@ -31,7 +31,7 @@ jobs:
           export_default_credentials: true
       - run: |-
           gcloud --quiet auth configure-docker
-      - run: pulumi plugin install resource gcp v5.26.0
+      - run: pulumi plugin install resource gcp v6.1.0
 #      - run: echo this is  ${GOOGLE_APPLICATION_CREDENTIALS}
 #      - run: export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 #      - run: echo this is  ${GOOGLE_APPLICATION_CREDENTIAL
