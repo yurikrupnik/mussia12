@@ -5,7 +5,7 @@ set -e
 if [ -z ${name+x} ]; then echo "name is unset"; exit 1; else echo "var is set to '$name'"; fi
 if [ -z ${src+x} ]; then echo "src is unset"; exit 1; else echo "var is set to '$src'"; fi
 
-gc_image=europe-docker.pkg.dev/mussia8/eu.gcr.io/$name
+gc_image=europe-west1-docker.pkg.dev/backed-monorepo/docker-registry/$name
 
 docker build -t $gc_image ./$src --force-rm
 echo 'Finished building!'
