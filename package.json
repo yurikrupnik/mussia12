@@ -33,7 +33,6 @@
     "@nestjs/terminus": "8.0.1",
     "@nestjs/websockets": "8.2.3",
     "@pulumi/docker": "3.1.0",
-    "@pulumi/gcp": "6.1.0",
     "@pulumi/mongodbatlas": "3.0.1",
     "@pulumi/pulumi": "3.18.0",
     "@wanews/nx-pulumi": "0.18.5",
