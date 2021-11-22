@@ -1,0 +1,25 @@
+name: 'Destroy Cloud run old revisions'
+
+on:
+  pull_request:
+    types:
+      - closed
+#    branches:
+#      - main
+#  schedule:
+#    - cron: '0 23 * * *' # run every day at 23:00. this is in case of envs that got missed due to race conditions on lockfile or other issues.
+
+env:
+  INT_ENVS_STATE_AND_CONF_S3_PATH: p81-devops-terraform-states/fe-integration
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  cleanup-int-envs:
+    runs-on: self-hosted
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+#      - name: Destroy tag in cloud run
+#        run: gcloud run services update-traffic bi-service --platform=managed  --region europe-west1 --remove-tags=sha-5317c35f
