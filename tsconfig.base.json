@@ -65,5 +65,4 @@
     "exclude": ["**/**/__tests__/*"],
     "entryPointStrategy": "expand"
   }
-
 }
