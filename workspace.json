@@ -45,7 +45,6 @@
     "fullstack-client-next-e2e": "apps/fullstack/client-next-e2e",
     "fullstack-event1": "apps/fullstack/event1",
     "fullstack-event1-api-nest-module": "libs/fullstack/event1-api-nest-module",
-    "fullstack-event2": "apps/fullstack/event2",
     "fullstack-event2-api-nest-module": "libs/fullstack/event2-api-nest-module",
     "fullstack-event3": "apps/fullstack/event3",
     "fullstack-event3-api-nest-module": "libs/fullstack/event3-api-nest-module",
