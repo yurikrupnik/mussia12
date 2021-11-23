@@ -124,7 +124,7 @@ export class AppController {
   @ApiBody(bodySchema)
   publishTopic(
     @Body(new ValidationPipe()) body: EventsBodies
-  ): Promise<string> {
+  ): Promise<[string]> {
     const { topic } = body;
     delete body.topic;
     console.log('topic', topic);

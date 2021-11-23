@@ -14,12 +14,12 @@ export class BiService {
     return { message: dbUser };
   }
 
-  publishTopic(topic: events, message: any): Promise<string> {
+  publishTopic(topic: events, message: any): Promise<[string]> {
     const buffer = Buffer.from(JSON.stringify(message));
     return (
       pubsub
         .topic(topic)
-        .publish(buffer)
+        .publishMessage({ data: buffer })
         // .then((message) => {
         //   return { message };
         // })
