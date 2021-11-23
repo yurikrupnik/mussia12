@@ -7,10 +7,6 @@ import star from './star.svg';
 
 import { User } from '@mussia12/shared/mongoose-schemas';
 
-// const obj: User = {
-//   email: 'ad',
-// };
-
 function getUsers() {
   return axios
     .get<Array<User>>('/api/users')

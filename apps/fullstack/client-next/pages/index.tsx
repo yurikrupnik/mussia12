@@ -55,6 +55,7 @@ export function Index() {
         query.data.map((user) => {
           return (
             <div key={user._id}>
+            
               <div>role: {user.role}</div>
               <div>name: {user.name}</div>
               <div>email: {user.email}</div>
