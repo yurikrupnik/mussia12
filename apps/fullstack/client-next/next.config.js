@@ -17,6 +17,10 @@ const nextConfig = {
   },
 };
 
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: process.env.ANALYZE === 'true',
+//   // enabled: true,
+// });
 // module.exports = withNx(nextConfig);
 module.exports = (phase) => {
   console.log('HEAD_REF', process.env.HEAD_REF);

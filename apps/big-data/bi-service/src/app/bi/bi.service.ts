@@ -14,18 +14,15 @@ export class BiService {
     return { message: dbUser };
   }
 
-  publishTopic(topic: events, message: any): Promise<string> {
+  publishTopic(topic: events, message: any): Promise<[string]> {
     const buffer = Buffer.from(JSON.stringify(message));
-    return (
-      pubsub
-        .topic(topic)
-        .publish(buffer)
-        // .then((message) => {
-        //   return { message };
-        // })
-        .catch((err) => {
-          throw new NotAcceptableException(err.details);
-        })
-    );
+
+    return pubsub.topic(topic).publishMessage({ data: buffer });
+    // .then((message) => {
+    //   return { message };
+    // })
+    // .catch((err) => {
+    //   throw new NotAcceptableException(err.details);
+    // })
   }
 }

@@ -8,7 +8,7 @@ const pubsub = new PubSub();
 
 function publishPubSubMessage(topic: events, message: any) {
   const buffer = Buffer.from(JSON.stringify(message));
-  return pubsub.topic(topic).publish(buffer);
+  return pubsub.topic(topic).publishMessage({ data: buffer });
 }
 
 const publishTopic = (req: Request, res: Response) => {

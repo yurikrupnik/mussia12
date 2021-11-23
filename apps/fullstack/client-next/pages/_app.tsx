@@ -7,6 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { theme, createEmotionCache } from '@mussia12/shared/mui';
+import AuthContextProvider from '../contexts/AuthContext';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -31,8 +32,10 @@ const MyApp: React.FC<AppProps> = (props: MyAppProps) => {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <CacheProvider value={emotionCache}>
-            <CssBaseline />
-            <Component {...pageProps} />
+            <AuthContextProvider>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </AuthContextProvider>
           </CacheProvider>
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />

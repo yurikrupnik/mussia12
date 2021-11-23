@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import Pusher from 'pusher-js';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Event1 } from '@mussia12/shared/mongoose-schemas';
 
@@ -71,6 +72,7 @@ const ActivityLog = () => {
             </Grid>
           </Grid>
         ))}
+        <Button>Aris</Button>
       </Grid>
     </div>
   );
