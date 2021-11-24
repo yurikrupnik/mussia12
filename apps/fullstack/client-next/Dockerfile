@@ -1,4 +1,4 @@
-FROM node:16-alpine AS runner
+FROM node:17-alpine AS runner
 WORKDIR /app
 
 COPY ./dist .
