@@ -51,7 +51,7 @@
     "lodash": "4.17.21",
     "mongoose": "6.0.13",
     "nestjs-rollbar": "1.7.0",
-    "next": "12.0.2",
+    "next": "12.0.4",
     "next-connect": "0.11.0",
     "pusher": "5.0.0",
     "pusher-js": "7.0.3",
