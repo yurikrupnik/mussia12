@@ -43,7 +43,6 @@
 [![Language grade: Go](https://img.shields.io/lgtm/grade/go/g/yurikrupnik/mussia12.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/yurikrupnik/mussia12/context:go)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/yurikrupnik/mussia12.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/yurikrupnik/mussia12/context:javascript)
 
-
 [![DepShield Badge](https://depshield.sonatype.org/badges/owner/repository/depshield.svg)](https://depshield.github.io)
 
 This project was generated using [Nx](https://nx.dev).
