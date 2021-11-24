@@ -1,6 +1,13 @@
 
 
 # Mussia12
+[![CI](https://github.com/yurikrupnik/mussia12/actions/workflows/ci.yml/badge.svg)](https://github.com/yurikrupnik/mussia12/actions/workflows/ci.yml)
+[![Daily Ci](https://github.com/yurikrupnik/mussia12/actions/workflows/daily-ci.yml/badge.svg)](https://github.com/yurikrupnik/mussia12/actions/workflows/daily-ci.yml)
+[![Deploy](https://github.com/yurikrupnik/mussia12/actions/workflows/deploy.yml/badge.svg)](https://github.com/yurikrupnik/mussia12/actions/workflows/deploy.yml)
+[![Pulumi](https://github.com/yurikrupnik/mussia12/actions/workflows/pulumi-big-data.yml/badge.svg)](https://github.com/yurikrupnik/mussia12/actions/workflows/pulumi-big-data.yml)
+[![.github/workflows/destroy-cloud-run.yaml](https://github.com/yurikrupnik/mussia12/actions/workflows/destroy-cloud-run.yaml/badge.svg)](https://github.com/yurikrupnik/mussia12/actions/workflows/destroy-cloud-run.yaml)
+[![Push test](https://github.com/yurikrupnik/mussia12/actions/workflows/push.yml/badge.svg)](https://github.com/yurikrupnik/mussia12/actions/workflows/push.yml)
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 [![Depfu](https://badges.depfu.com/badges/986287de46e83570bc478961684de7a6/status.svg)](https://depfu.com)
