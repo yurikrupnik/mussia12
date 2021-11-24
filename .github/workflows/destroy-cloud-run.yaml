@@ -14,7 +14,7 @@ env:
 
 jobs:
   cleanup-int-envs:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
         env:
