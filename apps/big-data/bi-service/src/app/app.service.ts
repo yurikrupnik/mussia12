@@ -10,7 +10,7 @@ function cd(topic, message) {
   return (
     pubsub
       .topic(topic)
-      .publish(buffer)
+      .publishMessage({ data: buffer })
       // .then((message) => {
       //   return { message };
       // })
@@ -28,11 +28,11 @@ export class AppService {
     return { message: dbUser };
   }
 
-  publishTopic(topic: events, message: any): Promise<string> {
+  publishTopic(topic: events, message: any): Promise<[string]> {
     const buffer = Buffer.from(JSON.stringify(message));
     return pubsub
       .topic(topic)
-      .publish(buffer)
+      .publishMessage({ data: buffer })
       .catch((err) => {
         throw new NotAcceptableException(err.details);
       });

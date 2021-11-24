@@ -97,10 +97,8 @@ export class BiController {
     type: Error,
   })
   @ApiBody(bodySchema)
-  publishTopic(
-    @Body(new ValidationPipe()) body: EventsBodies
-  ): Promise<string> {
+  publishTopic(@Body(new ValidationPipe()) body: EventsBodies): void {
     const { topic, message } = body;
-    return this.biService.publishTopic(topic, message);
+    this.biService.publishTopic(topic, message);
   }
 }
