@@ -1,6 +1,43 @@
 
 
 # Mussia12
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+[![Depfu](https://badges.depfu.com/badges/986287de46e83570bc478961684de7a6/status.svg)](https://depfu.com)
+[![Depfu](https://badges.depfu.com/badges/986287de46e83570bc478961684de7a6/overview.svg)](https://depfu.com/github/yurikrupnik/mussia12?project_id=32992)
+[![Depfu](https://badges.depfu.com/badges/986287de46e83570bc478961684de7a6/count.svg)](https://depfu.com/github/yurikrupnik/mussia12?project_id=32992)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/534dcfa008bc47e5b286de136d49138b)](https://www.codacy.com/gh/yurikrupnik/mussia12/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yurikrupnik/mussia12&amp;utm_campaign=Badge_Grade)
+[![DeepScan grade](https://deepscan.io/api/teams/12695/projects/19311/branches/497594/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=12695&pid=19311&bid=497594)
+[![CodeFactor](https://www.codefactor.io/repository/github/yurikrupnik/mussia12/badge)](https://www.codefactor.io/repository/github/yurikrupnik/mussia12)
+[![codebeat badge](https://codebeat.co/badges/642d9697-44b4-4944-81bd-84786fc4f736)](https://codebeat.co/projects/github-com-yurikrupnik-mussia12-master)
+[![BCH compliance](https://bettercodehub.com/edge/badge/yurikrupnik/mussia12?branch=master)](https://bettercodehub.com/)
+
+[![DeepSource](https://deepsource.io/gh/yurikrupnik/mussia12.svg/?label=active+issues&show_trend=true&token=rz4vPTjwHnrxl3WbwNBtdbcR)](https://deepsource.io/gh/yurikrupnik/mussia12/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/yurikrupnik/mussia12.svg/?label=resolved+issues&show_trend=true&token=rz4vPTjwHnrxl3WbwNBtdbcR)](https://deepsource.io/gh/yurikrupnik/mussia12/?ref=repository-badge)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/89c61c9ddda5adf765bd/maintainability)](https://codeclimate.com/github/yurikrupnik/mussia12/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/89c61c9ddda5adf765bd/test_coverage)](https://codeclimate.com/github/yurikrupnik/mussia12/test_coverage)
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=bugs)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=coverage)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=yurikrupnik_mussia12&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=yurikrupnik_mussia12)
+
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/yurikrupnik/mussia12.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/yurikrupnik/mussia12/alerts/)
+[![Language grade: Go](https://img.shields.io/lgtm/grade/go/g/yurikrupnik/mussia12.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/yurikrupnik/mussia12/context:go)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/yurikrupnik/mussia12.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/yurikrupnik/mussia12/context:javascript)
+
+
+[![DepShield Badge](https://depshield.sonatype.org/badges/owner/repository/depshield.svg)](https://depshield.github.io)
 
 This project was generated using [Nx](https://nx.dev).
 
