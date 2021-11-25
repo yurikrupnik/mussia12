@@ -2,7 +2,7 @@ GCP_PROJECT:=gcloud config get-value project
 
 
 define get-secret
-$(shell gcloud secrets versions access latest --secret=MONGO_URI --project=mussia8)
+$(shell gcloud secrets versions access latest --secret=MONGO_URI --project=mussia12-333121)
 endef
 
 

@@ -31,7 +31,7 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
-          project_id: mussia8
+          project_id: mussia12-333121
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
           gcloud --quiet auth configure-docker
