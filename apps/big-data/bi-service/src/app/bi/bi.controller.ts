@@ -48,7 +48,7 @@ class Event2Dto {
   @ApiProperty({})
   message: Event2;
 }
-
+//
 // class Event3Dto {
 //   @ApiProperty({
 //     default: 'event3',
@@ -59,7 +59,7 @@ class Event2Dto {
 //   message: Event3;
 // }
 
-type EventsBodies = Event1Dto | Event2Dto | Event3Dto;
+type EventsBodies = Event1Dto | Event2Dto;
 
 const bodySchema: ApiBodyOptions = {
   // type: 'object',
