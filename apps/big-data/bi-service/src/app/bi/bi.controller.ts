@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 
 import { BiService } from './bi.service';
 // import { CreateBiDto } from './dto/create-bi.dto';
@@ -16,7 +16,7 @@ import {
   ApiBodyOptions,
 } from '@nestjs/swagger';
 import { ValidationPipe } from '../utils/validation.pipe';
-import { Event1, Event2, Event3 } from '@mussia12/shared/mongoose-schemas';
+import { Event1, Event2 } from '@mussia12/shared/mongoose-schemas';
 import { events } from '@mussia12/shared/data-types';
 
 class Event1Dto {
