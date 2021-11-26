@@ -38,7 +38,7 @@ jobs:
           project_id: mussia12-333121
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
-          gcloud --quiet auth configure-docker
+          gcloud --quiet auth configure-docker europe-west1-docker.pkg.dev
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=build --parallel --max-parallel=4 --prod
       - uses: nelonoel/branch-name@v1.0.1
@@ -71,7 +71,7 @@ jobs:
           project_id: mussia12-333121
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - run: |-
-          gcloud --quiet auth configure-docker
+          gcloud --quiet auth configure-docker europe-west1-docker.pkg.dev
       - run: gcloud config list
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=build --parallel --max-parallel=4 --base=origin/master --prod
