@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 
 import { BiService } from './bi.service';
-import { CreateBiDto } from './dto/create-bi.dto';
-import { UpdateBiDto } from './dto/update-bi.dto';
+// import { CreateBiDto } from './dto/create-bi.dto';
+// import { UpdateBiDto } from './dto/update-bi.dto';
 import { Type } from 'class-transformer';
 import { ValidateNested } from 'class-validator';
 import {
@@ -49,15 +49,15 @@ class Event2Dto {
   message: Event2;
 }
 
-class Event3Dto {
-  @ApiProperty({
-    default: 'event3',
-  })
-  topic: events;
-
-  @ApiProperty({})
-  message: Event3;
-}
+// class Event3Dto {
+//   @ApiProperty({
+//     default: 'event3',
+//   })
+//   topic: events;
+//
+//   @ApiProperty({})
+//   message: Event3;
+// }
 
 type EventsBodies = Event1Dto | Event2Dto | Event3Dto;
 
@@ -71,9 +71,9 @@ const bodySchema: ApiBodyOptions = {
       {
         $ref: getSchemaPath(Event2Dto),
       },
-      {
-        type: getSchemaPath(Event3Dto),
-      },
+      // {
+      //   type: getSchemaPath(Event3Dto),
+      // },
       // { type: getSchemaPath(Event4) },
     ],
   },
@@ -83,7 +83,7 @@ const bodySchema: ApiBodyOptions = {
 @ApiTags('BI')
 @ApiExtraModels(Event1Dto)
 @ApiExtraModels(Event2Dto)
-@ApiExtraModels(Event3Dto)
+// @ApiExtraModels(Event3Dto)
 export class BiController {
   constructor(private readonly biService: BiService) {}
 
