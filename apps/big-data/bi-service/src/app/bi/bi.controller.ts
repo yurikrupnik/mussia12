@@ -1,8 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
 
 import { BiService } from './bi.service';
-// import { CreateBiDto } from './dto/create-bi.dto';
-// import { UpdateBiDto } from './dto/update-bi.dto';
 import { Type } from 'class-transformer';
 import { ValidateNested } from 'class-validator';
 import {
