@@ -8,7 +8,7 @@ export type Event3Document = Event3 & Document;
 export class Event3 {
   @ApiProperty({
     description: `Tenant Id`,
-    example: 'some-id',
+    example: 'some-id-test',
   })
   @Prop({
     index: true,
