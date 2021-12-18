@@ -30,7 +30,7 @@
     "@nestjs/platform-fastify": "8.2.3",
     "@nestjs/platform-socket.io": "8.2.3",
     "@nestjs/swagger": "5.1.5",
-    "@nestjs/terminus": "8.0.1",
+    "@nestjs/terminus": "8.0.2",
     "@nestjs/websockets": "8.2.3",
     "@pulumi/docker": "3.1.0",
     "@pulumi/gcp": "6.2.0",
