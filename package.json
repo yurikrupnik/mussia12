@@ -74,7 +74,7 @@
     "@nestjs/testing": "8.2.3",
     "@nrwl/cli": "13.0.2",
     "@nrwl/cypress": "13.0.2",
-    "@nrwl/devkit": "13.0.2",
+    "@nrwl/devkit": "13.5.3",
     "@nrwl/eslint-plugin-nx": "13.0.2",
     "@nrwl/express": "13.0.2",
     "@nrwl/jest": "13.0.2",
