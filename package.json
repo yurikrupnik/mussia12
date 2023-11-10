@@ -37,7 +37,7 @@
     "@pulumi/mongodbatlas": "3.0.1",
     "@pulumi/pulumi": "3.18.1",
     "@wanews/nx-pulumi": "0.18.5",
-    "axios": "0.24.0",
+    "axios": "1.6.1",
     "class-transformer": "0.4.0",
     "class-validator": "0.13.2",
     "connect-mongo": "4.6.0",
