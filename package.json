@@ -42,7 +42,7 @@
     "class-validator": "0.13.2",
     "connect-mongo": "4.6.0",
     "core-js": "3.19.1",
-    "express": "4.17.1",
+    "express": "4.19.2",
     "express-session": "1.17.2",
     "faker": "5.5.3",
     "fastify-swagger": "4.12.6",
