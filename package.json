@@ -35,7 +35,7 @@
     "@pulumi/docker": "3.1.0",
     "@pulumi/gcp": "6.2.0",
     "@pulumi/mongodbatlas": "3.0.1",
-    "@pulumi/pulumi": "3.18.1",
+    "@pulumi/pulumi": "3.108.1",
     "@wanews/nx-pulumi": "0.18.5",
     "axios": "0.24.0",
     "class-transformer": "0.4.0",
