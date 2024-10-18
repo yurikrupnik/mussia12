@@ -67,7 +67,7 @@
     "yaml": "1.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1300.3",
+    "@angular-devkit/architect": "0.1802.9",
     "@compodoc/compodoc": "1.1.16",
     "@dev-thought/nx-deploy-it": "2.0.0",
     "@nestjs/schematics": "8.0.5",
