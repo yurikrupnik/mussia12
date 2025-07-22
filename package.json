@@ -43,7 +43,7 @@
     "connect-mongo": "4.6.0",
     "core-js": "3.19.1",
     "express": "4.17.1",
-    "express-session": "1.17.2",
+    "express-session": "1.18.2",
     "faker": "5.5.3",
     "fastify-swagger": "4.12.6",
     "firebase-admin": "10.0.0",
